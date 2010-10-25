@@ -16,28 +16,11 @@
 
 package mmsquare.umbra
 
-import org.joda.time.DateTime
-import org.joda.time.LocalDate
+class Person {
 
-class Entry {
+  String fullName
+  String shortName
 
-  String permalink
-  LocalDate publishDate
-  String title
-  String content
-
-  DateTime dateCreated
-  DateTime lastUpdated
-
-  static hasMany = [
-          tags: Tag,
-          pictures: Picture
-  ]
-
-  static constraints = {
-    permalink(blank: false, unique: true, maxSize: 1500)
-    title(blank: false)
-    content(nullable: true, maxSize: 5000)
-  }
-
+    static constraints = {
+    }
 }

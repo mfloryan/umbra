@@ -16,28 +16,38 @@
 
 package mmsquare.umbra
 
-import org.joda.time.DateTime
-import org.joda.time.LocalDate
+class Format {
 
-class Entry {
+  int width
+  int height
+  int size
+  String path
+  FormatType type = FormatType.ORIGINAL
 
-  String permalink
-  LocalDate publishDate
-  String title
-  String content
+    static constraints = {
+      width(notEqual:0)
+      height(notEqual:0)
+      size(nullable:true)
+      path(blank:false, unique:true)
+    }
 
-  DateTime dateCreated
-  DateTime lastUpdated
-
-  static hasMany = [
-          tags: Tag,
-          pictures: Picture
-  ]
-
-  static constraints = {
-    permalink(blank: false, unique: true, maxSize: 1500)
-    title(blank: false)
-    content(nullable: true, maxSize: 5000)
+  void setType(FormatType type) {
+    this.type = type
+    if (type.formatTypeWidth && !width) width = type.formatTypeWidth
   }
 
+  FormatType getType() {
+    this.type    
+  }
+}
+
+enum FormatType {
+  ORIGINAL, LARGE(1200), SMALL(640), THUMBNAIL(100)
+  public final int formatTypeWidth
+  FormatType(int width) {
+    this.formatTypeWidth = width
+  }
+  FormatType() {
+
+  }
 }

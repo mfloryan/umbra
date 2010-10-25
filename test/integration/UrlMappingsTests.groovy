@@ -1,4 +1,4 @@
-import grails.test.*
+import grails.test.GrailsUrlMappingsTestCase
 import org.junit.Test
 
 class UrlMappingsTests extends GrailsUrlMappingsTestCase {

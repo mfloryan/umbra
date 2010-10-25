@@ -14,30 +14,15 @@
  * limitations under the License.
  */
 
-package mmsquare.umbra
+package mmsquare.umbra.util
 
-import org.joda.time.DateTime
-import org.joda.time.LocalDate
+/* Created 25-Oct-2010 20:59:16 by mfloryan */
 
-class Entry {
+@Category(String)
+class StringCategory {
 
-  String permalink
-  LocalDate publishDate
-  String title
-  String content
-
-  DateTime dateCreated
-  DateTime lastUpdated
-
-  static hasMany = [
-          tags: Tag,
-          pictures: Picture
-  ]
-
-  static constraints = {
-    permalink(blank: false, unique: true, maxSize: 1500)
-    title(blank: false)
-    content(nullable: true, maxSize: 5000)
-  }
+	String normalize() {
+		this.replaceAll(~/\s+/, "-").replaceAll(~/[^\w\d-]/, "").toLowerCase()
+	}
 
 }
