@@ -18,14 +18,17 @@ package mmsquare.umbra
 
 class Picture {
 
-  String title
+	String title
 
-  static hasMany = [
-          people: Person,
-          formats: Format
-  ]
+	static hasMany = [
+			people: Person,
+			formats: Format
+	]
 
-    static constraints = {
-      title(nullable:true)
-    }
+	static belongsTo = [entry: Entry]
+
+
+	static constraints = {
+		title(nullable: true)
+	}
 }

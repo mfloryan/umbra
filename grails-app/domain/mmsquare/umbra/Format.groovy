@@ -18,36 +18,40 @@ package mmsquare.umbra
 
 class Format {
 
-  int width
-  int height
-  int size
-  String path
-  FormatType type = FormatType.ORIGINAL
+	int width
+	int height
+	int size
+	String path
+	FormatType type = FormatType.ORIGINAL
 
-    static constraints = {
-      width(notEqual:0)
-      height(notEqual:0)
-      size(nullable:true)
-      path(blank:false, unique:true)
-    }
+	static belongsTo = [entry: Picture]
 
-  void setType(FormatType type) {
-    this.type = type
-    if (type.formatTypeWidth && !width) width = type.formatTypeWidth
-  }
+	static constraints = {
+		width(notEqual: 0)
+		height(notEqual: 0)
+		size(nullable: true)
+		path(blank: false, unique: true)
+	}
 
-  FormatType getType() {
-    this.type    
-  }
+	void setType(FormatType type) {
+		this.type = type
+		if (type.formatTypeWidth && !width) width = type.formatTypeWidth
+	}
+
+	FormatType getType() {
+		this.type
+	}
 }
 
 enum FormatType {
-  ORIGINAL, LARGE(1200), SMALL(640), THUMBNAIL(100)
-  public final int formatTypeWidth
-  FormatType(int width) {
-    this.formatTypeWidth = width
-  }
-  FormatType() {
+	ORIGINAL, LARGE(1200), SMALL(640), THUMBNAIL(100)
+	public final int formatTypeWidth
 
-  }
+	FormatType(int width) {
+		this.formatTypeWidth = width
+	}
+
+	FormatType() {
+
+	}
 }
