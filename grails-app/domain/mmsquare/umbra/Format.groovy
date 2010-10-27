@@ -24,7 +24,7 @@ class Format {
 	String path
 	FormatType type = FormatType.ORIGINAL
 
-	static belongsTo = [entry: Picture]
+	static belongsTo = [picture: Picture]
 
 	static constraints = {
 		width(notEqual: 0)
