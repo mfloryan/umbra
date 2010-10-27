@@ -1,6 +1,7 @@
 package mmsquare.umbra
 
 import org.openqa.selenium.WebDriver
+import grails.plugin.webdriver.DriverContext
 
 /* Created 23-Oct-2010 14:03:43 by mfloryan */
 
