@@ -1,17 +1,18 @@
 package mmsquare.umbra.webdriver
 
+import grails.plugin.fixtures.FixtureLoader
+import grails.plugin.webdriver.DriverContext
 import mmsquare.umbra.Page
 import org.codehaus.groovy.grails.commons.ApplicationHolder
-import grails.plugin.fixtures.FixtureLoader
 import spock.lang.Shared
+import spock.lang.Specification
 
 /* Created 23-Oct-2010 14:00:22 by mfloryan */
 
-class WebSpec {
+class WebSpec extends Specification {
 
   private Page currentPage
   @Shared protected FixtureLoader fixtureLoader = ApplicationHolder.application?.mainContext?.fixtureLoader
-
 
   protected <T extends Page> T getPage() { currentPage }
 

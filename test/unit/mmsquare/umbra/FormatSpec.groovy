@@ -28,6 +28,7 @@ class FormatSpec extends UnitSpec {
     format.errors.hasFieldErrors("width")
     format.errors.hasFieldErrors("height")
     format.errors.hasFieldErrors("path")
+    format.errors.hasFieldErrors("picture")
   }
 
   def "Format with correct properties set validates"() {

@@ -16,17 +16,17 @@
 
 package mmsquare.umbra
 
+import org.joda.time.DateTime
+
 class Picture {
 
 	String title
+    DateTime dateTaken
 
 	static hasMany = [
 			people: Person,
 			formats: Format
 	]
-
-	static belongsTo = [entry: Entry]
-
 
 	static constraints = {
 		title(nullable: true)

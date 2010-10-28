@@ -6,11 +6,13 @@ import mmsquare.umbra.Page
 
 class SingleEntryPage extends Page {
 
+  private final static URL = "/"
+
   String getUrl() {
-    return null;  
-  }
+		params.permalink
+	}
 
   boolean verify() {
-    return false;
+    driver.currentUrl =~ /\/[0-9]{4}\/[0-9]{2}\/\.*$/
   }
 }
