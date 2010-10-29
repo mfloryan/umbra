@@ -14,7 +14,7 @@ abstract class Page {
 	abstract boolean verify()
 
 	String getBaseUrl() {
-		DriverContext.config.webdriver.base.url + "/catalogue"
+		DriverContext.config.webdriver.base.url + "/umbra"
 	}
 
 	String getPageTitle() {

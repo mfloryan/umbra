@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+      <head>
+          <title><g:layoutTitle default="${grailsApplication.config.umbra.title}" /></title>
+          <g:layoutHead />
+      </head>
+      <body>
+           <div class="page">
+             <header>
+               <h1><a href="/">3F</a></h1>
+
+             </header>
+                <div class="content">
+                  <g:layoutBody />
+                </div>
+                <div class="sidebar">
+
+                </div>
+             <footer>
+                &copy; 2010 Marcin & Małgorzata Floryan.<br />
+               <span class="license">
+                <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" rel="license">
+                  <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" alt="Creative Commons License">
+                </a>
+                 All content of this site is licenced under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" rel="license">Creative Commons Licence</a>.
+               </span>
+             </footer>             
+           </div>
+      </body>
+</html>

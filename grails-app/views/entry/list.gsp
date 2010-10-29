@@ -1,13 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: marcin
-  Date: 27-Oct-2010
-  Time: 14:07:11
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>Simple GSP page</title></head>
-  <body>Place your content here</body>
+<head>
+	<meta name="layout" content="umbra"/>
+</head>
+<body>
+<ul class="entries">
+	<g:each in="${entries}" var="entry">
+		<li class="entry">
+			<g:render template="/shared/entry" model="[entry:entry, 'listMode':true]"/>
+		</li>
+	</g:each>
+</ul>
+</body>
 </html>

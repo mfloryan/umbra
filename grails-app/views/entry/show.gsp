@@ -1,13 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: marcin
-  Date: 27-Oct-2010
-  Time: 14:07:35
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>Simple GSP page</title></head>
-  <body>Place your content here</body>
+  <head>
+    <meta name="layout" content="umbra"/>
+    <title>${grailsApplication.config.umbra.title} &raquo; ${entry.title}</title>
+  </head>
+  <body>
+    <g:render template="/shared/entry" model="[entry:entry, 'listMode':true]"/>
+  </body>
 </html>

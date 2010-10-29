@@ -7,8 +7,6 @@ import mmsquare.umbra.guest.page.SingleEntryPage
 
 class EntryPageSpec extends WebSpec {
 
-  //def fixtureLoader
-
   def "guest can view single entry page" () {
     given: "An entry exists"
       def fixture = fixtureLoader.load {
@@ -24,9 +22,7 @@ class EntryPageSpec extends WebSpec {
 
     then: "The entry is shown"
     page.entryTitle == "A test entry"
-
-    println "Testing"
-
+    page.pageTitle == "3F » A test entry"
   }
 
 }

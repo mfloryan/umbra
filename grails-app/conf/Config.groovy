@@ -99,3 +99,6 @@ grails.gorm.default.mapping = {
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentLocalDateTime, class: org.joda.time.LocalDateTime
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentPeriod, class: org.joda.time.Period
 }
+
+umbra.title = "3F"
+umbra.description = "a photographic journey through life of Zosia, Matylda and Franek"
