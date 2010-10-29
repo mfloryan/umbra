@@ -1,10 +1,12 @@
 package umbra
 
+import mmsquare.umbra.Entry
+
 class EntryService {
 
     static transactional = true
 
-    def serviceMethod() {
-
+    def getEntries() {
+		Entry.list(sort:"publishDate", order:"desc")	    
     }
 }
