@@ -1,6 +1,9 @@
 target/
+out/
 .idea/
 *.iml
+*.ipr
+*.iws
 *.log
 *.zip
 devDB.*
