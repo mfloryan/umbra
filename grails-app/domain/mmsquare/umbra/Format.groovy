@@ -29,7 +29,6 @@ class Format {
 	static constraints = {
 		width(notEqual: 0)
 		height(notEqual: 0)
-		size(nullable: true)
 		path(blank: false, unique: true)
 	}
 
