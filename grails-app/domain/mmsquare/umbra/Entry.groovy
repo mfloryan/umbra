@@ -21,23 +21,24 @@ import org.joda.time.LocalDate
 
 class Entry {
 
-  String permalink
-  LocalDate publishDate
-  String title
-  String content
+	String permalink
+	LocalDate publishDate
+	String title
+	String content
+	List pictures
 
-  DateTime dateCreated
-  DateTime lastUpdated
+	DateTime dateCreated
+	DateTime lastUpdated
 
-  static hasMany = [
-          tags: Tag,
-          pictures: Picture
-  ]
+	static hasMany = [
+			tags: Tag,
+			pictures: Picture
+	]
 
-  static constraints = {
-    permalink(blank: false, unique: true, maxSize: 1500)
-    title(blank: false)
-    content(nullable: true, maxSize: 5000)
-  }
+	static constraints = {
+		permalink(blank: false, unique: true, maxSize: 1500)
+		title(blank: false)
+		content(nullable: true, maxSize: 5000)
+	}
 
 }
