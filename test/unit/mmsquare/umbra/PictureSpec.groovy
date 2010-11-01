@@ -5,7 +5,7 @@ import org.joda.time.DateTime
 
 class PictureSpec extends UnitSpec {
 
-	def "a photo with required values can be created"() {
+	def "picture with required values can be created"() {
 		setup:
 		mockDomain Picture
 
@@ -15,5 +15,4 @@ class PictureSpec extends UnitSpec {
 		then:
 		p.validate()
 	}
-
 }
