@@ -7,6 +7,14 @@ import org.joda.time.LocalDate
 
 class ListPageSpec extends WebSpec {
 
+	def setupSpec() {
+		fixtureLoader.load "tearDown"
+	}
+
+	def cleanup() {
+		fixtureLoader.load "tearDown"
+	}
+
 	def "entries are shown on the list page"() {
 		given: "some entires exist"
 		def fixture = fixtureLoader.load {
