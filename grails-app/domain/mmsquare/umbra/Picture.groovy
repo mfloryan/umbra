@@ -29,6 +29,8 @@ class Picture {
 			formats: Format
 	]
 
+	static fetchMode = [formats:"eager", people:"eager"]
+
 	static constraints = {
 		title(nullable: true)
 	}

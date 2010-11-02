@@ -32,6 +32,8 @@ class Format {
 		path(blank: false, unique: true)
 	}
 
+	static transients = ["url", "file"]
+
 	void setType(FormatType type) {
 		this.type = type
 		if (type.formatTypeWidth && !width) width = type.formatTypeWidth
