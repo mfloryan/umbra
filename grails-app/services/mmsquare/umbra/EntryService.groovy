@@ -1,6 +1,4 @@
-package umbra
-
-import mmsquare.umbra.Entry
+package mmsquare.umbra
 
 class EntryService {
 
