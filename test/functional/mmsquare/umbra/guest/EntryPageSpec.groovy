@@ -1,14 +1,23 @@
 package mmsquare.umbra.guest
 
 import mmsquare.umbra.Entry
-import mmsquare.umbra.guest.page.SingleEntryPage
-import mmsquare.umbra.webdriver.WebSpec
-import org.joda.time.LocalDate
-import mmsquare.umbra.Picture
 import mmsquare.umbra.Format
 import mmsquare.umbra.FormatType
+import mmsquare.umbra.Picture
+import mmsquare.umbra.guest.page.SingleEntryPage
+import mmsquare.umbra.webdriver.WebSpec
+import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 class EntryPageSpec extends WebSpec {
+
+	def setupSpec() {
+		fixtureLoader.load "tearDown"
+	}
+
+	def cleanup() {
+		fixtureLoader.load "tearDown"
+	}
 
 	def "guest can view single entry page"() {
 		given: "An entry exists"
@@ -31,55 +40,59 @@ class EntryPageSpec extends WebSpec {
 	def "guest can view photos on an entry page"() {
 		given: "an entry with some photos"
 		def fixture = fixtureLoader.load {
+			photoOne(Picture) {
+				dateTaken = new DateTime()
+			}
+			photoTwo(Picture) {
+				dateTaken = new DateTime()
+			}
 			format1(Format) {
-				width: 640
-				hegiht: 320
-				path: "2010/10/IMAGE1-640x320.jpg"
-				type: FormatType.SMALL
+				width = 640
+				height = 320
+				path = "/2010/10/IMAGE1-640x320.jpg"
+				type = FormatType.SMALL
+				picture = photoOne
 			}
 			format2(Format) {
-				width: 1200
-				hight: 320
-				path: "2010/10/IMAGE1-1200x320.jpg"
-				type: FormatType.LARGE
+				width = 1200
+				height = 320
+				path = "/2010/10/IMAGE1-1200x320.jpg"
+				type = FormatType.LARGE
+				picture = photoOne
 			}
 			format3(Format) {
-				width: 2300
-				hight: 640
-				path: "2010/10/IMAGE1.jpg"
-				type: FormatType.ORIGINAL
+				width = 2300
+				height = 640
+				path = "/2010/10/IMAGE1.jpg"
+				type = FormatType.ORIGINAL
+				picture = photoOne
 			}
 			format4(Format) {
-				width: 640
-				hegiht: 320
-				path: "2010/10/IMAGE2-640x320.jpg"
-				type: FormatType.SMALL
+				width = 640
+				height = 320
+				path = "/2010/10/IMAGE2-640x320.jpg"
+				type = FormatType.SMALL
+				picture = photoTwo
 			}
 			format5(Format) {
-				width: 1200
-				hight: 320
-				path: "2010/10/IMAGE2-1200x320.jpg"
-				type: FormatType.LARGE
+				width = 1200
+				height = 320
+				path = "/2010/10/IMAGE2-1200x320.jpg"
+				type = FormatType.LARGE
+				picture = photoTwo
 			}
 			format6(Format) {
-				width: 2300
-				hight: 640
-				path: "2010/10/IMAGE2.jpg"
-				type: FormatType.ORIGINAL
-			}
-			photo1(Picture) {
-				formats: [format1, format2, format3]
-				dateTaken: new LocalDate(2010,10,1)
-			}
-			photo2(Picture) {
-				formats: [format4, format5, format6]
-				dateTaken: new LocalDate(2010,10,2)
+				width = 2300
+				height = 640
+				path = "/2010/10/IMAGE2.jpg"
+				type = FormatType.ORIGINAL
+				picture = photoTwo
 			}
 			entry(Entry) {
-				title: "Zosia i Franek"
-				pictures: [photo1, photo2]
-				publishDate: new LocalDate(2010,10,2)
-				permalink: "2010/10/zosia-i-franek"
+				title = "Zosia i Franek"
+				pictures = [photoOne, photoTwo]
+				publishDate = new LocalDate(2010, 10, 2)
+				permalink = "/2010/10/zosia-i-franek"
 			}
 		}
 
