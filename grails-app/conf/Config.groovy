@@ -52,6 +52,8 @@ grails.spring.bean.packages = []
 environments {
     production {
         grails.serverURL = "http://3.floryan.pl/"
+	    umbra.image.base.dir = System.properties("umbra.image.base.dir")
+		umbra.image.base.url = System.properties("umbra.image.base.url")
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -102,3 +104,5 @@ grails.gorm.default.mapping = {
 
 umbra.title = "3F"
 umbra.description = "a photographic journey through life of Zosia, Matylda and Franek"
+umbra.image.base.dir = "/tmp/images"
+umbra.image.base.url = "http://static.floryan.pl/images"

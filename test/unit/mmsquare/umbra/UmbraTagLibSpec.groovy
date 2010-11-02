@@ -18,11 +18,11 @@ class UmbraTagLibSpec extends TagLibSpec {
 	@Unroll("Picture tags shows #image and links to #link for #availableFormats")
 	def "picture tag outputs correct picture"() {
 		given: "a picture"
-		def picture = [dateTaken: new DateTime(), formats: []]
+		def picture = [dateTaken: new DateTime(), title: title, formats: []]
 
 		and: "defined formats"
 		availableFormats.each {
-			picture.formats << [width:100, height: 100, type: it, path: "/path/to/images/${it.toString().toLowerCase()}.jpg"]
+			picture.formats << [width:100, height: 200, type: it, path: "/path/to/images/${it.toString().toLowerCase()}.jpg", url: "http://images.floryan.pl/images/path/to/images/${it.toString().toLowerCase()}.jpg"]
 		}
 
 		when:
@@ -31,13 +31,21 @@ class UmbraTagLibSpec extends TagLibSpec {
 		then:
 		def html = new XmlSlurper().parseText(out)
 		html.@href.toString().endsWith(link)
-		html.img.@src.toString().endsWith(image)		
+		html.img.@src.toString().endsWith(image)
+		html.'@class'.toString().contains("fancyboxImage")
+		html.img.@width == '100'
+		html.img.@height == '200'
+		if (title) {
+			assert html.img.@alt == title
+		} else {
+			assert html.img.@alt == image
+		}
 
 		where:
-		availableFormats         | image          | link
-		[ORIGINAL]               | "original.jpg" | "original.jpg"
-		[ORIGINAL, SMALL, LARGE] | "small.jpg"    | "large.jpg"
-		[ORIGINAL, SMALL]        | "small.jpg"    | "original.jpg"
+		availableFormats         | image          | link            | title
+		[ORIGINAL]               | "original.jpg" | "original.jpg"  | null
+		[ORIGINAL, SMALL, LARGE] | "small.jpg"    | "large.jpg"     | 'Pretty picture'
+		[ORIGINAL, SMALL]        | "small.jpg"    | "original.jpg"  | null
 	}
 
 

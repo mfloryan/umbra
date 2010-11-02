@@ -17,6 +17,7 @@
 package mmsquare.umbra
 
 import org.joda.time.DateTime
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class Picture {
 
@@ -30,5 +31,17 @@ class Picture {
 
 	static constraints = {
 		title(nullable: true)
+	}
+
+	static File getPictureBaseDir() {
+		config.umbra.image.base.dir
+	}
+
+	static String getPictureBaseUrl() {
+		config.umbra.image.base.url
+	}
+
+	private static ConfigObject getConfig() {
+		ConfigurationHolder.config
 	}
 }

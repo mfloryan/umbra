@@ -7,12 +7,16 @@ class UmbraTagLib {
 
 	def showPicture = { attrs ->
 		if (attrs.picture) {
-			def linkUrl = pictureFormatForLink(attrs.picture).path
-			def imageSrc = pictureFormatForImage(attrs.picture).path
+			def picture = attrs.remove("picture")
+			def linkUrl = pictureFormatForLink(picture).url
+			def imageFormat = pictureFormatForImage(picture)
+			def altText = picture.title?:imageFormat.path.find(/[\w.-]+$/)
+			if (attrs["class"]) attrs["class"] += " fancyboxImage"
+			else attrs["class"] = "fancyboxImage"
 
 			def html = new MarkupBuilder(out)
-			html.a(href: linkUrl) {
-				img src: imageSrc
+			html.a(href: linkUrl, class: attrs["class"]) {
+				img src: imageFormat.url, width: imageFormat.width, height: imageFormat.height, alt: altText
 			}
 			out						
 		}	

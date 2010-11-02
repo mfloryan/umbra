@@ -40,6 +40,14 @@ class Format {
 	FormatType getType() {
 		this.type
 	}
+
+	String getUrl() {
+		picture.pictureBaseUrl + path
+	}
+
+	File getFile() {
+		new File(picture.pictureBaseDir, path)
+	}
 }
 
 enum FormatType {
