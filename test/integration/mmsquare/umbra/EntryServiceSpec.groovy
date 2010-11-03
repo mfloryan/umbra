@@ -14,7 +14,7 @@ class EntryServiceSpec extends IntegrationSpec {
 		buildSomeEntries([0, 2, 1])
 
 		when:
-		def results = entryService.entries
+		def results = entryService.getEntries(new EntryListCommand()).list
 
 		then:
 		results.size == 3
@@ -26,16 +26,33 @@ class EntryServiceSpec extends IntegrationSpec {
 		buildSomeEntries([-1, 0, 1])
 
 		when:
-		def results = entryService.entries
-		println results.publishDate
+		def results = entryService.getEntries(new EntryListCommand()).list
 
 		then:
 		results.size == 2
 		results*.title = ["Entry 2", "Entry 3"]
-
 	}
 
-	void buildSomeEntries(offset) {
+	def "Pagination works for entries"() {
+		given: "enough entries exist for pagination"
+		buildEntries(7)
+
+		when:
+		def command = new EntryListCommand(pageNumber:page)
+		def results = entryService.getEntries(command)
+
+		then:
+		results.totalCount = 7
+		results.list.size() == resultsCount
+
+		where:
+		page | resultsCount
+		1    | 3
+		2    | 3
+		3    | 1
+	}
+
+	private void buildSomeEntries(offset) {
 
 		def e1 = new Entry(title: "Entry 1", publishDate: new DateTime().minusDays(offset[0]), permalink: "/test/entry-1")
 		e1.save(flush: true)
@@ -45,6 +62,13 @@ class EntryServiceSpec extends IntegrationSpec {
 
 		def e3 = new Entry(title: "Entry 3", publishDate: new DateTime().minusDays(offset[2]), permalink: "/test/entry-3")
 		e3.save(flush: true)
+	}
+
+	private void buildEntries(int howMany) {
+		1.upto(howMany) { i->
+			def entry = Entry.buildWithoutSave(title:"Entry $i", permalink:"/test/entry-${i}", publishDate: new DateTime().minusDays(i))
+			entry.save(failOnError:true, flush:true)
+		}
 	}
 
 }

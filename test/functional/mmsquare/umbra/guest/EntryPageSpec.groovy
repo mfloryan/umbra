@@ -24,7 +24,7 @@ class EntryPageSpec extends WebSpec {
 		def fixture = fixtureLoader.load {
 			entry(Entry) {
 				title = "A test entry"
-				publishDate = new LocalDate(2010, 10, 1)
+				publishDate = new DateTime().minusDays(2)
 				permalink = "/2010/10/a-test-entry"
 			}
 		}
@@ -91,7 +91,7 @@ class EntryPageSpec extends WebSpec {
 			entry(Entry) {
 				title = "Zosia i Franek"
 				pictures = [photoOne, photoTwo]
-				publishDate = new LocalDate(2010, 10, 2)
+				publishDate = new DateTime().minusDays(2)
 				permalink = "/2010/10/zosia-i-franek"
 			}
 		}
