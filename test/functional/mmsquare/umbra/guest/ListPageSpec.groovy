@@ -3,7 +3,7 @@ package mmsquare.umbra.guest
 import mmsquare.umbra.webdriver.WebSpec
 import mmsquare.umbra.guest.page.ListPage
 import mmsquare.umbra.Entry
-import org.joda.time.LocalDate
+import org.joda.time.DateTime
 
 class ListPageSpec extends WebSpec {
 
@@ -19,17 +19,17 @@ class ListPageSpec extends WebSpec {
 		given: "some entires exist"
 		def fixture = fixtureLoader.load {
 			entry1(Entry) {
-				publishDate = new LocalDate(2010,10,1)
+				publishDate = new DateTime(2010, 10, 1, 10, 10, 1, 0)
 				title = "Entry 1"
 				permalink = "/2010/10/entry-1"
 			}
 			entry2(Entry) {
-				publishDate = new LocalDate(2010,10,2)
+				publishDate = new DateTime(2010, 10, 2, 10, 10, 1, 0)
 				title = "Entry 2"
 				permalink = "/2010/10/entry-2"
 			}
 			entry3(Entry) {
-				publishDate = new LocalDate(2010,10,3)
+				publishDate = new DateTime(2010, 10, 3, 10, 10, 1, 0)
 				title = "Entry 3"
 				permalink = "/2010/10/entry-3"
 			}
