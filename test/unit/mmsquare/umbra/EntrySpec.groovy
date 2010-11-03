@@ -2,6 +2,7 @@ package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
 import org.joda.time.LocalDate
+import org.joda.time.DateTime
 
 class EntrySpec extends UnitSpec {
 
@@ -28,7 +29,7 @@ class EntrySpec extends UnitSpec {
     when:
     def entry = new Entry(
             title:"A test entry",
-            publishDate: new LocalDate(2010,10,1),
+            publishDate: new DateTime(),
             permalink: "/2010/10/test")
 
     then:

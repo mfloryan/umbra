@@ -9,7 +9,7 @@ class UmbraTagLibSpec extends TagLibSpec {
 
 	def "picture tag outputs nothing when there is no picture"() {
 		when:
-		def out = picture()
+		def out = showPicture()
 
 		then:
 		out == 'null'

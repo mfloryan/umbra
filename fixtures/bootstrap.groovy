@@ -42,13 +42,13 @@ fixture {
 	}
 	one(Entry) {
 		title = "Entry One"
-		publishDate = new LocalDate(2010, 10, 01)
+		publishDate = new DateTime(2010, 10, 01, 10, 10, 1, 0)
 		permalink = "/2010/10/entry-one"
 		pictures = [photoOne, photoTwo]
 	}
 	two(Entry) {
 		title = "Entry Two"
-		publishDate = new LocalDate(2010, 10, 02)
+		publishDate = new DateTime(2010, 10, 02, 10, 10, 1, 0)
 		permalink = "/2010/10/entry-two"
 	}
 }

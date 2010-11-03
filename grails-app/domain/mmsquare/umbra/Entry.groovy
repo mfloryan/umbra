@@ -22,7 +22,7 @@ import org.joda.time.LocalDate
 class Entry {
 
 	String permalink
-	LocalDate publishDate
+	DateTime publishDate
 	String title
 	String content
 	List pictures
