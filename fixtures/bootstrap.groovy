@@ -51,4 +51,14 @@ fixture {
 		publishDate = new DateTime(2010, 10, 02, 10, 10, 1, 0)
 		permalink = "/2010/10/entry-two"
 	}
+	three(Entry) {
+		title = "Entry Three"
+		publishDate = new DateTime().minusDays(2)
+		permalink = "/2010/10/entry-three"
+	}
+	four(Entry) {
+		title = "Entry Four"
+		publishDate = new DateTime().minusDays(3)
+		permalink = "/2010/10/entry-four"
+	}
 }
