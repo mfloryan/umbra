@@ -18,7 +18,7 @@ class EntryServiceSpec extends IntegrationSpec {
 
 		then:
 		results.size == 3
-		results*.title = ["Entry 1", "Entry 3", "Entry 2"]
+		results*.title == ["Entry 1", "Entry 3", "Entry 2"]
 	}
 
 	def "Should not return entries with publishDate in the future"() {
@@ -30,7 +30,7 @@ class EntryServiceSpec extends IntegrationSpec {
 
 		then:
 		results.size == 2
-		results*.title = ["Entry 2", "Entry 3"]
+		results*.title == ["Entry 2", "Entry 3"]
 	}
 
 	def "Pagination works for entries"() {
@@ -42,7 +42,7 @@ class EntryServiceSpec extends IntegrationSpec {
 		def results = entryService.getEntries(command)
 
 		then:
-		results.totalCount = 7
+		results.totalCount == 7
 		results.list.size() == resultsCount
 
 		where:
@@ -70,5 +70,4 @@ class EntryServiceSpec extends IntegrationSpec {
 			entry.save(failOnError:true, flush:true)
 		}
 	}
-
 }
