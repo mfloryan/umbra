@@ -18,7 +18,7 @@
 
             </div>
             <footer>
-            &copy; 2010 Marcin & Małgorzata Floryan.<br/>
+            &copy; 2010 Marcin Floryan & Małgorzata Floryan.<br/>
                 <span class="license">
                     <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" rel="license">
                         <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" alt="Creative Commons License">

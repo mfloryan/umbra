@@ -23,7 +23,7 @@ class SingleEntryPage extends Page {
 	}
 
 	List<EntryPhoto> getPhotos() {
-		driver.findElements(By.cssSelector("ul.photos li")).collect { new EntryPhoto(it) }
+		driver.findElements(By.cssSelector("ul.pictures li")).collect { new EntryPhoto(it) }
 	}
 
 }
