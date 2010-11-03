@@ -38,7 +38,7 @@ class EntryServiceSpec extends IntegrationSpec {
 		buildEntries(7)
 
 		when:
-		def command = new EntryListCommand(pageNumber:page)
+		def command = new EntryListCommand(page:page)
 		def results = entryService.getEntries(command)
 
 		then:

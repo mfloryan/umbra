@@ -6,8 +6,8 @@ class EntryController {
 
 	def defaultAction = "list"
 
-	def list = { EntryListCommand filterCommand ->
-		[filterCommand: filterCommand, entries: entryService.getEntries(filterCommand)]
+	def list = { EntryListCommand listCommand ->
+		[listCommand: listCommand, entries: entryService.getEntries(listCommand)]
 	}
 
 	def show = {
@@ -24,9 +24,13 @@ class EntryController {
 class EntryListCommand {
 
 	static final int ENTRIES_PER_PAGE = 3
-	Integer pageNumber = 1
+	int page = 1
 
-	Integer getOffset() {
-		(pageNumber - 1) * ENTRIES_PER_PAGE
+	int getOffset() {
+		(page - 1) * ENTRIES_PER_PAGE
+	}
+
+	int getTotalOnCurrentPage() {
+		page * ENTRIES_PER_PAGE	
 	}
 }

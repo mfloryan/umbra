@@ -32,7 +32,9 @@ class UrlMappings {
 
     "/$lang/"(controller: "entry")
 
-    "/"(controller: "entry", action:'list')
+	"/page/$page"(controller: "entry", action:'list')
+
+	"/"(controller: "entry", action:'list')
 
     "500"(controller: 'entry', action: 'list')
   }
