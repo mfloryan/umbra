@@ -32,6 +32,13 @@ class EntryListCommand {
 	}
 
 	int getTotalOnCurrentPage() {
-		page * ENTRIES_PER_PAGE	
+		page * ENTRIES_PER_PAGE
+	}
+
+	int getTotalPages(long itemCount) {
+		if (!itemCount)
+			1
+		else
+			Math.ceil(itemCount / ENTRIES_PER_PAGE)
 	}
 }
