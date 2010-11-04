@@ -10,7 +10,7 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 
 		assertForwardUrlMapping("/", controller: "entry", action: "list")
 
-		assertUrlMapping("/page/2", controller: "entry", action: "list") {
+		assertForwardUrlMapping("/page/2", controller: "entry", action: "list") {
 			page = 2
 		}
 
