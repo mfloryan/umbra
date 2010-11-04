@@ -35,4 +35,10 @@ class UmbraTagLib {
 			it.type == type
 		}
 	}
+
+	def people = { attrs ->
+
+	}
+
+
 }
