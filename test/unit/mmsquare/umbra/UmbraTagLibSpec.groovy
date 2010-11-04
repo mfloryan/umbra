@@ -1,11 +1,18 @@
 package mmsquare.umbra
 
 import grails.plugin.spock.TagLibSpec
-import static mmsquare.umbra.FormatType.*
 import java.util.Formatter.DateTime
 import spock.lang.Unroll
+import static mmsquare.umbra.FormatType.*
 
 class UmbraTagLibSpec extends TagLibSpec {
+
+	def setup() {
+		Map.metaClass."int" = { key ->
+			def value = delegate.get(key)
+			value != null ? value.toInteger() : null
+		}
+	}
 
 	def "picture tag outputs nothing when there is no picture"() {
 		when:
@@ -48,5 +55,36 @@ class UmbraTagLibSpec extends TagLibSpec {
 		[ORIGINAL, SMALL]        | "small.jpg"    | "original.jpg"  | null
 	}
 
+	@Unroll("Pagination #direction from #page/#totalPages with person #person goes to #expectedLink")
+	def "Pagination tag lib outputs correct pagination link"() {
+		setup:
+		mockConfig('grails.serverURL = "http://localhost:8080/umbra"')
+		
+		when:
+		String out = tagLib.pagination(direction:direction, page:page, totalPages:totalPages, person:person)
 
+		then:
+		if (expectedLink) {
+			def div = new XmlSlurper().parseText(out)
+			assert div.'@class' == 'pagination'
+			assert div.a.@href.toString().endsWith(expectedLink)
+		} else {
+			assert !out
+		}
+
+		where:
+		direction | page | totalPages | person  | expectedLink
+		'next'    | 1    | 1          | ''      | ''
+		'next'    | 1    | 2          | ''      | '/page/2'
+		'next'    | 2    | 3          | ''      | '/page/3'
+		'next'    | 3    | 3          | ''      | ''
+		'next'    | 1    | 2          | 'Zosia' | '/person/Zosia/page/2'
+		'prev'    | 1    | 1          | ''      | ''
+		'prev'    | 1    | 3          | ''      | ''
+		'prev'    | 2    | 2          | ''      | '/'
+		'prev'    | 3    | 3          | ''      | '/page/2'
+		'prev'    | 4    | 4          | ''      | '/page/3'
+		'prev'    | 2    | 2          | 'Zosia' | '/person/Zosia'
+		'prev'    | 3    | 3          | 'Zosia' | '/person/Zosia/page/2'
+	}
 }

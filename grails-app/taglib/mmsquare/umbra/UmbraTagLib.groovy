@@ -1,6 +1,7 @@
 package mmsquare.umbra
 
 import groovy.xml.MarkupBuilder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class UmbraTagLib {
 	static namespace = "umbra"
@@ -37,12 +38,14 @@ class UmbraTagLib {
 	}
 
 	def people = { attrs ->
-		def list = Person.listOrderByShortName(order:'desc')
+		def list = Person.listOrderByShortName(order: 'desc')
 		if (list) {
 			out << '<ul class="people">'
 			list.each { person ->
 				out << "<li class=\"${person.shortName.toLowerCase()}\">"
-				out << g.link(attrs:[action:'list', controller:'entry'], params:['person': person.shortName]) {person.fullName} 
+				out << '<a href="'
+				out << ConfigurationHolder.config.grails.serverURL
+				out << "/person/${person.shortName}\">${person.fullName}</a>"
 				out << "</li>"
 			}
 			out << "</ul>"
@@ -51,4 +54,43 @@ class UmbraTagLib {
 	}
 
 
+	def pagination = { attrs ->
+		def direction = attrs.remove("direction")
+		if (!direction) throwTagError("attribute 'direction' is required")
+
+		def page = attrs.int("page")
+		def totalPages = attrs.int("totalPages")
+		def person = attrs.remove("person")
+		if (totalPages && totalPages > 1) {
+			if ((direction == 'prev' && page > 1) ||
+				(direction == 'next' && page < totalPages)) {
+
+				int newPage
+				if (direction == 'next') newPage = page + 1
+				if (direction == 'prev') newPage = page - 1
+
+				out << '<div class="pagination">'
+				out << '<a href="'
+				out << ConfigurationHolder.config.grails.serverURL
+				out << getPageLink(newPage, person)
+				out << '">'
+				out << direction == 'next' ? 'Later entries' : 'Eariler entries'
+				out << '</a>'
+				out << '</div>'
+			}
+		}
+	}
+
+	private String getPageLink(int page, String person) {
+		String url = ""
+		if (person) {
+			url += "/person/$person"
+		}
+		if (page > 1) {
+			url += "/page/$page"
+		} else {
+			if (!url) url = '/'
+		}
+		url
+	}
 }

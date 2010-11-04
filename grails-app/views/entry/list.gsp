@@ -1,23 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-	<meta name="layout" content="umbra"/>
-</head>
-<body>
-<g:if test="${listCommand.page > 1}">
-    <div class="pagination">
-        <g:link action="list" params="[page:listCommand.page-1]" class="prev">Prev</g:link>
-    </div>
-</g:if>
-<ul class="entries">
-	<g:each in="${entries}" var="entry">
-		<li class="entry"><g:render template="/shared/entry" model="[entry:entry, 'listMode':true]"/></li>
-	</g:each>
-</ul>
-<g:if test="${listCommand.totalOnCurrentPage < entries.totalCount}">
-    <div class="pagination">
-        <g:link action="list" params="[page:2]" class="next">Next</g:link>
-    </div>
-</g:if>
-</body>
+    <head>
+        <meta name="layout" content="umbra"/>
+    </head>
+    <body>
+        <umbra:pagination
+                direction="prev"
+                page="${listCommand.page}"
+                person="${listCommand.person}"
+                totalPages="${listCommand.getTotalPages(entries.totalCount)}"/>
+        <ul class="entries">
+            <g:each in="${entries}" var="entry">
+                <li class="entry"><g:render template="/shared/entry" model="[entry:entry, 'listMode':true]"/></li>
+            </g:each>
+        </ul>
+        <umbra:pagination
+                direction="next"
+                page="${listCommand.page}"
+                person="${listCommand.person}"
+                totalPages="${listCommand.getTotalPages(entries.totalCount)}"/>
+    </body>
 </html>
