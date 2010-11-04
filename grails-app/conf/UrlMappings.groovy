@@ -16,30 +16,28 @@
 
 class UrlMappings {
 
-  static mappings = {
+	static mappings = {
 //		"/$controller/$action?/$id?"{
 //			constraints {
 //				// apply constraints here
 //			}
 //		}
 
-    "/$year/$month/$id"(controller: "entry", action: "show") {
-      constraints {
-        year(matches: /\d{4}/)
-        month(matches: /\d{2}/)
-      }
-    }
+		"/$year/$month/$id"(controller: "entry", action: "show") {
+			constraints {
+				year(matches: /\d{4}/)
+				month(matches: /\d{2}/)
+			}
+		}
 
-    "/$lang/"(controller: "entry")
+		"/"(controller: "entry", action: 'list') {
+			page = 1
+		}
 
-	"/page/$page"(controller: "entry", action:'list')
+		"/page/$page"(controller: "entry", action: 'list')
 
-	"/person/$person"(controller: "entry", action:'list')
+		"/person/$person/page?/$page?"(controller: "entry", action: 'list')
 
-	"/person/$person/page/$page"(controller: "entry", action:'list')
-
-	"/"(controller: "entry", action:'list')
-
-    "500"(controller: 'entry', action: 'list')
-  }
+		"500"(controller: 'entry', action: 'list')
+	}
 }
