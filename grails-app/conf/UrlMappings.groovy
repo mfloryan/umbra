@@ -34,6 +34,10 @@ class UrlMappings {
 
 	"/page/$page"(controller: "entry", action:'list')
 
+	"/person/$person"(controller: "entry", action:'list')
+
+	"/person/$person/page/$page"(controller: "entry", action:'list')
+
 	"/"(controller: "entry", action:'list')
 
     "500"(controller: 'entry', action: 'list')

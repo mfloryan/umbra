@@ -37,7 +37,17 @@ class UmbraTagLib {
 	}
 
 	def people = { attrs ->
-
+		def list = Person.listOrderByShortName(order:'desc')
+		if (list) {
+			out << '<ul class="people">'
+			list.each { person ->
+				out << "<li class=\"${person.shortName.toLowerCase()}\">"
+				out << g.link(attrs:[action:'list', controller:'entry'], params:['person': person.shortName]) {person.fullName} 
+				out << "</li>"
+			}
+			out << "</ul>"
+		}
+		out
 	}
 
 
