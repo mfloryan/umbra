@@ -25,6 +25,7 @@ class EntryListCommand {
 
 	static final int ENTRIES_PER_PAGE = 3
 	int page = 1
+	String person
 
 	int getOffset() {
 		(page - 1) * ENTRIES_PER_PAGE
