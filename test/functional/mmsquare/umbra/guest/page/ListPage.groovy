@@ -17,8 +17,16 @@ class ListPage extends Page {
 		this.pageTitle == ConfigurationHolder.config.umbra.title
 	}
 
-	def getEntries() {
+	List<EntryDetails> getEntries() {
 		driver.findElements(By.cssSelector("ul.entries li.entry")).collect { new EntryDetails(it) }
+	}
+
+	def getNextPage() {
+		driver.findElement(By.cssSelector("div.pagination a.next"))
+	}
+
+	def getPrevPage() {
+		driver.findElement(By.cssSelector("div.pagination a.prev"))
 	}
 }
 
@@ -32,5 +40,9 @@ class EntryDetails {
 
 	def getUrl() {
 		element.findElement(By.cssSelector("h2 a")).getAttribute("href")
+	}
+
+	def getTitle() {
+		element.findElement(By.cssSelector("h2 a")).text
 	}
 }

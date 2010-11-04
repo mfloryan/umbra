@@ -5,8 +5,8 @@
 </head>
 <body>
 <g:if test="${listCommand.page > 1}">
-    <div class="page-next">
-        <g:link action="list" params="[page:listCommand.page-1]">Prev</g:link>
+    <div class="pagination">
+        <g:link action="list" params="[page:listCommand.page-1]" class="prev">Prev</g:link>
     </div>
 </g:if>
 <ul class="entries">
@@ -15,8 +15,8 @@
 	</g:each>
 </ul>
 <g:if test="${listCommand.totalOnCurrentPage < entries.totalCount}">
-    <div class="page-next">
-        <g:link action="list" params="[page:2]">Next</g:link>
+    <div class="pagination">
+        <g:link action="list" params="[page:2]" class="next">Next</g:link>
     </div>
 </g:if>
 </body>
