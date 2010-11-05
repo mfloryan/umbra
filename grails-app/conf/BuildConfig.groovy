@@ -40,6 +40,7 @@ grails.project.dependency.resolution = {
       test ":build-test-data:1.1.1"
       test("com.energizedwork:spock-webdriver:1.0.2-SNAPSHOT") {
         excludes "selenium-htmlunit-driver"
+	    excludes "selenium-ie-driver"
       }
     }
   }
