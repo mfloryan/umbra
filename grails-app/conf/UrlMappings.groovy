@@ -17,27 +17,26 @@
 class UrlMappings {
 
 	static mappings = {
-//		"/$controller/$action?/$id?"{
-//			constraints {
-//				// apply constraints here
-//			}
-//		}
 
-		"/$year/$month/$id"(controller: "entry", action: "show") {
+		"/$year/$month/$id"(controller: "umbra", action: "show") {
 			constraints {
 				year(matches: /\d{4}/)
 				month(matches: /\d{2}/)
 			}
 		}
 
-		"/"(controller: "entry", action: 'list') {
+		"/"(controller: "umbra", action: 'list') {
 			page = 1
 		}
 
-		"/page/$page"(controller: "entry", action: 'list')
+		"/page/$page"(controller: "umbra", action: 'list')
 
-		"/person/$person/page?/$page?"(controller: "entry", action: 'list')
+		"/person/$person/page?/$page?"(controller: "umbra", action: 'list')
 
-		"500"(controller: 'entry', action: 'list')
+		"/admin/" (controller: 'entry', action: "index")
+
+		"/admin/$controller/$action?/$id?"
+
+		"500"(controller: 'umbra', action: 'list')
 	}
 }

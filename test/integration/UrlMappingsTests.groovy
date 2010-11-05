@@ -8,17 +8,17 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 	@Test
 	void "List url mappings"() {
 
-		assertForwardUrlMapping("/", controller: "entry", action: "list")
+		assertForwardUrlMapping("/", controller: "umbra", action: "list")
 
-		assertForwardUrlMapping("/page/2", controller: "entry", action: "list") {
+		assertForwardUrlMapping("/page/2", controller: "umbra", action: "list") {
 			page = 2
 		}
 
-		assertForwardUrlMapping("/person/Zosia", controller: "entry", action: "list") {
+		assertForwardUrlMapping("/person/Zosia", controller: "umbra", action: "list") {
 			person = "Zosia"
 		}
 
-		assertForwardUrlMapping("/person/Zosia/page/3", controller: "entry", action: "list") {
+		assertForwardUrlMapping("/person/Zosia/page/3", controller: "umbra", action: "list") {
 			person = "Zosia"
 			page = 3
 		}
@@ -27,7 +27,7 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 	@Test
 	void "Entry url mappings"() {
 
-		assertUrlMapping("/2010/08/daymark", controller: "entry", action: "show") {
+		assertUrlMapping("/2010/08/daymark", controller: "umbra", action: "show") {
 			year = '2010'
 			month = '08'
 			id = 'daymark'

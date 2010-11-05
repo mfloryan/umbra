@@ -1,6 +1,6 @@
 package mmsquare.umbra
 
-class EntryController {
+class UmbraController {
 
 	def entryService
 
