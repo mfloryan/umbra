@@ -1,8 +1,9 @@
-package mmsquare.umbra.guest.page
+package mmsquare.umbra.guest
 
 import mmsquare.umbra.webdriver.WebSpec
 import mmsquare.umbra.Entry
 import org.joda.time.DateTime
+import mmsquare.umbra.guest.page.ListPage
 
 class ListPagePaginationSpec extends WebSpec {
 

@@ -21,6 +21,10 @@ class ListPage extends Page {
 		driver.findElements(By.cssSelector("ul.entries li.entry")).collect { new EntryDetails(it) }
 	}
 
+	List<PersonDetails> getPeople() {
+		driver.findElements(By.cssSelector("ul.people li")).collect { new PersonDetails(it) }
+	}
+
 	def getNextPage() {
 		driver.findElement(By.cssSelector("div.pagination a.next"))
 	}
@@ -44,5 +48,23 @@ class EntryDetails {
 
 	def getTitle() {
 		element.findElement(By.cssSelector("h2 a")).text
+	}
+}
+
+class PersonDetails {
+
+	WebElement element
+
+	PersonDetails(WebElement element) {
+		this.element = element
+	}
+
+	def clickOn() {
+		element.findElement(By.tagName("a")).click()
+		true
+	}
+
+	def isSelected() {
+		element.getAttribute("class").contains("selected")
 	}
 }

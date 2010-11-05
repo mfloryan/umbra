@@ -14,7 +14,7 @@
                 <g:layoutBody/>
             </div>
             <div class="sidebar">
-				<umbra:people params="${params}"/>
+				<umbra:people person="${params?.person}"/>
             </div>
             <footer>
             &copy; 2010 Marcin Floryan & Małgorzata Floryan. Powered by ${grailsApplication.metadata['app.name']} ${grailsApplication.metadata['app.version']} on grails ${grailsApplication.metadata['app.grails.version']} <br/>

@@ -39,13 +39,17 @@ class UmbraTagLib {
 
 	def people = { attrs ->
 		def list = Person.listOrderByShortName(order: 'desc')
+		def person = attrs.remove("person")
 		if (list) {
 			out << '<ul class="people">'
-			list.each { person ->
-				out << "<li class=\"${person.shortName.toLowerCase()}\">"
+			list.each { p ->
+				def personLinkName = p.shortName.toLowerCase()
+				out << "<li class=\"person ${personLinkName}"
+				if (personLinkName == person) out << " selected"
+				out << "\">"
 				out << '<a href="'
 				out << ConfigurationHolder.config.grails.serverURL
-				out << "/person/${person.shortName}\">${person.fullName}</a>"
+				out << "/person/${personLinkName}\">${p.fullName}</a>"
 				out << "</li>"
 			}
 			out << "</ul>"
