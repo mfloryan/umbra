@@ -25,6 +25,14 @@ class UrlMappings {
 			}
 		}
 
+		"/admin/" (view: "admin")
+//
+//		"/admin/$controller/$action?/$id?"
+
+		"/admin/entry/$action/$id?"(controller: "entry")
+		"/admin/tag/$action/$id?"(controller: "tag")
+		"/admin/picture/$action/$id?"(controller: "picture")
+
 		"/"(controller: "umbra", action: 'list') {
 			page = 1
 		}
@@ -33,9 +41,7 @@ class UrlMappings {
 
 		"/person/$person/page?/$page?"(controller: "umbra", action: 'list')
 
-		"/admin/" (controller: 'entry', action: "index")
 
-		"/admin/$controller/$action?/$id?"
 
 		"500"(controller: 'umbra', action: 'list')
 	}

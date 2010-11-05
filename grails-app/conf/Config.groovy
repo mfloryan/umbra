@@ -36,6 +36,9 @@ grails.views.gsp.encoding = "UTF-8"
 grails.converters.encoding = "UTF-8"
 // enable Sitemesh preprocessing of GSP pages
 grails.views.gsp.sitemesh.preprocess = true
+
+grails.views.javascript.library="jquery"
+
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
@@ -63,7 +66,6 @@ environments {
         grails.serverURL = "http://localhost:8080/${appName}"
         fixtures.enabled = true
     }
-
 }
 
 // log4j configuration
