@@ -2,6 +2,7 @@ package mmsquare.umbra
 
 import grails.plugin.spock.IntegrationSpec
 import org.joda.time.DateTime
+import spock.lang.Unroll
 
 /* Created 23-Oct-2010 17:32:51 by mfloryan */
 
@@ -39,7 +40,7 @@ class EntryServiceSpec extends IntegrationSpec {
 		buildEntries(7)
 
 		when:
-		def command = new EntryListCommand(page:page)
+		def command = new EntryListCommand(page: page)
 		def results = entryService.getEntries(command)
 
 		then:
@@ -48,11 +49,12 @@ class EntryServiceSpec extends IntegrationSpec {
 
 		where:
 		page | resultsCount
-		1    | 3
-		2    | 3
-		3    | 1
+		1 | 3
+		2 | 3
+		3 | 1
 	}
 
+	@Unroll("Filtered by #person correct entries: #titles are returned with pictures #photosCount")
 	def "List of entries can be filtered by Person"() {
 		given: "some entries exist with pictures of people"
 		def fixture = fixtureLoader.load {
@@ -79,16 +81,35 @@ class EntryServiceSpec extends IntegrationSpec {
 				people = [zosia, franek]
 				dateTaken = new DateTime().minusDays(2)
 			}
+			p4(Picture) {
+				title = "Franek 2"
+				people = [franek]
+				dateTaken = new DateTime().minusDays(3)
+			}
+			p5(Picture) {
+				title = "Zosia 2"
+				people = [zosia]
+				dateTaken = new DateTime().minusDays(3)
+			}
+			p6(Picture) {
+				title = "Someone else"
+				dateTaken = new DateTime().minusDays(3)
+			}
+			p7(Picture) {
+				title = "Zosia 3"
+				people = [zosia]
+				dateTaken = new DateTime().minusDays(4)
+			}
 			entry1(Entry) {
 				title = "Entry 1"
 				publishDate = new DateTime().minusDays(1)
 				permalink = "/test/entry-1"
-				pictures = [p1]
+				pictures = [p1, p6]
 			}
 			entry2(Entry) {
 				title = "Entry 2"
 				publishDate = new DateTime().minusDays(2)
-				permalink = "/test/entry-2"
+				permalink = "/t pest/entry-2"
 				pictures = [p2]
 			}
 			entry3(Entry) {
@@ -97,18 +118,25 @@ class EntryServiceSpec extends IntegrationSpec {
 				permalink = "/test/entry-3"
 				pictures = [p3]
 			}
+			entry4(Entry) {
+				title = "Entry 4"
+				publishDate = new DateTime().minusDays(4)
+				permalink = "/test/entry-4"
+				pictures = [p4, p5, p7]
+			}
 		}
 
 		when:
-		def results = entryService.getEntries(new EntryListCommand(person:person)).list
+		def results = entryService.getEntries(new EntryListCommand(person: person)).list
 
 		then:
 		results.title == titles
+		results.pictures*.size() == photosCount
 
 		where:
-		person    | titles
-		"Zosia"   | ["Entry 1", "Entry 3"]
-		"Franek"  | ["Entry 2", "Entry 3"]
+		person   | titles                            | photosCount
+		"zosia"  | ["Entry 1", "Entry 3", "Entry 4"] | [1, 1, 2]
+		"franek" | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
 
 	}
 
@@ -125,9 +153,9 @@ class EntryServiceSpec extends IntegrationSpec {
 	}
 
 	private void buildEntries(int howMany) {
-		1.upto(howMany) { i->
-			def entry = Entry.buildWithoutSave(title:"Entry $i", permalink:"/test/entry-${i}", publishDate: new DateTime().minusDays(i))
-			entry.save(failOnError:true, flush:true)
+		1.upto(howMany) { i ->
+			def entry = Entry.buildWithoutSave(title: "Entry $i", permalink: "/test/entry-${i}", publishDate: new DateTime().minusDays(i))
+			entry.save(failOnError: true, flush: true)
 		}
 	}
 }

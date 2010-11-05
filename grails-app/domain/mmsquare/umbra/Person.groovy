@@ -18,9 +18,14 @@ package mmsquare.umbra
 
 class Person {
 
-  String fullName
-  String shortName
+	String fullName
+	String shortName
 
-    static constraints = {
-    }
+	static constraints = {
+		shortName(unique:true)
+	}
+
+	String toString() {
+		"Person:$id ($shortName)"
+	}
 }

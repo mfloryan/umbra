@@ -24,15 +24,21 @@ class Picture {
 	String title
     DateTime dateTaken
 
+	static belongsTo = [entry: Entry]
+
 	static hasMany = [
 			people: Person,
 			formats: Format
 	]
 
-	static fetchMode = [formats:"eager", people:"eager"]
+//	static fetchMode = [formats:"eager", people:"eager"]
 
 	static constraints = {
 		title(nullable: true)
+	}
+
+	String toString() {
+		"Picture:$id ($title)"
 	}
 
 	static File getPictureBaseDir() {

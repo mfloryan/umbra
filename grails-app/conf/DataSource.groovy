@@ -21,6 +21,7 @@ environments {
         dataSource {
             dbCreate = "create-drop"
             url = "jdbc:hsqldb:mem:testDb"
+			//loggingSql = true 
         }
     }
     production {
