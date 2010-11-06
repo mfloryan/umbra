@@ -10,8 +10,7 @@ class PictureSpec extends UnitSpec {
 		mockDomain Picture
 
 		when:
-		def e = new Entry(publishDate: new DateTime(), title:"Test", permalink:"/test")
-		def p = new Picture(dateTaken: new DateTime(), entry: e)
+		def p = new Picture(dateTaken: new DateTime())
 
 		then:
 		p.validate()

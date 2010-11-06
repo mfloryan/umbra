@@ -16,13 +16,14 @@
 
 package mmsquare.umbra
 
-import org.joda.time.DateTime
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.joda.time.DateTime
 
 class Picture {
 
 	String title
     DateTime dateTaken
+	String originalFilename
 
 	static belongsTo = [entry: Entry]
 
@@ -34,7 +35,9 @@ class Picture {
 //	static fetchMode = [formats:"eager", people:"eager"]
 
 	static constraints = {
-		title(nullable: true)
+		title(nullable: true, maxSize: 400)
+		entry(nullable: true)
+		originalFilename(nullable: true, maxSize: 400)
 	}
 
 	String toString() {
