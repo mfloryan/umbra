@@ -22,6 +22,11 @@
             </div>
             </g:hasErrors>
             <g:form action="save" >
+
+                <g:each in="${files}" var="file">
+                    ${file}                    
+                </g:each>
+
                 <div class="dialog">
                     <table>
                         <tbody>

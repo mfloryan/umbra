@@ -18,7 +18,7 @@ class EntryController {
     def create = {
         def entryInstance = new Entry()
         entryInstance.properties = params
-        return [entryInstance: entryInstance]
+        return [entryInstance: entryInstance, files: params.files]
     }
 
     def save = {
