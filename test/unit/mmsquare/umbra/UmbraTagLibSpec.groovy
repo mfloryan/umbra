@@ -1,6 +1,7 @@
 package mmsquare.umbra
 
 import grails.plugin.spock.TagLibSpec
+import groovy.mock.interceptor.MockFor
 import java.util.Formatter.DateTime
 import spock.lang.Unroll
 import static mmsquare.umbra.FormatType.*
@@ -59,7 +60,7 @@ class UmbraTagLibSpec extends TagLibSpec {
 	def "Pagination tag lib outputs correct pagination link"() {
 		setup:
 		mockConfig('grails.serverURL = "http://localhost:8080/umbra"')
-		
+
 		when:
 		String out = tagLib.pagination(direction:direction, page:page, totalPages:totalPages, person:person)
 
@@ -86,5 +87,40 @@ class UmbraTagLibSpec extends TagLibSpec {
 		'prev'    | 4    | 4          | ''      | '/page/3'
 		'prev'    | 2    | 2          | 'Zosia' | '/person/Zosia'
 		'prev'    | 3    | 3          | 'Zosia' | '/person/Zosia/page/2'
+	}
+
+	def "People tag lists all people and allows to select one person"() {
+		given: "some people are configured"
+		def p1 = new Person(shortName: "Zosia", fullName: "Zofia")
+		def p2 = new Person(shortName: "Franek", fullName: "Franciszek")
+//		mockDomain Person, [p1, p2]
+		mockConfig('grails.serverURL = "http://localhost:8080/umbra"')
+
+	    def mock = new MockFor(Person)
+		mock.demand.listOrderByShortName { Map params ->
+			[p1, p2]
+		}
+
+		when: "the tag is invoked"
+		String out
+		mock.use {
+			out = tagLib.people([person: person])
+		}
+
+		then:
+		def ul = new XmlSlurper().parseText(out)
+		ul.'@class' == 'people'
+		ul.li.a.collect { it.text() } == texts
+		ul.li.a.@href.collect { it.text() } == urls
+		ul.li.@class.collect { it.text() } == css
+
+		where:
+		texts = ['Zofia', 'Franciszek']
+		urls = ['http://localhost:8080/umbra/person/zosia',
+				'http://localhost:8080/umbra/person/franek']
+		person   | css
+		null     | ['person zosia','person franek']
+		'zosia'  | ['person zosia selected','person franek']
+		'franek' | ['person zosia','person franek selected']
 	}
 }

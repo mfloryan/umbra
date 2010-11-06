@@ -18,7 +18,7 @@ class FormatSpec extends UnitSpec {
 
 	def "Format fails validation with missing properties"() {
 		setup:
-		mockDomain Format
+		mockForConstraintsTests Format
 
 		when:
 		def format = new Format()
