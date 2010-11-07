@@ -27,7 +27,8 @@
                     </ul>
                 </div>
                 <div class="buttons">
-                    <span class="button"><g:submitButton name="upload" class="save" value="Upload"/></span>
+                    <span class="button"><g:actionSubmit name="upload" action="uploaded" class="save" value="Upload"/></span>
+                    <span class="button"><g:actionSubmit name="upload" action="uploadedForEntry" class="save" value="Upload and publish"/></span>
                 </div
             </g:form>
         </div>
