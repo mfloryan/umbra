@@ -3,16 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="admin" />
-        <g:set var="entityName" value="${message(code: 'entry.label', default: 'Entry')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title>Umbra &raquo; Admin &raquo; New Entry</title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
+            <span class="menuButton"><g:link class="list" action="list">Entries</g:link></span>
         </div>
         <div class="body">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+            <h1>New Entry</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -23,7 +22,7 @@
             </g:hasErrors>
             <g:form action="save" >
 
-                <g:each in="${files}" var="file">
+                <g:each in="${pictures}" var="picture">
                     ${file}                    
                 </g:each>
 
@@ -63,7 +62,7 @@
                                     <label for="publishDate"><g:message code="entry.publishDate.label" default="Publish Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'publishDate', 'errors')}">
-                                    
+                                    <g:textField name="publishDate" value="${entryInstance?.publishDate}" />
                                 </td>
                             </tr>
                         

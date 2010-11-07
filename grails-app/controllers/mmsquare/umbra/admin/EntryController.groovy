@@ -4,6 +4,8 @@ import mmsquare.umbra.Entry
 
 class EntryController {
 
+	def pictureService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -18,7 +20,7 @@ class EntryController {
     def create = {
         def entryInstance = new Entry()
         entryInstance.properties = params
-        return [entryInstance: entryInstance, files: params.files]
+        return [entryInstance: entryInstance, pictures: pictureService.availablePictures ]
     }
 
     def save = {
