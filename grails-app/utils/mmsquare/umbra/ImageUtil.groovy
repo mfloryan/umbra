@@ -14,31 +14,10 @@
  * limitations under the License.
  */
 
-import mmsquare.umbra.Entry
-import grails.util.GrailsUtil
-import mmsquare.umbra.Person
-import mmsquare.umbra.Tag
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+package mmsquare.umbra
 
-class BootStrap {
+/* Created 07-Nov-2010 22:38:36 by mfloryan */
 
-  def fixtureLoader
-
-  def init = { servletContext ->
-
-	File dir = ConfigurationHolder.config.umbra.image.base.dir
-	if (!dir.isDirectory()) {
-		dir.mkdirs()
-	}
-
-    if (GrailsUtil.environment == "development") {
-      if (!Entry.count()) fixtureLoader.load("bootstrap")
-	  if (!Person.count()) fixtureLoader.load("furniture/people")
-	  if (!Tag.count()) fixtureLoader.load("furniture/tags")
-    }
-
-  }
-
-  def destroy = {
-  }
+class ImageUtil {
+	
 }

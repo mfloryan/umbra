@@ -20,6 +20,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class PictureController {
 
+	def pictureService
+
 	def upload = {
 
 	}
@@ -47,11 +49,9 @@ class PictureController {
 				flash.message = "Please only upload JPEG images"
 				return false
 			} else {
-				def uploadedFiles = []
-				//TODO: Save images to some temp location and move on?
 				pictures.each {
 					if (!it.empty) {
-						uploadedFiles << [filename: it.originalFilename, size: it.size]
+						pictureService.saveUploadedPicture(it)
 					}
 				}
 				flash.message = "Pictures uploaded successfully"

@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
@@ -55,7 +71,7 @@ grails.spring.bean.packages = []
 environments {
     production {
         grails.serverURL = "http://3.floryan.pl/"
-	    umbra.image.base.dir = System.properties("umbra.image.base.dir")
+	    umbra.image.base.dir = new File(System.properties("umbra.image.base.dir"))
 		umbra.image.base.url = System.properties("umbra.image.base.url")
     }
     development {
@@ -106,5 +122,6 @@ grails.gorm.default.mapping = {
 
 umbra.title = "3F"
 umbra.description = "a photographic journey through life of Zosia, Matylda and Franek"
-umbra.image.base.dir = "/tmp/images"
+umbra.image.base.dir = new File(System.properties."java.io.tmpdir", "${System.properties.'user.name'}/umbra")
+
 umbra.image.base.url = "http://static.floryan.pl/images"
