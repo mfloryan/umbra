@@ -25,8 +25,6 @@ class Picture {
     DateTime dateTaken
 	String originalFilename
 
-	static belongsTo = [entry: Entry]
-
 	static hasMany = [
 			people: Person,
 			formats: Format
@@ -36,7 +34,6 @@ class Picture {
 
 	static constraints = {
 		title(nullable: true, maxSize: 400)
-		entry(nullable: true)
 		originalFilename(nullable: true, maxSize: 400)
 	}
 
