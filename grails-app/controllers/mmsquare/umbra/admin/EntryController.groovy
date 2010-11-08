@@ -35,8 +35,10 @@ class EntryController {
 
     def create = {
         def entryInstance = new Entry()
+	    def pictures = pictureService.getAvailablePictures()
+	    if (!params.publishDate && pictures) params.publishDate = pictures[0].dateTaken
         entryInstance.properties = params
-        return [entryInstance: entryInstance, pictures: pictureService.availablePictures ]
+        return [entryInstance: entryInstance, pictures: pictures]
     }
 
     def save = {
