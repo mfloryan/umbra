@@ -18,6 +18,8 @@ package mmsquare.umbra
 
 import com.drew.imaging.jpeg.JpegMetadataReader
 import com.drew.metadata.Metadata
+import com.drew.metadata.exif.ExifDirectory
+import com.drew.metadata.exif.GpsDirectory
 import com.drew.metadata.jpeg.JpegDirectory
 import org.joda.time.DateTime
 
@@ -28,19 +30,35 @@ class ImageUtil {
 
 		Metadata m = JpegMetadataReader.readMetadata(stream)
 
-
 		def jdir = m.getDirectory(JpegDirectory.class)
 		if (jdir == null) {
 			throw new IllegalArgumentException("Invalid file - could not find JPEG metadata")
 		}
 
 		if (!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT) ||
-			!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_WIDTH)) {
+				!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_WIDTH)) {
 			throw new IllegalArgumentException("File must contain EXIF width and height")
 		}
 
-		new ImageInfo(  width: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_WIDTH),
-						height: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT))
+		def ii = new ImageInfo(width: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_WIDTH),
+				height: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT))
+
+		def exifDirectory = m.getDirectory(ExifDirectory.class)
+		if (exifDirectory) {
+			if (exifDirectory.containsTag(ExifDirectory.TAG_DATETIME_ORIGINAL)) {
+				ii.dateTaken = new DateTime(exifDirectory.getDate(ExifDirectory.TAG_DATETIME_ORIGINAL))
+			}
+			ii.cameraModel = exifDirectory.getString(ExifDirectory.TAG_MODEL)
+			ii.cameraMake = exifDirectory.getString(ExifDirectory.TAG_MAKE)
+		}
+
+		def gpsDirectory = m.getDirectory(GpsDirectory.class)
+		if (gpsDirectory) {
+			ii.latitude = gpsDirectory.getDescription(GpsDirectory.TAG_GPS_LATITUDE)
+			ii.longitude = gpsDirectory.getDescription(GpsDirectory.TAG_GPS_LONGITUDE)
+			ii.altitude = gpsDirectory.getDescription(GpsDirectory.TAG_GPS_ALTITUDE)
+		}
+		ii
 	}
 }
 
@@ -49,4 +67,9 @@ class ImageInfo {
 	int height
 	long size
 	DateTime dateTaken = new DateTime()
+	String cameraMake
+	String cameraModel
+	String latitude
+	String longitude
+	String altitude
 }

@@ -32,12 +32,15 @@ class PictureService {
 
 		def imageInfo = ImageUtil.getImageProperties(picture.inputStream)
 		p.dateTaken = imageInfo.dateTaken
+		if (imageInfo.latitude) p.latitude = imageInfo.latitude
+		if (imageInfo.longitude) p.longitude= imageInfo.longitude
+		if (imageInfo.cameraMake || imageInfo.cameraModel) p.camera = "${imageInfo.cameraMake} - ${imageInfo.cameraModel}"
 
-		Format originalFormat = new Format(width: imageInfo.width, height:imageInfo.height)
+		Format originalFormat = new Format(width: imageInfo.width, height:imageInfo.height, fileSize: imageInfo.size)
 		p.addToFormats(originalFormat)
 		originalFormat.generatePath()
 		picture.transferTo(originalFormat.file)
-//		p.save()
+		p.save(flush: true, failOnErrors:true)
 	}
 
 	def private Format createImageFormat(File image, FormatType formatType) {

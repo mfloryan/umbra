@@ -24,6 +24,11 @@ class Picture {
 	DateTime dateTaken
 	String originalFilename
 
+	String latitude
+	String longitude
+	String altitude
+	String camera
+
 	static hasMany = [
 			people: Person,
 			formats: Format
@@ -34,6 +39,10 @@ class Picture {
 	static constraints = {
 		title(nullable: true, maxSize: 400)
 		originalFilename(blank: false, maxSize: 400)
+		latitude(nullable:true)
+		longitude(nullable:true)
+		altitude(nullable:true)
+		camera(nullable:true)
 	}
 
 	String toString() {
