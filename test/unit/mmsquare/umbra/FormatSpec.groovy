@@ -17,6 +17,7 @@
 package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
+import org.joda.time.DateTime
 
 class FormatSpec extends UnitSpec {
 
@@ -101,7 +102,26 @@ class FormatSpec extends UnitSpec {
 		format1.width == 100
 	}
 
-	def "Creates correct path and file"() {
+	def "Creates correct path for a new image"() {
+		given:
 
+		mockConfig("""umbra.image.base.dir = new File("/tmp/umbra")
+					  umbra.image.base.url = "http://static.floryan.pl/images"
+					  """)
+
+		def p = new Picture(dateTaken: new DateTime(2010,10,12,19,12,0,0), originalFilename: "IMG_1234.JPG")
+		def f1 = new Format(type:FormatType.ORIGINAL, picture:p)
+		def f2 = new Format(type:FormatType.THUMBNAIL, picture:p)
+
+		when:
+		f1.generatePath()
+		f2.generatePath()
+
+		def path1 = f1.file
+		def path2 = f2.file
+
+		then:
+		path1.toString() == "/tmp/umbra/2010/10/img_1234.jpg"
+		path2.toString() == "/tmp/umbra/2010/10/img_1234-thumbnail.jpg"
 	}
 }

@@ -53,29 +53,40 @@ class Format {
 		new File(imagesBaseDir, path)
 	}
 
-	String getFileName(String originalName) {
-		originalName = originalName.toLowerCase()[0..-5]
-		"${originalName}-${width}x${height}.jpg"
+	private String getFileName() {
+		String originalBaseName = picture.originalFilename.toLowerCase()[0..-5]
+		if (type ==FormatType.ORIGINAL) {
+			"${originalBaseName}.jpg"
+		} else {
+			"${originalBaseName}-${type.toString().toLowerCase()}.jpg"			
+		}
+
 	}
 
-	String getRelativePath() {
+	private String getRelativePath() {
 		"/${picture.dateTaken.year}/${picture.dateTaken.monthOfYear}/"
 	}
 
 	File getFileDir() {
 		if (!picture) throw new InvalidObjectException()
-		def dir = new File(imagesBaseDir + relativePath)
-		if (!dir.isDirectory()) {
-			dir.mkdirs()
-		}
 		dir
 	}
 
-	static File getImagesBaseDir() {
+	void generatePath() {
+		if (!path) {
+			def dir = new File(getImagesBaseDir(),getRelativePath())
+			if (!dir.isDirectory()) {
+				dir.mkdirs()
+			}
+			path = getRelativePath() + getFileName() 
+		}
+	}
+
+	private static File getImagesBaseDir() {
 		config.umbra.image.base.dir
 	}
 
-	static String getImagesBaseUrl() {
+	private static String getImagesBaseUrl() {
 		config.umbra.image.base.url
 	}
 
