@@ -18,6 +18,7 @@ package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
 import org.joda.time.DateTime
+import spock.lang.Unroll
 
 class FormatSpec extends UnitSpec {
 
@@ -97,11 +98,12 @@ class FormatSpec extends UnitSpec {
 		when: "A format is created with LARGE type and existing width"
 		def format1 = new Format(width: 100, height: 200, path: "/file.jpg")
 		format1.type = FormatType.LARGE
-		
+
 		then:
 		format1.width == 100
 	}
 
+	@Unroll("Correct path is created for #originalName taken at #dateTaken")
 	def "Creates correct path for a new image"() {
 		given:
 
@@ -109,7 +111,7 @@ class FormatSpec extends UnitSpec {
 					  umbra.image.base.url = "http://static.floryan.pl/images"
 					  """)
 
-		def p = new Picture(dateTaken: new DateTime(2010,10,12,19,12,0,0), originalFilename: "IMG_1234.JPG")
+		def p = new Picture(dateTaken: dateTaken, originalFilename: originalName)
 		def f1 = new Format(type:FormatType.ORIGINAL, picture:p)
 		def f2 = new Format(type:FormatType.THUMBNAIL, picture:p)
 
@@ -121,7 +123,13 @@ class FormatSpec extends UnitSpec {
 		def path2 = f2.file
 
 		then:
-		path1.toString() == "/tmp/umbra/2010/10/img_1234.jpg"
-		path2.toString() == "/tmp/umbra/2010/10/img_1234-thumbnail.jpg"
+		path1.toString() == formatOriginal
+		path2.toString() == formatThumbnail
+
+		where:
+		dateTaken                          | originalName  | formatOriginal                      | formatThumbnail
+		new DateTime(2010,2,4,10,12,0,0)   | "IMG_123.JPG" | "/tmp/umbra/2010/02/04-img_123.jpg" | "/tmp/umbra/2010/02/04-img_123-thumbnail.jpg"
+		new DateTime(2006,10,12,10,12,0,0) | "test A.jpg"  | "/tmp/umbra/2006/10/12-test-a.jpg"  | "/tmp/umbra/2006/10/12-test-a-thumbnail.jpg"
+
 	}
 }

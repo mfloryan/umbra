@@ -16,13 +16,14 @@
 
 package mmsquare.umbra
 
+import mmsquare.umbra.util.StringUtil
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class Format {
 
 	int width
 	int height
-	int size
+	long fileSize
 	String path
 	FormatType type = FormatType.ORIGINAL
 
@@ -32,6 +33,7 @@ class Format {
 		width(notEqual: 0)
 		height(notEqual: 0)
 		path(blank: false, unique: true)
+		fileSize(nullable: true)
 	}
 
 	static transients = ["url", "file"]
@@ -54,17 +56,16 @@ class Format {
 	}
 
 	private String getFileName() {
-		String originalBaseName = picture.originalFilename.toLowerCase()[0..-5]
-		if (type ==FormatType.ORIGINAL) {
-			"${originalBaseName}.jpg"
-		} else {
-			"${originalBaseName}-${type.toString().toLowerCase()}.jpg"			
+		String originalBaseName = StringUtil.clean(picture.originalFilename[0..-5])
+		String fileName = "${picture.dateTaken.dayOfMonth.toString().padLeft(2,'0')}-${originalBaseName}"
+		if (type != FormatType.ORIGINAL) {
+			fileName += "-${type.toString().toLowerCase()}"
 		}
-
+		fileName << ".jpg"
 	}
 
 	private String getRelativePath() {
-		"/${picture.dateTaken.year}/${picture.dateTaken.monthOfYear}/"
+		"/${picture.dateTaken.year}/${picture.dateTaken.monthOfYear.toString().padLeft(2,'0')}/"
 	}
 
 	void generatePath() {
