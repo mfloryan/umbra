@@ -17,6 +17,7 @@
 package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
+import groovy.mock.interceptor.MockFor
 import org.joda.time.DateTime
 import spock.lang.Unroll
 
@@ -116,8 +117,15 @@ class FormatSpec extends UnitSpec {
 		def f2 = new Format(type:FormatType.THUMBNAIL, picture:p)
 
 		when:
-		f1.generatePath()
-		f2.generatePath()
+		def mock = new MockFor(File)
+		mock.demand.isDirectory(1..2) {
+			true
+		}
+		mock.use {
+			f1.generatePath()
+			f2.generatePath()
+		}
+
 
 		def path1 = f1.file
 		def path2 = f2.file
