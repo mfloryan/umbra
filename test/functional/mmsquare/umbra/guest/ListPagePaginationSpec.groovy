@@ -12,7 +12,7 @@ class ListPagePaginationSpec extends WebSpec {
 	}
 
 	def cleanup() {
-		fixtureLoader.load "tearDown"
+//		fixtureLoader.load "tearDown"
 	}
 
 

@@ -90,9 +90,12 @@ class UmbraTagLib {
 				if (direction == 'prev') newPage = page - 1
 
 				out << '<div class="pagination">'
-				out << '<a href="'
+				out << '<a '
+				out << "class=\"$direction\" "
+				out << 'href="'
 				out << ConfigurationHolder.config.grails.serverURL
 				out << getPageLink(newPage, person)
+
 				out << '">'
 				out << direction == 'next' ? 'Later entries' : 'Eariler entries'
 				out << '</a>'

@@ -13,13 +13,13 @@ class PictureServiceSpec extends IntegrationSpec {
 	def "can correctly find all orphaned pictures"() {
 		given:
 		def fixture = fixtureLoader.load {
-			p1(Picture) {
-				dateTaken = new DateTime().minusDays(2)
-			}
-			p2(Picture) {
-				dateTaken = new DateTime().minusDays(3)
-			}
 			build {
+				p1(Picture) {
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p2(Picture) {
+					dateTaken = new DateTime().minusDays(3)
+				}
 				entry(Entry) {
 					pictures = [p2]
 				}

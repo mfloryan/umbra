@@ -40,11 +40,13 @@ class EntryPageSpec extends WebSpec {
 	def "guest can view photos on an entry page"() {
 		given: "an entry with some photos"
 		def fixture = fixtureLoader.load {
-			photoOne(Picture) {
-				dateTaken = new DateTime()
-			}
-			photoTwo(Picture) {
-				dateTaken = new DateTime()
+			build {
+				photoOne(Picture) {
+					dateTaken = new DateTime()
+				}
+				photoTwo(Picture) {
+					dateTaken = new DateTime()
+				}
 			}
 			format1(Format) {
 				width = 640

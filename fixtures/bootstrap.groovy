@@ -6,11 +6,13 @@ import mmsquare.umbra.Format
 import mmsquare.umbra.FormatType
 
 fixture {
-	photoOne(Picture) {
-		dateTaken = new DateTime()
-	}
-	photoTwo(Picture) {
-		dateTaken = new DateTime().minusDays(10)
+	build {
+		photoOne(Picture) {
+			dateTaken = new DateTime()
+		}
+		photoTwo(Picture) {
+			dateTaken = new DateTime().minusDays(10)
+		}
 	}
 	format1(Format) {
 		width = 640

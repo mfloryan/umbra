@@ -66,39 +66,41 @@ class EntryServiceSpec extends IntegrationSpec {
 				shortName = "Franek"
 				fullName = "Franciszek"
 			}
-			p1(Picture) {
-				title = "Zosia"
-				people = [zosia]
-				dateTaken = new DateTime().minusDays(2)
-			}
-			p2(Picture) {
-				title = "Franek"
-				people = [franek]
-				dateTaken = new DateTime().minusDays(2)
-			}
-			p3(Picture) {
-				title = "Franek i Zosia"
-				people = [zosia, franek]
-				dateTaken = new DateTime().minusDays(2)
-			}
-			p4(Picture) {
-				title = "Franek 2"
-				people = [franek]
-				dateTaken = new DateTime().minusDays(3)
-			}
-			p5(Picture) {
-				title = "Zosia 2"
-				people = [zosia]
-				dateTaken = new DateTime().minusDays(3)
-			}
-			p6(Picture) {
-				title = "Someone else"
-				dateTaken = new DateTime().minusDays(3)
-			}
-			p7(Picture) {
-				title = "Zosia 3"
-				people = [zosia]
-				dateTaken = new DateTime().minusDays(4)
+			build {
+				p1(Picture) {
+					title = "Zosia"
+					people = [zosia]
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p2(Picture) {
+					title = "Franek"
+					people = [franek]
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p3(Picture) {
+					title = "Franek i Zosia"
+					people = [zosia, franek]
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p4(Picture) {
+					title = "Franek 2"
+					people = [franek]
+					dateTaken = new DateTime().minusDays(3)
+				}
+				p5(Picture) {
+					title = "Zosia 2"
+					people = [zosia]
+					dateTaken = new DateTime().minusDays(3)
+				}
+				p6(Picture) {
+					title = "Someone else"
+					dateTaken = new DateTime().minusDays(3)
+				}
+				p7(Picture) {
+					title = "Zosia 3"
+					people = [zosia]
+					dateTaken = new DateTime().minusDays(4)
+				}
 			}
 			entry1(Entry) {
 				title = "Entry 1"

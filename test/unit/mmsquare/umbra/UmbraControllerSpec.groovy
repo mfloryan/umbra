@@ -4,7 +4,7 @@ import grails.plugin.spock.ControllerSpec
 import org.joda.time.LocalDate
 import org.joda.time.DateTime
 
-class EntryControllerSpec extends ControllerSpec {
+class UmbraControllerSpec extends ControllerSpec {
 
 	def "Should return model for an existing entry"() {
 		given:
