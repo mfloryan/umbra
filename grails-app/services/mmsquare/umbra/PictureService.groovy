@@ -35,7 +35,8 @@ class PictureService {
 
 		Format originalFormat = new Format(width: imageInfo.width, height:imageInfo.height)
 		p.addToFormats(originalFormat)
-		picture.transferTo(originalFormat)
+		originalFormat.generatePath()
+		picture.transferTo(originalFormat.file)
 //		p.save()
 	}
 

@@ -34,7 +34,7 @@ class Format {
 		path(blank: false, unique: true)
 	}
 
-	static transients = ["url", "file", "fileName", "relativePath","fileDir"]
+	static transients = ["url", "file"]
 
 	void setType(FormatType type) {
 		this.type = type
@@ -65,11 +65,6 @@ class Format {
 
 	private String getRelativePath() {
 		"/${picture.dateTaken.year}/${picture.dateTaken.monthOfYear}/"
-	}
-
-	File getFileDir() {
-		if (!picture) throw new InvalidObjectException()
-		dir
 	}
 
 	void generatePath() {
