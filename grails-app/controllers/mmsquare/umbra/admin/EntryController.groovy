@@ -17,6 +17,7 @@
 package mmsquare.umbra.admin
 
 import mmsquare.umbra.Entry
+import mmsquare.umbra.Tag
 
 class EntryController {
 
@@ -38,7 +39,7 @@ class EntryController {
 	    def pictures = pictureService.getAvailablePictures()
 	    if (!params.publishDate && pictures) params.publishDate = pictures[0].dateTaken
         entryInstance.properties = params
-        return [entryInstance: entryInstance, pictures: pictures]
+        return [entryInstance: entryInstance, pictures: pictures, tags: Tag.list()]
     }
 
     def save = {
