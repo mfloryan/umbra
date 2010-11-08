@@ -18,7 +18,6 @@ package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
 import org.joda.time.DateTime
-import static mmsquare.umbra.FormatType.*
 
 class PictureSpec extends UnitSpec {
 
@@ -27,26 +26,9 @@ class PictureSpec extends UnitSpec {
 		mockDomain Picture
 
 		when:
-		def p = new Picture(dateTaken: new DateTime())
+		def p = new Picture(dateTaken: new DateTime(), originalFilename: "IMG123.JPG")
 
 		then:
 		p.validate()
-	}
-
-	def "picture provides list of required FORMATS given original's width"() {
-		when:
-		def types = Picture.getFormatTypesForWidth(width)
-
-		then:
-		types == formatTypes
-
-		where:
-		width | formatTypes
-		10    | []
-		120   | [THUMBNAIL]
-		640   | [THUMBNAIL]
-		800   | [SMALL, THUMBNAIL]
-		1200  | [SMALL, THUMBNAIL]
-		1400  | [LARGE, SMALL, THUMBNAIL ]
 	}
 }

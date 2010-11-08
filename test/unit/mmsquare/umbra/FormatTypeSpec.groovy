@@ -16,27 +16,29 @@
 
 package mmsquare.umbra
 
-import org.joda.time.DateTime
+import grails.plugin.spock.UnitSpec
+import spock.lang.Unroll
+import static mmsquare.umbra.FormatType.*
 
-class Picture {
+/* Created 08-Nov-2010 12:29:13 by mfloryan */
 
-	String title
-	DateTime dateTaken
-	String originalFilename
+class FormatTypeSpec extends UnitSpec {
 
-	static hasMany = [
-			people: Person,
-			formats: Format
-	]
+	@Unroll("Picture #width px wide requires #formatTypes format types")
+	def "FormatType provides list of required FORMATS given original's width"() {
+		when:
+		def types = FormatType.getAllForWidth(width)
 
-//	static fetchMode = [formats:"eager", people:"eager"]
+		then:
+		types == formatTypes
 
-	static constraints = {
-		title(nullable: true, maxSize: 400)
-		originalFilename(blank: false, maxSize: 400)
-	}
-
-	String toString() {
-		"Picture:$id ($originalFilename)"
+		where:
+		width | formatTypes
+		10    | []
+		120   | [THUMBNAIL]
+		640   | [THUMBNAIL]
+		800   | [SMALL, THUMBNAIL]
+		1200  | [SMALL, THUMBNAIL]
+		1400  | [LARGE, SMALL, THUMBNAIL]
 	}
 }

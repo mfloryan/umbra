@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,6 +15,8 @@
  */
 
 package mmsquare.umbra
+
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class Format {
 
@@ -32,7 +34,7 @@ class Format {
 		path(blank: false, unique: true)
 	}
 
-	static transients = ["url", "file"]
+	static transients = ["url", "file", "fileName", "relativePath","fileDir"]
 
 	void setType(FormatType type) {
 		this.type = type
@@ -44,11 +46,41 @@ class Format {
 	}
 
 	String getUrl() {
-		picture.pictureBaseUrl + path
+		imagesBaseUrl + path
 	}
 
 	File getFile() {
-		new File(picture.pictureBaseDir, path)
+		new File(imagesBaseDir, path)
+	}
+
+	String getFileName(String originalName) {
+		originalName = originalName.toLowerCase()[0..-5]
+		"${originalName}-${width}x${height}.jpg"
+	}
+
+	String getRelativePath() {
+		"/${picture.dateTaken.year}/${picture.dateTaken.monthOfYear}/"
+	}
+
+	File getFileDir() {
+		if (!picture) throw new InvalidObjectException()
+		def dir = new File(imagesBaseDir + relativePath)
+		if (!dir.isDirectory()) {
+			dir.mkdirs()
+		}
+		dir
+	}
+
+	static File getImagesBaseDir() {
+		config.umbra.image.base.dir
+	}
+
+	static String getImagesBaseUrl() {
+		config.umbra.image.base.url
+	}
+
+	private static ConfigObject getConfig() {
+		ConfigurationHolder.config
 	}
 }
 
@@ -62,5 +94,15 @@ enum FormatType {
 
 	FormatType() {
 
+	}
+
+	def static getAllForWidth(int width) {
+		def availableFormats = FormatType.values() - FormatType.ORIGINAL
+
+		def types = []
+		availableFormats.each {
+			if (width > it.formatTypeWidth) types << it
+		}
+		types
 	}
 }

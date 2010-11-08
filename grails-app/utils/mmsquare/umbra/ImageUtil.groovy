@@ -16,8 +16,37 @@
 
 package mmsquare.umbra
 
+import com.drew.imaging.jpeg.JpegMetadataReader
+import com.drew.metadata.Metadata
+import com.drew.metadata.jpeg.JpegDirectory
+import org.joda.time.DateTime
+
 /* Created 07-Nov-2010 22:38:36 by mfloryan */
 
 class ImageUtil {
-	
+	static ImageInfo getImageProperties(InputStream stream) {
+
+		Metadata m = JpegMetadataReader.readMetadata(stream)
+
+
+		def jdir = m.getDirectory(JpegDirectory.class)
+		if (jdir == null) {
+			throw new IllegalArgumentException("Invalid file - could not find JPEG metadata")
+		}
+
+		if (!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT) ||
+			!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_WIDTH)) {
+			throw new IllegalArgumentException("File must contain EXIF width and height")
+		}
+
+		new ImageInfo(  width: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_WIDTH),
+						height: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT))
+	}
+}
+
+class ImageInfo {
+	int width
+	int height
+	long size
+	DateTime dateTaken = new DateTime()
 }
