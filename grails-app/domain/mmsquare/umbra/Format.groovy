@@ -92,7 +92,7 @@ class Format {
 }
 
 enum FormatType {
-	ORIGINAL, LARGE(1200), SMALL(640), THUMBNAIL(100)
+	ORIGINAL, LARGE(1200), SMALL(640), THUMBNAIL(48)
 	public final int formatTypeWidth
 
 	FormatType(int width) {
