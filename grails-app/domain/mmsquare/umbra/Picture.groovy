@@ -48,4 +48,8 @@ class Picture {
 	String toString() {
 		"Picture:$id ($originalFilename)"
 	}
+
+	Format getFormatBy(FormatType type) {
+		formats.find { format -> format.type == type } 	
+	}
 }

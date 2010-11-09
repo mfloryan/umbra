@@ -18,6 +18,7 @@ package mmsquare.umbra
 
 import grails.plugin.spock.UnitSpec
 import org.joda.time.DateTime
+import spock.lang.Unroll
 
 class PictureSpec extends UnitSpec {
 
@@ -30,5 +31,32 @@ class PictureSpec extends UnitSpec {
 
 		then:
 		p.validate()
+	}
+
+	@Unroll("Can get format from picture for #formatToGet")
+	def "can get format from picture by format type"() {
+		setup:
+		def p = new Picture(dateTaken: new DateTime(), originalFilename: "IMG.jpg")
+		def f = new Format(picture:p)
+		def f1 = new Format(picture:p, type:FormatType.THUMBNAIL)
+		def f2 = new Format(picture:p, type:FormatType.SMALL)
+		p.formats = [f, f1, f2]
+
+		when:
+		def format = p.getFormatBy(formatToGet)
+
+		then:
+		if (expectedFormat) {
+			assert format.type == expectedFormat
+		} else {
+			assert !format 
+		}
+
+		where:
+		formatToGet         | expectedFormat
+		FormatType.ORIGINAL | FormatType.ORIGINAL
+		FormatType.SMALL    | FormatType.SMALL
+		FormatType.LARGE    | null
+
 	}
 }
