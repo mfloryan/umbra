@@ -22,10 +22,15 @@ import com.drew.metadata.exif.ExifDirectory
 import com.drew.metadata.exif.GpsDirectory
 import com.drew.metadata.jpeg.JpegDirectory
 import org.joda.time.DateTime
+import org.im4java.core.ConvertCmd
+import org.im4java.core.IMOperation
 
 /* Created 07-Nov-2010 22:38:36 by mfloryan */
 
 class ImageUtil {
+
+	private static ConvertCmd cmd = new ConvertCmd()
+
 	static ImageInfo getImageProperties(InputStream stream) {
 
 		Metadata m = JpegMetadataReader.readMetadata(stream)
@@ -59,6 +64,34 @@ class ImageUtil {
 			ii.altitude = gpsDirectory.getDescription(GpsDirectory.TAG_GPS_ALTITUDE)
 		}
 		ii
+	}
+
+	static ImageInfo getImageDimensions(File file) {
+		Metadata m = JpegMetadataReader.readMetadata(file)
+
+		def jdir = m.getDirectory(JpegDirectory.class)
+		if (jdir == null) {
+			throw new IllegalArgumentException("Invalid file - could not find JPEG metadata")
+		}
+
+		if (!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT) ||
+				!jdir.containsTag(JpegDirectory.TAG_JPEG_IMAGE_WIDTH)) {
+			throw new IllegalArgumentException("File must contain EXIF width and height")
+		}
+		new ImageInfo(width: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_WIDTH),
+						   height: jdir.getInt(JpegDirectory.TAG_JPEG_IMAGE_HEIGHT))
+	}
+
+	static void resizeImage(String sourceImage, String targetImage, FormatType type) {
+		IMOperation op = new IMOperation()
+		op.addImage sourceImage
+		if (type == FormatType.THUMBNAIL) {
+			op.thumbnail(type.formatTypeWidth,type.formatTypeWidth,"^").gravity("center").crop(type.formatTypeWidth,type.formatTypeWidth,0,0)
+		} else {
+			op.resize(type.formatTypeWidth)
+		}
+		op.addImage targetImage
+		cmd.run(op);
 	}
 }
 

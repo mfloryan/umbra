@@ -18,10 +18,12 @@ package mmsquare.umbra
 
 class Tag {
 
-  String name
+	String name
 
-  static constraints = {
-    name(empty:false)    
-  }
+	static constraints = {
+		name(empty: false)
+	}
+
+	static transients = ["lowerName"]
 
 }

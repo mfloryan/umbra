@@ -1,82 +1,92 @@
-<%@ page import="mmsquare.umbra.Entry" %>
+<%@ page import="mmsquare.umbra.Person; mmsquare.umbra.Tag; mmsquare.umbra.Entry" %>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="admin"/>
-        <title>Umbra &raquo; Admin &raquo; New Entry</title>
-    </head>
-    <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Entries</g:link></span>
-        </div>
-        <div class="body">
-            <h1>New Entry</h1>
-            <g:if test="${flash.message}">
-                <div class="message">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${entryInstance}">
-                <div class="errors">
-                    <g:renderErrors bean="${entryInstance}" as="list"/>
-                </div>
-            </g:hasErrors>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="layout" content="admin"/>
+		<title>Umbra &raquo; Admin &raquo; New Entry</title>
+	</head>
+	<body>
+		<div class="nav">
+			<span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
+			<span class="menuButton"><g:link class="list" action="list">Entries</g:link></span>
+		</div>
+		<div class="body">
+			<h1>New Entry</h1>
+			<g:if test="${flash.message}">
+				<div class="message">${flash.message}</div>
+			</g:if>
+			<g:hasErrors bean="${entryInstance}">
+				<div class="errors">
+					<g:renderErrors bean="${entryInstance}" as="list"/>
+				</div>
+			</g:hasErrors>
 
-            <g:form action="save">
+			<g:form action="save">
 
-                <div class="dialog">
-                    <fieldset>
-                        <legend>Entry</legend>
-
-                        <dl>
-                            <dt><label for="title">Title</label></dt>
-                            <dd><g:textField name="title" value="${entryInstance?.title}"/></dd>
-                        </dl>
-
-                       <dl>
-                            <dt><label for="permalink">Permalink</label></dt>
-                            <dd><g:textField name="permalink" value="${entryInstance?.permalink}"/></dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label for="publishDate">publishDate</label></dt>
-                            <dd><g:textField name="publishDate" value="${entryInstance?.publishDate}"/></dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label for="content">content</label></dt>
-                            <dd><g:textArea name="content" cols="60" rows="3" value="${entryInstance?.content}"/></dd>
-                        </dl>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Pictures</legend>
-                        <g:if test="${pictures}">
-                            <ul class="pictures">
-                                <g:each in="${pictures}" var="picture">
-                                    <li>
-                                        ${picture.originalFilename}
-                                    </li>
-                                </g:each>
-                            </ul>
-                        </g:if>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Tags</legend>
-                            <ul class="tags">
-                                <g:each in="${tags}" var="tag">
-                                    <li>
-                                        <input type="checkbox" name="tags" value="${tag.id}" id="${tag.name}">
-                                        <label for="${tag.name}">${tag.name}</label>
-                                    </li>
-                                </g:each>
-                                <li>  <g:textField name="newTag" value="${newTag}"></g:textField> </li>
-                            </ul>
-                    </fieldset>
-
-                </div>
-                <div class="buttons">
-                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
-                </div>
-            </g:form>
-        </div>
-    </body>
+				<div class="dialog">
+					<fieldset class="form">
+						<legend>Entry</legend>
+						<ul>
+							<li>
+								<label for="title">Title</label>
+								<g:textField name="title" value="${entryInstance?.title}"/>
+							</li>
+							<li>
+								<label for="permalink">Permalink</label>
+								<g:textField name="permalink" value="${entryInstance?.permalink}"/>
+							</li>
+							<li>
+								<label for="publishDate">publishDate</label>
+								<g:textField name="publishDate" value="${entryInstance?.publishDate}"/>
+							</li>
+							<li>
+								<label for="content">content</label>
+								<g:textArea name="content" cols="60" rows="3" value="${entryInstance?.content}"/>
+							</li>
+						</ul>
+					</fieldset>
+					<fieldset>
+						<legend>Pictures</legend>
+						<g:if test="${pictures}">
+							<ul class="pictures">
+								<g:each in="${pictures}" var="picture">
+									<li style="padding: 4px;">
+										<div style="display:inline-block; vertical-align: top;">
+											<a style="margin: 4px; " href="/umbra/picture/${picture.id}/small"><img src="/umbra/picture/${picture.id}/thumbnail" width="48"></a>
+										</div>
+										<div style="display:inline-block; vertical-align: top; width: 240px">
+											<input type="checkbox" id="pictures.id" name="picture" value="${picture.id}">
+											<label for="picture${picture.id}"><b>${picture.originalFilename}</b></label><br/>
+											Title:<br/>
+											<input type="text" name="picture.${picture.id}.title">
+										</div>
+										<div style="display:inline-block; vertical-align: top;">
+											<g:each in="${Person.listOrderByShortName(sort:'desc')}" var="person">
+												<input type="checkbox" name="picture.${picture.id}.people.id" value="${person.id}" id="p${picture.id}p${person.id}"> <label for="p${picture.id}p${person.id}">${person.shortName}</label><br/>
+											</g:each>
+										</div>
+									</li>
+								</g:each>
+							</ul>
+						</g:if>
+					</fieldset>
+					<fieldset>
+						<legend>Tags</legend>
+						<ul class="tags">
+							<g:each in="${Tag.listOrderByName()}" var="tag">
+								<li>
+									<input type="checkbox" name="tags.id" value="${tag.id}" id="${tag.name}">
+									<label for="${tag.name}">${tag.name}</label>
+								</li>
+							</g:each>
+							<li><g:textField name="newTag" value="${newTag}"></g:textField></li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="buttons">
+					<span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
+				</div>
+			</g:form>
+		</div>
+	</body>
 </html>

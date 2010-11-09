@@ -40,14 +40,18 @@ class PictureService {
 		p.addToFormats(originalFormat)
 		originalFormat.generatePath()
 		picture.transferTo(originalFormat.file)
+
+		FormatType.getAllForWidth(imageInfo.width).each { FormatType type ->
+			def f = new Format(type:type)
+			p.addToFormats(f)
+			f.generatePath()
+			ImageUtil.resizeImage originalFormat.file.toString(), f.file.toString(), type
+			def ii = ImageUtil.getImageDimensions(f.file)
+			f.width = ii.width
+			f.height = ii.height
+			f.fileSize = f.file.size()
+		}
+
 		p.save(flush: true, failOnErrors:true)
 	}
-
-	def private Format createImageFormat(File image, FormatType formatType) {
-		if (formatType != FormatType.ORIGINAL) {
-			//resize
-		}
-		new Format(width:0, height:0, size: 0, path: "")
-	}
-
 }

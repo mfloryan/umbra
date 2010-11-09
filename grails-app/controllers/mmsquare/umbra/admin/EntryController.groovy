@@ -39,7 +39,7 @@ class EntryController {
 	    def pictures = pictureService.getAvailablePictures()
 	    if (!params.publishDate && pictures) params.publishDate = pictures[0].dateTaken
         entryInstance.properties = params
-        return [entryInstance: entryInstance, pictures: pictures, tags: Tag.list()]
+        return [entryInstance: entryInstance, pictures: pictures]
     }
 
     def save = {
