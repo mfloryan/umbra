@@ -1,108 +1,137 @@
 html * {
-    margin: 0; /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
-    text-rendering: optimizeLegibility;
+	margin: 0; /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+	text-rendering: optimizeLegibility;
 }
 
 body {
-    font-family: "Georgia", serif;
-    color: #444;
+	font-family: "Georgia", serif;
+	color: #444;
 }
 
 h1, h2, h3, h4, .date {
-    font-family: Helvetica, Arial, sans-serif;
-    letter-spacing: -1px;    
+	font-family: Helvetica, Arial, sans-serif;
+	letter-spacing: -1px;
 }
 
 h1 {
-    font-size: 40px;
+	font-size: 40px;
 }
 
 h2 {
-    font-size: 30px;
+	font-size: 30px;
 }
 
 a {
-    text-decoration: none;
-    color: #222;
+	text-decoration: none;
+	color: #222;
 }
 
 a:hover {
-    color: #8A3324;
+	color: #8A3324;
 }
 
 header {
-    padding: 20px;
-    display: block;
-    border-bottom: 1px solid #635147;
+	border-bottom: 1px solid #635147;
+	display: block;
+	font-size: 13px;
+	font-style: italic;
+	padding: 40px;
+}
+
+header h1 {
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: 20px;
+	font-style: normal;
 }
 
 footer {
-    padding-top: 50px;
-    display: block;
-    text-align: center;
-    border-top: 1px solid #635147;
-    font-size: 12px;
-    font-style: italic;
+	padding-top: 50px;
+	display: block;
+	text-align: center;
+	border-top: 1px solid #635147;
+	font-size: 12px;
+	font-style: italic;
 }
 
 footer img {
-    border: 0;
-    vertical-align: middle;
-    padding: 2px;
+	border: 0;
+	vertical-align: bottom;
+	padding: 2px;
 }
 
 .page {
-    width: 960px;
-    margin: auto;
+	width: 960px;
+	margin: auto;
 }
 
 .content {
-    vertical-align: top;
-    width: 640px;
-    display: inline-block;
-    border-right: 1px solid #635147;
+	vertical-align: top;
+	width: 640px;
+	display: inline-block;
+	border-right: 1px solid #635147;
 }
 
 .content ul {
-    list-style: none;
-    padding-left: 0;
+	list-style: none;
+	padding-left: 0;
 }
-
-.content ul li {
-    padding-top: 20px;    
-}
-
 
 .content div.date {
-    display: inline-block;
-    text-align: center;
-    font-size: 10px;
-    padding: 6px;
+	display: inline-block;
+	text-align: center;
+	font-size: 10px;
+	padding: 4px;
 }
 
 .content div.date b {
-    font-size: 30px;
-    line-height: 0.8em;
+	font-size: 30px;
+	line-height: 0.8em;
+	color: #8A3324
 }
 
+.content h2 {
+	display: inline-block;
+	vertical-align: top;
+}
 
-.content ul li h2 {
-    display: inline-block;
-    vertical-align:top;
+.content div.entry {
+	padding: 20px 0 20px 0px;
+}
+
+.content img {
+	-moz-border-radius: 3px 3px 3px 3px;
+	background-color: #FAFAFA;
+	border: 1px solid #DDDDDD;
+	margin: 5px 10px 10px 0;
+	padding: 5px;
+	text-align: center;
+	display: block;
 }
 
 .sidebar {
-    display: inline-block;
-    vertical-align: top;
-    padding-top: 20px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px 0px 40px 0px;
 }
 
 div.pagination {
-    text-align: center;
+	padding: 2px;
 }
 
 div.pagination a {
-    display: block;
-    padding: 10px;
-    margin: 2px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	text-align: center;
+	display: block;
+	padding: 6px;
+	margin: auto;
+	width: 200px;
+	color: #826644;
+	border: solid 1px #ccbea9;
+}
+
+div.pagination a:hover {
+	background-color: #ccbea9;
+	color: white;
+	border-color: White;
 }

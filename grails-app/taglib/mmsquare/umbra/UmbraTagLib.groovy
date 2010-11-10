@@ -97,7 +97,7 @@ class UmbraTagLib {
 				out << getPageLink(newPage, person)
 
 				out << '">'
-				out << direction == 'next' ? 'Later entries' : 'Eariler entries'
+				out << (direction == 'next' ? '&darr; previous entries' : '&uarr; more recent entries')
 				out << '</a>'
 				out << '</div>'
 			}

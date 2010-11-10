@@ -38,14 +38,6 @@ ul {
 	padding-left: 15px;
 }
 
-input, select, textarea {
-	background-color: #fcfcfc;
-	border: 1px solid #ccc;
-	font: 11px verdana, arial, helvetica, sans-serif;
-	margin: 2px 0;
-	padding: 2px 4px;
-}
-
 select {
 	padding: 2px 2px 2px 0;
 }
