@@ -116,4 +116,17 @@ class UmbraTagLib {
 		}
 		url
 	}
+
+	def imageLink = { attrs ->
+		def picture = attrs.remove("picture")
+		def format = attrs.remove("format")?:"original"
+		def isDownload = attrs.remove("isDownload")
+
+		def formatInstance = picture.getFormatBy(FormatType.valueOf(format.toUpperCase()))
+		if (formatInstance) {
+			out << ConfigurationHolder.config.grails.serverURL
+			out << "/picture/${picture.id}/format"
+			if (isDownload) out << "?download=true"
+		}
+	}
 }

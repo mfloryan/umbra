@@ -13,9 +13,15 @@
 		<g:if test="${entry.content}">
 			<div class="entry-content">${entry.content}</div>
 		</g:if>
-
 		<g:if test="${!listMode}">
-
+			<g:if test="${entry.pictures}">
+				Download original pictures
+				<ul class="downloads">
+					<g:each in="${entry.pictures}" var="picture">
+						<li><a href="${umbra.imageLink([picture:picture, format:"original" ,isDownload:true])}">${picture.originalFilename}</a></li>
+					</g:each>
+				</ul>
+			</g:if>
 		</g:if>
 	</div>
 </div>

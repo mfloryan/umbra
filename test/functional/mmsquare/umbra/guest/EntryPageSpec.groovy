@@ -37,7 +37,7 @@ class EntryPageSpec extends WebSpec {
 		page.pageTitle == "3F » A test entry"
 	}
 
-	def "guest can view photos on an entry page"() {
+	def "guest can view photos on an entry page and download originals"() {
 		given: "an entry with some photos"
 		def fixture = fixtureLoader.load {
 			build {
@@ -49,9 +49,9 @@ class EntryPageSpec extends WebSpec {
 				}
 			}
 			format1(Format) {
-				width = 640
+				width = 480
 				height = 320
-				path = "/2010/10/IMAGE1-640x320.jpg"
+				path = "/2010/10/IMAGE1-480x320.jpg"
 				type = FormatType.SMALL
 				picture = photoOne
 			}
@@ -70,9 +70,9 @@ class EntryPageSpec extends WebSpec {
 				picture = photoOne
 			}
 			format4(Format) {
-				width = 640
+				width = 480
 				height = 320
-				path = "/2010/10/IMAGE2-640x320.jpg"
+				path = "/2010/10/IMAGE2-480x320.jpg"
 				type = FormatType.SMALL
 				picture = photoTwo
 			}
@@ -103,6 +103,7 @@ class EntryPageSpec extends WebSpec {
 
 		then: "photos are displayed"
 		page.photos.size() == 2
+		page.downloads.size() == 2
 	}
 
 }
