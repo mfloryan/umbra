@@ -124,8 +124,7 @@ class UmbraTagLib {
 
 		def formatInstance = picture.getFormatBy(FormatType.valueOf(format.toUpperCase()))
 		if (formatInstance) {
-			out << ConfigurationHolder.config.grails.serverURL
-			out << "/picture/${picture.id}/format"
+			out << formatInstance.url
 			if (isDownload) out << "?download=true"
 		}
 	}

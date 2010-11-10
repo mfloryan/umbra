@@ -48,7 +48,7 @@ class Format {
 	}
 
 	String getUrl() {
-		imagesBaseUrl + path
+		ConfigurationHolder.config.grails.serverURL + "/picture/${picture.id}/${type.toString().toLowerCase()}"
 	}
 
 	File getFile() {
