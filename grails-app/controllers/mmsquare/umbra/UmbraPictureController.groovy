@@ -16,6 +16,10 @@ class UmbraPictureController {
 			response.sendError SC_NOT_FOUND
 			return
 		}
+		if (params.download) {
+			response.addHeader "Content-disposition","attachment; filename=${picture.originalFilename}"
+		}
+
 		response.contentType = "image/jpeg"
 		response.contentLength = image.file.length()
 		response.outputStream << image.file.newInputStream()
