@@ -26,4 +26,8 @@ class Tag {
 
 	static transients = ["lowerName"]
 
+	String toString() {
+		name
+	}
+
 }

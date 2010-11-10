@@ -37,7 +37,7 @@
 							</li>
 							<li>
 								<label for="publishDate">publishDate</label>
-								<g:textField name="publishDate" value="${entryInstance?.publishDate}"/>
+								<joda:dateTimePicker name="publishDate" value="${entryInstance?.publishDate}" />
 							</li>
 							<li>
 								<label for="content">content</label>
@@ -55,7 +55,7 @@
 											<a style="margin: 4px; " href="/umbra/picture/${picture.id}/small"><img src="/umbra/picture/${picture.id}/thumbnail" width="48"></a>
 										</div>
 										<div style="display:inline-block; vertical-align: top; width: 240px">
-											<input type="checkbox" id="pictures.id" name="picture" value="${picture.id}">
+											<input type="checkbox" id="picture${picture.id}" name="pictures" value="${picture.id}">
 											<label for="picture${picture.id}"><b>${picture.originalFilename}</b></label><br/>
 											Title:<br/>
 											<input type="text" name="picture.${picture.id}.title">
@@ -75,11 +75,11 @@
 						<ul class="tags">
 							<g:each in="${Tag.listOrderByName()}" var="tag">
 								<li>
-									<input type="checkbox" name="tags.id" value="${tag.id}" id="${tag.name}">
+									<input type="checkbox" name="tags" value="${tag.id}" id="${tag.name}">
 									<label for="${tag.name}">${tag.name}</label>
 								</li>
 							</g:each>
-							<li><g:textField name="newTag" value="${newTag}"></g:textField></li>
+							<li><input type="text" name="newTag"> <input type="button" class="add-button new-tag-button" value="add"></li>
 						</ul>
 					</fieldset>
 				</div>
