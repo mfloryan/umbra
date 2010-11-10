@@ -32,8 +32,9 @@ class PictureService {
 
 		def imageInfo = ImageUtil.getImageProperties(picture.inputStream)
 		p.dateTaken = imageInfo.dateTaken
-		if (imageInfo.latitude) p.latitude = imageInfo.latitude
-		if (imageInfo.longitude) p.longitude= imageInfo.longitude
+		if (imageInfo.latitude && imageInfo.longitude) {
+			p.location = new Location(latitude: imageInfo.latitude, longitude: imageInfo.longitude, altitude: imageInfo.altitude)
+		}
 		if (imageInfo.cameraMake || imageInfo.cameraModel) p.camera = "${imageInfo.cameraMake} - ${imageInfo.cameraModel}"
 
 		Format originalFormat = new Format(width: imageInfo.width, height:imageInfo.height, fileSize: imageInfo.size)

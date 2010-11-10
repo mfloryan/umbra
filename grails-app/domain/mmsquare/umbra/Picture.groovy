@@ -21,12 +21,9 @@ import org.joda.time.DateTime
 class Picture {
 
 	String title
-	DateTime dateTaken
 	String originalFilename
-
-	String latitude
-	String longitude
-	String altitude
+	DateTime dateTaken
+	Location location
 	String camera
 
 	static hasMany = [
@@ -34,14 +31,14 @@ class Picture {
 			formats: Format
 	]
 
+	static embedded = ['location']
+
 //	static fetchMode = [formats:"eager", people:"eager"]
 
 	static constraints = {
 		title(nullable: true, maxSize: 400)
 		originalFilename(blank: false, maxSize: 400)
-		latitude(nullable:true)
-		longitude(nullable:true)
-		altitude(nullable:true)
+		location(nullable:true)
 		camera(nullable:true)
 	}
 
@@ -52,4 +49,17 @@ class Picture {
 	Format getFormatBy(FormatType type) {
 		formats.find { format -> format.type == type } 	
 	}
+}
+
+class Location {
+
+	String latitude
+	String longitude
+	String altitude
+
+    static constraints = {
+		latitude(maxSize: 32)
+		longitude(maxSize: 32)
+		altitude(nullable:true, maxSize: 64)
+    }
 }
