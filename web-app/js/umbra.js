@@ -15,9 +15,7 @@
  */
 
 $(document).ready(function() {
-   $('a.button').button();
-
-   $('a.preview').fancybox({
-    type:'image'
-   });
+    $('a.fancyboxImage').fancybox({
+        type:'image'
+    });
 });

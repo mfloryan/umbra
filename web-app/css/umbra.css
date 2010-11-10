@@ -3,6 +3,16 @@ html * {
 	text-rendering: optimizeLegibility;
 }
 
+.BurntUmber {
+    color: #8A3324;
+}
+.RawUmber {
+    color: #826644;
+}
+.Umber {
+    color: #635147;
+}
+
 body {
 	font-family: "Georgia", serif;
 	color: #444;
@@ -31,11 +41,12 @@ a:hover {
 }
 
 header {
-	border-bottom: 1px solid #635147;
+	border-bottom: 1px solid #ddd;
 	display: block;
 	font-size: 13px;
 	font-style: italic;
-	padding: 40px;
+	padding: 36px;
+    color: #635147;
 }
 
 header h1 {
@@ -43,13 +54,14 @@ header h1 {
 	vertical-align: middle;
 	padding-right: 20px;
 	font-style: normal;
+    color: Black;
 }
 
 footer {
 	padding-top: 50px;
 	display: block;
 	text-align: center;
-	border-top: 1px solid #635147;
+	border-top: 1px solid #ddd;
 	font-size: 12px;
 	font-style: italic;
 }
@@ -69,7 +81,7 @@ footer img {
 	vertical-align: top;
 	width: 640px;
 	display: inline-block;
-	border-right: 1px solid #635147;
+	border-right: 1px solid #ddd;
 }
 
 .content ul {
@@ -126,12 +138,25 @@ div.pagination a {
 	padding: 6px;
 	margin: auto;
 	width: 200px;
-	color: #826644;
-	border: solid 1px #ccbea9;
+	color: #8A3324;
+	border: solid 1px #ddd;
 }
 
 div.pagination a:hover {
-	background-color: #ccbea9;
+	background-color: #8A3324;
 	color: white;
 	border-color: White;
+}
+
+.sidebar ul.people {
+    list-style: none;
+}
+
+.sidebar ul.people li {
+    padding: 6px 0px 6px 0px;
+}
+
+.sidebar ul.people li.selected a {
+    color: #ddd;
+    font-weight:bold;
 }

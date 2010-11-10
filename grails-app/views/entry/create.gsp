@@ -52,7 +52,7 @@
 								<g:each in="${pictures}" var="picture">
 									<li style="padding: 4px;">
 										<div style="display:inline-block; vertical-align: top;">
-											<a style="margin: 4px; " href="/umbra/picture/${picture.id}/small"><img src="/umbra/picture/${picture.id}/thumbnail" width="48"></a>
+											<a style="margin: 4px;" class="preview" href="/umbra/picture/${picture.id}/small"><img src="/umbra/picture/${picture.id}/thumbnail" width="48"></a>
 										</div>
 										<div style="display:inline-block; vertical-align: top; width: 240px">
 											<input type="checkbox" id="picture${picture.id}" name="pictures" value="${picture.id}">
