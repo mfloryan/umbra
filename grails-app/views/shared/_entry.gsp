@@ -1,4 +1,4 @@
-<div class="date"><b>${entry.publishDate.dayOfMonth}</b>${entry.publishDate.monthOfYear}/${entry.publishDate.year}</div>
+<div class="date"><b>${entry.publishDate.dayOfMonth}</b><br />${entry.publishDate.monthOfYear}/${entry.publishDate.year}</div>
 <h2><a href="${grailsApplication.config.grails.serverURL}${entry.permalink}">${entry.title}</a></h2>
 
 <g:if test="${entry.pictures}">

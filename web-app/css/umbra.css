@@ -1,0 +1,108 @@
+html * {
+    margin: 0; /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: "Georgia", serif;
+    color: #444;
+}
+
+h1, h2, h3, h4, .date {
+    font-family: Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;    
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+a:hover {
+    color: #8A3324;
+}
+
+header {
+    padding: 20px;
+    display: block;
+    border-bottom: 1px solid #635147;
+}
+
+footer {
+    padding-top: 50px;
+    display: block;
+    text-align: center;
+    border-top: 1px solid #635147;
+    font-size: 12px;
+    font-style: italic;
+}
+
+footer img {
+    border: 0;
+    vertical-align: middle;
+    padding: 2px;
+}
+
+.page {
+    width: 960px;
+    margin: auto;
+}
+
+.content {
+    vertical-align: top;
+    width: 640px;
+    display: inline-block;
+    border-right: 1px solid #635147;
+}
+
+.content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content ul li {
+    padding-top: 20px;    
+}
+
+
+.content div.date {
+    display: inline-block;
+    text-align: center;
+    font-size: 10px;
+    padding: 6px;
+}
+
+.content div.date b {
+    font-size: 30px;
+    line-height: 0.8em;
+}
+
+
+.content ul li h2 {
+    display: inline-block;
+    vertical-align:top;
+}
+
+.sidebar {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 20px;
+}
+
+div.pagination {
+    text-align: center;
+}
+
+div.pagination a {
+    display: block;
+    padding: 10px;
+    margin: 2px;
+}
