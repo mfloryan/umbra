@@ -113,6 +113,8 @@ footer img {
 
 .content img {
 	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border-radius: 3px 3px 3px 3px;
 	background-color: #FAFAFA;
 	border: 1px solid #DDDDDD;
 	margin: 5px 10px 10px 0;
@@ -133,6 +135,8 @@ div.pagination {
 
 div.pagination a {
 	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
 	text-align: center;
 	display: block;
 	padding: 6px;
