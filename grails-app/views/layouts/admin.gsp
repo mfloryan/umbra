@@ -5,12 +5,12 @@
         <title><g:layoutTitle default="Umbra - Admin" /></title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'admin.css')}" />
         <link rel="stylesheet" href="${resource(dir:'css/smoothness',file:'jquery-ui-1.8.6.custom.css')}" />
-        <link rel="stylesheet" href="${resource(dir:'css/fancybox',file:'jquery.fancybox-1.3.2.css')}" />
+        <link rel="stylesheet" href="${resource(dir:'css/fancybox',file:'jquery.fancybox-1.3.3.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="jquery" plugin="jquery"/>
         <g:javascript library="jquery-ui-1.8.6.custom.min" />
-        <g:javascript library="fancybox/jquery.fancybox-1.3.2.pack" />
+        <g:javascript library="fancybox/jquery.fancybox-1.3.3.pack" />
         <g:javascript library="application" />
         <g:javascript library="admin" />
     </head>
