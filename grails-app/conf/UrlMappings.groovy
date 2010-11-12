@@ -33,7 +33,7 @@ class UrlMappings {
 		"/admin/tag/$action/$id?"(controller: "tag")
 		"/admin/picture/$action/$id?"(controller: "picture")
 
-		"/picture/$id/$type" (controller:"umbraPicture", action: "show")
+		"/picture/$id/${format}.jpg" (controller:"umbraPicture", action: "show")
 
 		"/"(controller: "umbra", action: 'list') {
 			page = 1
@@ -42,8 +42,6 @@ class UrlMappings {
 		"/page/$page"(controller: "umbra", action: 'list')
 
 		"/person/$person/page?/$page?"(controller: "umbra", action: 'list')
-
-
 
 		"500"(controller: 'umbra', action: 'list')
 	}

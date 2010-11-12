@@ -33,4 +33,27 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 			id = 'daymark'
 		}
 	}
+
+	@Test
+	void "Image controller mappings"() {
+
+		assertUrlMapping("/picture/1/original.jpg", controller: "umbraPicture", action: "show") {
+			id = 1
+			format = 'original'
+		}
+	}
+
+	@Test
+	void "Admin site mappings"() {
+		assertForwardUrlMapping("/admin/entry/create", controller: "entry", action: "create")
+		assertForwardUrlMapping("/admin/entry/edit/1", controller: "entry", action: "edit") {
+			id = 1
+		}
+		assertForwardUrlMapping("/admin/entry/list", controller: "entry", action: "list")
+		assertForwardUrlMapping("/admin/entry/show/2", controller: "entry", action: "show") {
+			id = 2
+		}
+		assertForwardUrlMapping("/admin/picture/upload", controller: "picture", action: "upload")
+		assertForwardUrlMapping("/admin/tag/list", controller: "tag", action: "list")
+	}
 }

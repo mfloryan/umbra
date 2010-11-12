@@ -10,7 +10,7 @@ class UmbraPictureController {
 			response.sendError SC_NOT_FOUND
 			return
 		}
-		Format image = picture.getFormatBy(FormatType.valueOf(params.type.toUpperCase())) 
+		Format image = picture.getFormatBy(FormatType.valueOf(params.format.toUpperCase())) 
 		if (!image || !image.file.exists()) {
 			log.debug "Image not found: $params.path"
 			response.sendError SC_NOT_FOUND
