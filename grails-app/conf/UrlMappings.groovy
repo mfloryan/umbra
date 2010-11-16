@@ -32,6 +32,7 @@ class UrlMappings {
 		"/admin/entry/$action/$id?"(controller: "entry")
 		"/admin/tag/$action/$id?"(controller: "tag")
 		"/admin/picture/$action/$id?"(controller: "picture")
+		"/admin/auth/$action/$id?"(controller: "auth")
 
 		"/picture/$id/${format}.jpg" (controller:"umbraPicture", action: "show")
 

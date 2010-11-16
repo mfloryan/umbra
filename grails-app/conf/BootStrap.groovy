@@ -19,26 +19,35 @@ import grails.util.GrailsUtil
 import mmsquare.umbra.Person
 import mmsquare.umbra.Tag
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import mmsquare.umbra.User
+import org.apache.shiro.crypto.hash.Sha256Hash
 
 class BootStrap {
 
-  def fixtureLoader
+	def fixtureLoader
 
-  def init = { servletContext ->
+	def init = { servletContext ->
 
-	File dir = ConfigurationHolder.config.umbra.image.base.dir
-	if (!dir.isDirectory()) {
-		dir.mkdirs()
+		File dir = ConfigurationHolder.config.umbra.image.base.dir
+		if (!dir.isDirectory()) {
+			dir.mkdirs()
+		}
+
+		if (!User.findByUsername("admin")) {
+			def password = new Sha256Hash('florek').toHex()
+			def user = new User(username: "admin", passwordHash: password)
+			user.addToPermissions("*:*")
+			user.save()
+		}
+
+		if (GrailsUtil.environment == "development") {
+			if (!Entry.count()) fixtureLoader.load("bootstrap")
+			if (!Person.count()) fixtureLoader.load("furniture/people")
+			if (!Tag.count()) fixtureLoader.load("furniture/tags")
+		}
+
 	}
 
-    if (GrailsUtil.environment == "development") {
-      if (!Entry.count()) fixtureLoader.load("bootstrap")
-	  if (!Person.count()) fixtureLoader.load("furniture/people")
-	  if (!Tag.count()) fixtureLoader.load("furniture/tags")
-    }
-
-  }
-
-  def destroy = {
-  }
+	def destroy = {
+	}
 }
