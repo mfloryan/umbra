@@ -9,7 +9,6 @@
 				</g:each>
 			</ul>
 		</g:if>
-
 		<g:if test="${entry.content}">
 			<div class="entry-content">${entry.content}</div>
 		</g:if>

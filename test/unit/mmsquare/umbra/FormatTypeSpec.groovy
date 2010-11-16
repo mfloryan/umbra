@@ -36,7 +36,8 @@ class FormatTypeSpec extends UnitSpec {
 		width | formatTypes
 		10    | []
 		120   | [THUMBNAIL]
-		640   | [THUMBNAIL]
+		480   | [THUMBNAIL]
+		640   | [SMALL, THUMBNAIL]
 		800   | [SMALL, THUMBNAIL]
 		1200  | [SMALL, THUMBNAIL]
 		1400  | [LARGE, SMALL, THUMBNAIL]
