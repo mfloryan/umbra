@@ -23,7 +23,17 @@ class UmbraController {
 	def defaultAction = "list"
 
 	def list = { EntryListCommand listCommand ->
-		[listCommand: listCommand, entries: entryService.getEntries(listCommand)]
+		def model = [listCommand: listCommand]
+		if (listCommand.person) {
+			def p = Person.findByShortNameIlike(listCommand.person)
+			if (p) {
+				model.person = p
+			} else {
+				listCommand.person = null
+			}
+		}
+		model.entries = entryService.getEntries(listCommand)
+		model
 	}
 
 	def show = {
@@ -45,10 +55,6 @@ class EntryListCommand {
 
 	int getOffset() {
 		(page - 1) * ENTRIES_PER_PAGE
-	}
-
-	int getTotalOnCurrentPage() {
-		page * ENTRIES_PER_PAGE
 	}
 
 	int getTotalPages(long itemCount) {
