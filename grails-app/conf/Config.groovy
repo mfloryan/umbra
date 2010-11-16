@@ -79,6 +79,11 @@ environments {
 		grails.serverRelative = "/${appName}"
         fixtures.enabled = true
     }
+    developmentPg {
+        grails.serverURL = "http://localhost:8080/${appName}"
+		grails.serverRelative = "/${appName}"
+        fixtures.enabled = true
+    }
     test {
         grails.serverURL = "http://localhost:8080/${appName}"
 		grails.serverRelative = "/${appName}"
