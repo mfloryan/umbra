@@ -15,11 +15,11 @@
                 <h1><a href="${grailsApplication.config.grails.serverURL}">3F</a></h1>
 				photographic journey through lives of Zosia, Matylda and Franek
             </header>
-            <div class="content">
+            <section title="Content" id="main">
                 <g:layoutBody/>
-            </div><div class="sidebar">
+            </section><section id="sidebar">
 				<umbra:people person="${params?.person}"/>
-            </div>
+            </section>
             <footer>
             &copy; 2010 <a href="http://marcin.floryan.pl" target="_blank">Marcin Floryan</a> & Małgorzata Floryan. Powered by ${grailsApplication.metadata['app.name']} ${grailsApplication.metadata['app.version']} on <a href="http://www.grails.org/" target="_blank" title="GRAILS - opensource web development platform">grails ${grailsApplication.metadata['app.grails.version']}</a><br/>
                 <span class="license">
