@@ -1,4 +1,4 @@
-<%@ page import="mmsquare.umbra.Person; mmsquare.umbra.Tag; mmsquare.umbra.Entry" %>
+<%@ page import="mmsquare.umbra.FormatType; mmsquare.umbra.Person; mmsquare.umbra.Tag; mmsquare.umbra.Entry" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -52,7 +52,7 @@
 								<g:each in="${pictures}" var="picture">
 									<li style="padding: 4px;">
 										<div style="display:inline-block; vertical-align: top;">
-											<a style="margin: 4px;" class="preview" href="/umbra/picture/${picture.id}/small"><img src="/umbra/picture/${picture.id}/thumbnail" width="48"></a>
+											<a style="margin: 4px;" class="preview" href="${picture.getFormatBy(FormatType.SMALL).url}"><img src="${picture.getFormatBy(FormatType.THUMBNAIL).url}" width="48"></a>
 										</div>
 										<div style="display:inline-block; vertical-align: top; width: 240px">
 											<input type="checkbox" id="picture${picture.id}" name="pictures" value="${picture.id}">
@@ -62,7 +62,7 @@
 										</div>
 										<div style="display:inline-block; vertical-align: top;">
 											<g:each in="${Person.listOrderByShortName(sort:'desc')}" var="person">
-												<input type="checkbox" name="picture.${picture.id}.people.id" value="${person.id}" id="p${picture.id}p${person.id}"> <label for="p${picture.id}p${person.id}">${person.shortName}</label><br/>
+												<input type="checkbox" name="picture.${picture.id}.people" value="${person.id}" id="p${picture.id}p${person.id}"> <label for="p${picture.id}p${person.id}">${person.shortName}</label><br/>
 											</g:each>
 										</div>
 									</li>

@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package mmsquare.umbra.admin
 
 import grails.plugin.spock.ControllerSpec
@@ -22,6 +6,7 @@ import mmsquare.umbra.Entry
 import mmsquare.umbra.Picture
 import mmsquare.umbra.PictureService
 import org.joda.time.DateTime
+import mmsquare.umbra.Person
 
 /* Created 08-Nov-2010 19:41:13 by mfloryan */
 
@@ -55,4 +40,35 @@ class EntryControllerSpec extends ControllerSpec {
 		where:
 		paramsPublishDate << [ null, new DateTime(2010,8,8,10,8,2,0)]
 	}
+
+	def "save updates title and people tags for an entry"() {
+		given: "Some pictures exist without an Entry"
+		def p1 = new Picture(dateTaken: new DateTime(2010,10,10,16,14,0,0),	originalFilename : "IMG_123.JPG");
+		def p2 = new Picture(dateTaken: new DateTime(2010,10,12,16,14,0,0),	originalFilename : "IMG_124.JPG");
+		def zosia = new Person(shortName: "Zosia", fullName:"Zofia")
+		def franek = new Person(shortName: "Franek", fullName:"Franciszek")
+		mockDomain Entry
+		mockDomain Picture, [p1, p2]
+		mockDomain Person, [zosia, franek]
+
+		def mock = new MockFor(PictureService)
+		mock.demand.getAvailablePictures {
+			[p1, p2]
+		}
+		controller.pictureService = mock.proxyInstance()
+
+		when: "controller save is called with properties for pictures in params"
+		def picture = [:]
+		picture["${p1.id}"] = [title:"Some title"]
+		picture["${p1.id}"] << [people: zosia.id]
+		picture["${p2.id}"] = [people: [zosia.id, franek.id]]
+		controller.params.picture = picture
+		controller.save()
+
+		then: "The pictures are updated with relevant data"
+		p1.title == "Some title"
+		p1.people.size() == 1
+		p2.people.size() == 2		
+	}
 }
+

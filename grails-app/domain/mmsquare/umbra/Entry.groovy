@@ -18,6 +18,7 @@ package mmsquare.umbra
 
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
+import mmsquare.umbra.util.StringUtil
 
 class Entry {
 
@@ -36,7 +37,7 @@ class Entry {
 	]
 
 	static constraints = {
-		permalink(blank: false, unique: true, maxSize: 1500)
+		permalink(blank: false, unique: true, maxSize: 1500, matches:/\/[0-9]{4}\/[0-9]{2}\/[-\w]+/)
 		title(blank: false)
 		content(nullable: true, maxSize: 5000)
 	}
@@ -45,4 +46,9 @@ class Entry {
 		"Entry:$id ($title)"
 	}
 
+	public createPermalink() {
+		if (!permalink && title && publishDate) {
+			permalink = "/${publishDate.year.toString().padLeft(4,'0')}/${publishDate.monthOfYear.toString().padLeft(2,'0')}/${StringUtil.clean(title)}"			
+		}
+	}
 }

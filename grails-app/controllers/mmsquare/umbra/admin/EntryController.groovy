@@ -17,7 +17,7 @@
 package mmsquare.umbra.admin
 
 import mmsquare.umbra.Entry
-import mmsquare.umbra.Tag
+import mmsquare.umbra.Picture
 
 class EntryController {
 
@@ -43,7 +43,17 @@ class EntryController {
     }
 
     def save = {
+		def pictureData = params.picture.findAll { index, value -> index.isNumber() }
+		pictureData.each { id, data ->
+			def p = Picture.get(id)
+			if (p) {
+				p.properties = data
+				p.save(failOnError: true)
+			}
+		}
+
         def entryInstance = new Entry(params)
+		if (!entryInstance.permalink) entryInstance.createPermalink()
         if (entryInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'entry.label', default: 'Entry'), entryInstance.id])}"
             redirect(action: "show", id: entryInstance.id)
