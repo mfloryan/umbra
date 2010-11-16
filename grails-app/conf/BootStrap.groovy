@@ -33,21 +33,25 @@ class BootStrap {
 			dir.mkdirs()
 		}
 
-		if (!User.findByUsername("admin")) {
-			def password = new Sha256Hash('florek').toHex()
-			def user = new User(username: "admin", passwordHash: password)
-			user.addToPermissions("*:*")
-			user.save()
-		}
+		createUser('mfloryan','be8e0faf356b21ae6b7c5a4bfaf2c2bc19a45287c65b87bcb2e0bf6a48bc6470')
+		createUser('magga','a81066f036f7693b59146f1492c3f15d1d5822b31d0c45acf97360b15b3a184a')
 
 		if (GrailsUtil.environment == "development") {
+			createUser('admin', new Sha256Hash('admin').toHex())
 			if (!Entry.count()) fixtureLoader.load("bootstrap")
 			if (!Person.count()) fixtureLoader.load("furniture/people")
 			if (!Tag.count()) fixtureLoader.load("furniture/tags")
 		}
-
 	}
 
 	def destroy = {
+	}
+
+	private createUser(String userName, String passwordHash) {
+		if (!User.findByUsername(userName)) {
+			def user = new User(username: userName, passwordHash: passwordHash)
+			user.addToPermissions("*:*")
+			user.save()
+		}
 	}
 }

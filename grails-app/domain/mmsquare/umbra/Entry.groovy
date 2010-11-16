@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +16,8 @@
 
 package mmsquare.umbra
 
-import org.joda.time.DateTime
-import org.joda.time.LocalDate
 import mmsquare.umbra.util.StringUtil
+import org.joda.time.DateTime
 
 class Entry {
 
@@ -37,7 +36,7 @@ class Entry {
 
 	static constraints = {
 		permalink(blank: false, unique: true, maxSize: 1500, matches:/\/[0-9]{4}\/[0-9]{2}\/[-\w]+/)
-		title(blank: false)
+		title(blank: false, maxSize: 400)
 		content(nullable: true, maxSize: 5000)
 	}
 
