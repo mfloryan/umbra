@@ -21,7 +21,7 @@ testDataConfig {
     sampleData {
         'mmsquare.umbra.Entry' {
             title = "Test entry"
-	        permalink = "/test/test-entry"
+	        permalink = "/2010/10/test-entry"
 	        publishDate = new DateTime().minusDays(2)
         }
 	    'mmsquare.umbra.Picture' {

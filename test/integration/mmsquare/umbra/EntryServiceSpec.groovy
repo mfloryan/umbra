@@ -105,25 +105,25 @@ class EntryServiceSpec extends IntegrationSpec {
 			entry1(Entry) {
 				title = "Entry 1"
 				publishDate = new DateTime().minusDays(1)
-				permalink = "/test/entry-1"
+				permalink = "/2010/10/entry-1"
 				pictures = [p1, p6]
 			}
 			entry2(Entry) {
 				title = "Entry 2"
 				publishDate = new DateTime().minusDays(2)
-				permalink = "/t pest/entry-2"
+				permalink = "/2010/10/entry-2"
 				pictures = [p2]
 			}
 			entry3(Entry) {
 				title = "Entry 3"
 				publishDate = new DateTime().minusDays(3)
-				permalink = "/test/entry-3"
+				permalink = "/2010/10/entry-3"
 				pictures = [p3]
 			}
 			entry4(Entry) {
 				title = "Entry 4"
 				publishDate = new DateTime().minusDays(4)
-				permalink = "/test/entry-4"
+				permalink = "/2010/10/entry-4"
 				pictures = [p4, p5, p7]
 			}
 		}
@@ -144,19 +144,19 @@ class EntryServiceSpec extends IntegrationSpec {
 
 	private void buildSomeEntries(offset) {
 
-		def e1 = new Entry(title: "Entry 1", publishDate: new DateTime().minusDays(offset[0]), permalink: "/test/entry-1")
+		def e1 = new Entry(title: "Entry 1", publishDate: new DateTime().minusDays(offset[0]), permalink: "/2010/10/entry-1")
 		e1.save(flush: true)
 
-		def e2 = new Entry(title: "Entry 2", publishDate: new DateTime().minusDays(offset[1]), permalink: "/test/entry-2")
+		def e2 = new Entry(title: "Entry 2", publishDate: new DateTime().minusDays(offset[1]), permalink: "/2010/10/entry-2")
 		e2.save(flush: true)
 
-		def e3 = new Entry(title: "Entry 3", publishDate: new DateTime().minusDays(offset[2]), permalink: "/test/entry-3")
+		def e3 = new Entry(title: "Entry 3", publishDate: new DateTime().minusDays(offset[2]), permalink: "/2010/10/entry-3")
 		e3.save(flush: true)
 	}
 
 	private void buildEntries(int howMany) {
 		1.upto(howMany) { i ->
-			def entry = Entry.buildWithoutSave(title: "Entry $i", permalink: "/test/entry-${i}", publishDate: new DateTime().minusDays(i))
+			def entry = Entry.buildWithoutSave(title: "Entry $i", permalink: "/2010/10/entry-${i}", publishDate: new DateTime().minusDays(i))
 			entry.save(failOnError: true, flush: true)
 		}
 	}

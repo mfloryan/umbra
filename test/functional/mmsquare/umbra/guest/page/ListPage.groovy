@@ -32,6 +32,10 @@ class ListPage extends Page {
 	def getPrevPage() {
 		driver.findElement(By.cssSelector("div.pagination a.prev"))
 	}
+
+	def getSubtitle() {
+		driver.findElement(By.tagName("h3")).text
+	}
 }
 
 class EntryDetails {

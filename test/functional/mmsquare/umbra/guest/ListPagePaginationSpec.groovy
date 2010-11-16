@@ -22,7 +22,7 @@ class ListPagePaginationSpec extends WebSpec {
 			build {
 				1.upto(7) { i ->
 					"entry$i"(Entry) {
-						permalink = "/test/entry-$i"
+						permalink = "/2010/10/entry-$i"
 						title = "Entry $i"
 						publishDate = new DateTime().minusDays(i)
 					}
