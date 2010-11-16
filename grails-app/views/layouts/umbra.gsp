@@ -10,7 +10,7 @@
         <g:layoutHead/>
     </head>
     <body>
-        <div class="page">
+        <div id="page">
             <header>
                 <h1><a href="${grailsApplication.config.grails.serverURL}">3F</a></h1>
 				photographic journey through lives of Zosia, Matylda and Franek
