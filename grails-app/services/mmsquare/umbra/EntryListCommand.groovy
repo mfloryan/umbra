@@ -16,33 +16,22 @@
 
 package mmsquare.umbra
 
-class UmbraController {
+/* Created 16-Nov-2010 09:11:17 by mfloryan */
 
-	def entryService
+class EntryListCommand {
 
-	def defaultAction = "list"
+	static final int ENTRIES_PER_PAGE = 3
+	int page = 1
+	String person
 
-	def list = { EntryListCommand listCommand ->
-		def model = [listCommand: listCommand]
-		if (listCommand.person) {
-			def p = Person.findByShortNameIlike(listCommand.person)
-			if (p) {
-				model.person = p
-			} else {
-				listCommand.person = null
-			}
-		}
-		model.entries = entryService.getEntries(listCommand)
-		model
+	int getOffset() {
+		(page - 1) * ENTRIES_PER_PAGE
 	}
 
-	def show = {
-		def permalink = "/${params?.year}/${params?.month}/${params?.id}"
-		def entry = Entry.findByPermalink(permalink)
-		if (!entry) {
-			redirect action: "list"
-		} else {
-			[entry: entry]
-		}
+	int getTotalPages(long itemCount) {
+		if (!itemCount)
+			1
+		else
+			Math.ceil(itemCount / ENTRIES_PER_PAGE)
 	}
 }
