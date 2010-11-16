@@ -61,7 +61,7 @@
 											<input type="text" name="picture.${picture.id}.title">
 										</div>
 										<div style="display:inline-block; vertical-align: top;">
-											<g:each in="${Person.listOrderByShortName(sort:'desc')}" var="person">
+											<g:each in="${Person.listOrderBySortOrder()}" var="person">
 												<input type="checkbox" name="picture.${picture.id}.people" value="${person.id}" id="p${picture.id}p${person.id}"> <label for="p${picture.id}p${person.id}">${person.shortName}</label><br/>
 											</g:each>
 										</div>

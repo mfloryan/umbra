@@ -54,7 +54,7 @@ class UmbraTagLib {
 	}
 
 	def people = { attrs ->
-		def list = Person.listOrderByShortName(order: 'desc')
+		def list = Person.findAllByDisplayOrderIsNotNull(sort:'displayOrder');
 		def person = attrs.remove("person")
 		if (list) {
 			out << '<ul class="people">'
