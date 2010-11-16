@@ -25,6 +25,8 @@ class Picture {
 	DateTime dateTaken
 	Location location
 	String camera
+	DateTime dateCreated
+	DateTime lastUpdated
 
 	static hasMany = [
 			people: Person,

@@ -17,6 +17,7 @@
 package mmsquare.umbra
 
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
+import org.joda.time.Duration
 
 class UmbraPictureController {
 
@@ -26,18 +27,26 @@ class UmbraPictureController {
 			response.sendError SC_NOT_FOUND
 			return
 		}
-		Format image = picture.getFormatBy(FormatType.valueOf(params.format.toUpperCase())) 
+		Format image = picture.getFormatBy(FormatType.valueOf(params.format.toUpperCase()))
 		if (!image || !image.file.exists()) {
 			log.debug "Image not found: $params.path"
 			response.sendError SC_NOT_FOUND
 			return
 		}
-		if (params.download) {
-			response.addHeader "Content-disposition","attachment; filename=${picture.originalFilename}"
-		}
 
-		response.contentType = "image/jpeg"
-		response.contentLength = image.file.length()
-		response.outputStream << image.file.newInputStream()
+		withCacheHeaders {
+			lastModified {
+				image.dateCreated.toDate()
+			}
+			generate {
+				cache shared:true, validFor: Duration.standardDays(100).standardSeconds
+				if (params.download) {
+					response.addHeader "Content-disposition", "attachment; filename=${picture.originalFilename}"
+				}
+				response.contentType = "image/jpeg"
+				response.contentLength = image.file.length()
+				response.outputStream << image.file.newInputStream()
+			}
+		}
 	}
 }

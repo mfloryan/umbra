@@ -27,7 +27,6 @@ class Entry {
 	String title
 	String content
 	List<Picture> pictures
-
 	DateTime dateCreated
 	DateTime lastUpdated
 

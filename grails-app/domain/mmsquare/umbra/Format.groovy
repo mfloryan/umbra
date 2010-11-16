@@ -18,6 +18,7 @@ package mmsquare.umbra
 
 import mmsquare.umbra.util.StringUtil
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.joda.time.DateTime
 
 class Format {
 
@@ -26,6 +27,7 @@ class Format {
 	long fileSize
 	String path
 	FormatType type = FormatType.ORIGINAL
+	DateTime dateCreated
 
 	static belongsTo = [picture: Picture]
 
