@@ -3,12 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="admin" />
+        <title>Umbra &raquo; Admin &raquo; Entries</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="create" action="create">Create entry</g:link></span>
-        </div>
         <div class="body">
             <h1>Entries</h1>
             <g:if test="${flash.message}">

@@ -17,7 +17,6 @@
 package mmsquare.umbra
 
 import groovy.xml.MarkupBuilder
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class UmbraTagLib {
 	static namespace = "umbra"
@@ -25,7 +24,7 @@ class UmbraTagLib {
 	def showPicture = { attrs ->
 		def picture = attrs.remove("picture")
 		if (picture && picture.formats) {
-			def linkUrl = pictureFormatForLink(picture).url
+			def linkUrl = createLink(uri:pictureFormatForLink(picture).url)
 			def imageFormat = pictureFormatForImage(picture)
 			def altText = picture.title ?: imageFormat?.path.find(/[\w.-]+$/)
 			if (attrs["class"]) attrs["class"] += " fancyboxImage"
@@ -33,7 +32,7 @@ class UmbraTagLib {
 
 			def html = new MarkupBuilder(out)
 			html.a(href: linkUrl, class: attrs["class"]) {
-				img src: imageFormat?.url, width: imageFormat.width, height: imageFormat.height, alt: altText
+				img src: createLink(uri:imageFormat?.url), width: imageFormat.width, height: imageFormat.height, alt: altText
 			}
 			out
 		}
@@ -64,8 +63,8 @@ class UmbraTagLib {
 				if (personLinkName == person) out << " selected"
 				out << "\">"
 				out << '<a href="'
-				out << ConfigurationHolder.config.grails.serverURL
-				out << "/person/${personLinkName}\">${p.fullName}</a>"
+				out << createLink(uri: "/person/${personLinkName}")
+				out << "\">${p.fullName}</a>"
 				out << "</li>"
 			}
 			out << "</ul>"
@@ -93,9 +92,7 @@ class UmbraTagLib {
 				out << '<a '
 				out << "class=\"$direction\" "
 				out << 'href="'
-				out << ConfigurationHolder.config.grails.serverURL
 				out << getPageLink(newPage, person)
-
 				out << '">'
 				out << (direction == 'next' ? '&#8595; previous entries' : '&#8593; more recent entries')
 				out << '</a>'
@@ -114,7 +111,7 @@ class UmbraTagLib {
 		} else {
 			if (!url) url = '/'
 		}
-		url
+		createLink(uri:url)
 	}
 
 	def imageLink = { attrs ->
@@ -124,7 +121,7 @@ class UmbraTagLib {
 
 		def formatInstance = picture.getFormatBy(FormatType.valueOf(format.toUpperCase()))
 		if (formatInstance) {
-			out << formatInstance.url
+			out << createLink(uri:formatInstance.url)
 			if (isDownload) out << "?download=true"
 		}
 	}

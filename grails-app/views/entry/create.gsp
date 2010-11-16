@@ -6,10 +6,6 @@
 		<title>Umbra &raquo; Admin &raquo; New Entry</title>
 	</head>
 	<body>
-		<div class="nav">
-			<span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
-			<span class="menuButton"><g:link class="list" action="list">Entries</g:link></span>
-		</div>
 		<div class="body">
 			<h1>New Entry</h1>
 			<g:if test="${flash.message}">
@@ -20,9 +16,7 @@
 					<g:renderErrors bean="${entryInstance}" as="list"/>
 				</div>
 			</g:hasErrors>
-
 			<g:form action="save">
-
 				<div class="dialog">
 					<fieldset class="form">
 						<legend>Entry</legend>
@@ -52,16 +46,16 @@
 								<g:each in="${pictures}" var="picture">
 									<li style="padding: 4px;">
 										<div style="display:inline-block; vertical-align: top;">
-											<a style="margin: 4px;" class="preview" href="${picture.getFormatBy(FormatType.SMALL).url}"><img src="${picture.getFormatBy(FormatType.THUMBNAIL).url}" width="48"></a>
+											<a style="margin: 4px;" class="preview" href="${createLink(uri:picture.getFormatBy(FormatType.SMALL).url)}"><img src="${createLink(uri:picture.getFormatBy(FormatType.THUMBNAIL).url)}" width="48"></a>
 										</div>
 										<div style="display:inline-block; vertical-align: top; width: 240px">
-											<input type="checkbox" id="picture${picture.id}" name="pictures" value="${picture.id}">
+											<input type="checkbox" id="picture${picture.id}" name="pictures" value="${picture.id}" checked="checked" />
 											<label for="picture${picture.id}"><b>${picture.originalFilename}</b></label><br/>
 											Title:<br/>
 											<input type="text" name="picture.${picture.id}.title">
 										</div>
 										<div style="display:inline-block; vertical-align: top;">
-											<g:each in="${Person.listOrderBySortOrder()}" var="person">
+											<g:each in="${Person.listOrderByDisplayOrder()}" var="person">
 												<input type="checkbox" name="picture.${picture.id}.people" value="${person.id}" id="p${picture.id}p${person.id}"> <label for="p${picture.id}p${person.id}">${person.shortName}</label><br/>
 											</g:each>
 										</div>

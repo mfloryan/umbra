@@ -1,6 +1,6 @@
 <div class="entry">
 	<div class="date"><b>${entry.publishDate.dayOfMonth}</b><br/>${entry.publishDate.monthOfYear}/${entry.publishDate.year}</div>
-	<h2><a href="${grailsApplication.config.grails.serverURL}${entry.permalink}">${entry.title}</a></h2>
+	<h2><a href="${createLink(uri:entry.permalink)}">${entry.title}</a></h2>
 	<div class="entry-content">
 		<g:if test="${entry.pictures}">
 			<ul class="pictures">

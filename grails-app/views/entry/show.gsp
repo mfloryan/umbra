@@ -6,11 +6,6 @@
 		<title>Umbra &raquo; Admin &raquo; Entry</title>
     </head>
     <body>
-        <div class="nav">
-			<span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
-			<span class="menuButton"><g:link class="list" action="list">Entries</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">Create entry</g:link></span>
-        </div>
         <div class="body">
             <h1>Entry</h1>
             <g:if test="${flash.message}">

@@ -16,11 +16,22 @@
 
 package mmsquare.umbra.admin
 
+import mmsquare.umbra.Picture
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class PictureController {
 
 	def pictureService
+
+	def index = {
+	    redirect(action: "list", params: params)
+	}
+
+	def list = {
+	    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+	    [pictureInstanceList: Picture.list(params), pictureInstanceTotal: Picture.count()]
+	}
+
 
 	def upload = {
 
@@ -59,4 +70,24 @@ class PictureController {
 			}
 		}
 	}
+
+	def delete = {
+	    def pictureInstance = Picture.get(params.id)
+	    if (pictureInstance) {
+	        try {
+	            pictureInstance.delete(flush: true)
+	            flash.message = "Picture (${params.id}) deleted"
+	            redirect(action: "list")
+	        }
+	        catch (org.springframework.dao.DataIntegrityViolationException e) {
+		        flash.message = "Picture (${params.id}) not deleted"
+	            redirect(action: "show", id: params.id)
+	        }
+	    }
+	    else {
+	        flash.message = "Picture (${params.id}) not found"
+	        redirect(action: "list")
+	    }
+	}
+
 }

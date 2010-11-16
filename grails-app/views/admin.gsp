@@ -13,10 +13,13 @@
                 <div class="message">${flash.message}</div>
             </g:if>
             <ul class="menu">
+                <li><g:link controller="tag" action="list" class="button">Tags</g:link></li>
+                <li><g:link controller="person" action="list" class="button">People</g:link></li>
                 <li><g:link controller="entry" action="list" class="button">Entries</g:link></li>
                 <li><g:link controller="picture" action="list" class="button">Pictures</g:link></li>
-                <li><g:link controller="picture" action="upload" class="button">Upload new pictures</g:link></li>
-                <li><g:link controller="tag" action="list" class="button">Tags</g:link></li>
+                <ul>
+                    <li><g:link controller="picture" action="upload" class="button">Upload new pictures</g:link></li>
+                </ul>
             </ul>
         </div>
     </body>

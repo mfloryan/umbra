@@ -12,7 +12,7 @@
     <body>
         <div id="page">
             <header>
-                <h1><a href="${grailsApplication.config.grails.serverURL}">3F</a></h1>
+                <h1><a href="${createLink(uri:"/")}">3F</a></h1>
 				photographic journey through lives of Zosia, Matylda and Franek
             </header>
             <section title="Content" id="main">
