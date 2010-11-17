@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package mmsquare.umbra
 
 import grails.plugin.spock.TagLibSpec
@@ -12,6 +28,9 @@ class UmbraTagLibSpec extends TagLibSpec {
 		Map.metaClass."int" = { key ->
 			def value = delegate.get(key)
 			value != null ? value.toInteger() : null
+		}
+		tagLib.metaClass.createLink = { attrs ->
+			attrs.uri			
 		}
 	}
 
@@ -93,11 +112,9 @@ class UmbraTagLibSpec extends TagLibSpec {
 		given: "some people are configured"
 		def p1 = new Person(shortName: "Zosia", fullName: "Zofia")
 		def p2 = new Person(shortName: "Franek", fullName: "Franciszek")
-//		mockDomain Person, [p1, p2]
-		mockConfig('grails.serverURL = "http://localhost:8080/umbra"')
 
 	    def mock = new MockFor(Person)
-		mock.demand.listOrderByShortName { Map params ->
+		mock.demand.findAllByDisplayOrderIsNotNull { Map params ->
 			[p1, p2]
 		}
 
@@ -116,8 +133,8 @@ class UmbraTagLibSpec extends TagLibSpec {
 
 		where:
 		texts = ['Zofia', 'Franciszek']
-		urls = ['http://localhost:8080/umbra/person/zosia',
-				'http://localhost:8080/umbra/person/franek']
+		urls = ['/person/zosia',
+				'/person/franek']
 		person   | css
 		null     | ['person zosia','person franek']
 		'zosia'  | ['person zosia selected','person franek']
