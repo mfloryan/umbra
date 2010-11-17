@@ -128,4 +128,7 @@ grails.gorm.default.mapping = {
 }
 
 umbra.title = "3F"
+umbra.description = "photographic journey through lives of Zosia, Matylda and Franek"
 umbra.image.base.dir = new File(System.properties."java.io.tmpdir", "grails-${System.properties.'user.name'}/umbra")
+umbra.facebook.userId = "551198988"
+umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
