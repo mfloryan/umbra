@@ -18,7 +18,7 @@ class ListPage extends Page {
 	}
 
 	List<EntryDetails> getEntries() {
-		driver.findElements(By.cssSelector("ul.entries li.entry")).collect { new EntryDetails(it) }
+		driver.findElements(By.cssSelector("div.entry")).collect { new EntryDetails(it) }
 	}
 
 	List<PersonDetails> getPeople() {
@@ -35,23 +35,6 @@ class ListPage extends Page {
 
 	def getSubtitle() {
 		driver.findElement(By.tagName("h3")).text
-	}
-}
-
-class EntryDetails {
-
-	WebElement element
-
-	EntryDetails(WebElement element) {
-		this.element = element
-	}
-
-	def getUrl() {
-		element.findElement(By.cssSelector("h2 a")).getAttribute("href")
-	}
-
-	def getTitle() {
-		element.findElement(By.cssSelector("h2 a")).text
 	}
 }
 

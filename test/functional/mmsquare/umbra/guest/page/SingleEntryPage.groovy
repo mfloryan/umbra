@@ -18,28 +18,56 @@ class SingleEntryPage extends Page {
 		driver.currentUrl =~ /\/[0-9]{4}\/[0-9]{2}\/\.*$/
 	}
 
-	String getEntryTitle() {
-		driver.findElement(By.cssSelector("h2")).text
+	EntryDetails getEntry() {
+		new EntryDetails(driver.findElement(By.cssSelector("div.entry")))
+	}
+}
+
+
+class EntryDetails {
+
+	WebElement element
+
+	EntryDetails(WebElement element) {
+		this.element = element
 	}
 
-	List<EntryPhoto> getPhotos() {
-		driver.findElements(By.cssSelector("ul.pictures li")).collect { new EntryPhoto(it) }
+	def getUrl() {
+		element.findElement(By.cssSelector("h2 a")).getAttribute("href")
+	}
+
+	def getTitle() {
+		element.findElement(By.cssSelector("h2")).text
+	}
+
+	def getContent() {
+		element.findElement(By.cssSelector("div.entry-content")).text
+	}
+
+	List<EntryPicture> getPictures() {
+		element.findElements(By.cssSelector("ul.pictures li")).collect { new EntryPicture(it) }
 	}
 
 	List<WebElement> getDownloads() {
-		driver.findElements(By.cssSelector("ul.downloads li")).collect { it }
+		element.findElements(By.cssSelector("ul.downloads li")).collect { it }
 	}
-
-
 }
 
-class EntryPhoto {
 
+class EntryPicture {
 	@Lazy WebElement image = container.findElement(By.tagName("img"))
 
 	WebElement container
 
-	EntryPhoto(WebElement container) {
+	EntryPicture(WebElement container) {
 		this.container = container
+	}
+
+	String getTitle() {
+		container.findElement(By.tagName("a")).getAttribute("title")
+	}
+
+	String getAlt() {
+		image.getAttribute("alt")
 	}
 }
