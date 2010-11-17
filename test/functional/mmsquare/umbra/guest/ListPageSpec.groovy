@@ -43,9 +43,9 @@ class ListPageSpec extends WebSpec {
 
 		and: "entries have correct links"
 		page.entries*.url == [
-				"http://localhost:8080/umbra/2010/10/entry-3",
-				"http://localhost:8080/umbra/2010/10/entry-2",
-				"http://localhost:8080/umbra/2010/10/entry-1"
+				"/umbra/2010/10/entry-3",
+				"/umbra/2010/10/entry-2",
+				"/umbra/2010/10/entry-1"
 		]
 	}
 

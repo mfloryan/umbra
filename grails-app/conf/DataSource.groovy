@@ -52,7 +52,7 @@ environments {
 	}
 	production {
 		dataSource {
-			dbCreate = "update" //TODO: set to none
+			dbCreate = "validate"
 			driverClassName = "org.postgresql.Driver"
 			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
 			url = "jdbc:postgresql://localhost:5432/umbra"
