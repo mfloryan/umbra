@@ -1,12 +1,11 @@
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="admin"/>
-        <title>Umbra &raquo; Admin &raquo; Upload new Photos</title>
+        <title>New pictures upload</title>
     </head>
     <body>
         <div class="body">
-            <h1>Photo upload</h1>
+            <h1>Pictures upload</h1>
             <g:if test="${flash.message}">
                 <div class="ui-widget">
 				    <div style="padding: 0pt 0.7em;" class="ui-state-error ui-corner-all">

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
     <head>
-        <title><g:layoutTitle default="Umbra &raquo; Admin"/></title>
+        <title>Umbra &raquo; Admin<g:ifPageProperty name="title"> &raquo; <g:pageProperty name="title"/></g:ifPageProperty></title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'admin.css')}"/>
         <link rel="stylesheet" href="${resource(dir: 'css/smoothness', file: 'jquery-ui-1.8.6.custom.css')}"/>
         <link rel="stylesheet" href="${resource(dir: 'css/fancybox', file: 'jquery.fancybox-1.3.3.css')}"/>
@@ -23,7 +23,6 @@
             <nav>
                 <div class="nav">
                     <span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>
-                    <span class="menuButton"><g:link class="list" controller="entry" action="list">Entries</g:link></span>
                     <span class="menuButton"><g:link class="list" controller="picture" action="list">Pictures</g:link></span>
                     <span class="menuButton"><g:link class="list" controller="person" action="list">People</g:link></span>
                     <span class="menuButton"><g:link class="list" controller="tag" action="list">Tags</g:link></span>

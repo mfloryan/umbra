@@ -31,6 +31,10 @@ class EntryController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
+	    if (!params.sort && !params.order) {
+		    params.sort = "publishDate"
+		    params.order = "desc"
+	    }
         [entryInstanceList: Entry.list(params), entryInstanceTotal: Entry.count()]
     }
 
