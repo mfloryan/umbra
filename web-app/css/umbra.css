@@ -44,7 +44,7 @@ a:hover {
 	color: #8A3324;
 }
 
-header {
+#header {
 	border-bottom: 1px solid #ddd;
 	display: block;
 	font-size: 13px;
@@ -53,7 +53,7 @@ header {
     color: #635147;
 }
 
-header h1 {
+#header h1 {
 	display: inline-block;
 	vertical-align: middle;
 	padding-right: 20px;
@@ -61,7 +61,7 @@ header h1 {
     color: Black;
 }
 
-footer {
+#footer {
 	padding-top: 50px;
 	display: block;
 	text-align: center;
@@ -70,7 +70,7 @@ footer {
 	font-style: italic;
 }
 
-footer img {
+#footer img {
 	border: 0;
 	vertical-align: bottom;
 	padding: 2px;
@@ -81,6 +81,11 @@ footer img {
 	margin: auto;
 }
 
+ul.pictures, ul.entries {
+	list-style: none;
+	padding-left: 0;
+}
+
 /* MAIN */
 
 #main {
@@ -88,11 +93,6 @@ footer img {
 	width: 640px;
 	display: inline-block;
 	border-right: 1px solid #ddd;
-}
-
-ul.pictures, ul.entries {
-	list-style: none;
-	padding-left: 0;
 }
 
 #main div.date {
