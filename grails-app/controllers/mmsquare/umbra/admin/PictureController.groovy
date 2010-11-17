@@ -18,18 +18,19 @@ package mmsquare.umbra.admin
 
 import mmsquare.umbra.Picture
 import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 
 class PictureController {
 
 	def pictureService
 
 	def index = {
-	    redirect(action: "list", params: params)
+		redirect(action: "list", params: params)
 	}
 
 	def list = {
-	    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-	    [pictureInstanceList: Picture.list(params), pictureInstanceTotal: Picture.count()]
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		[pictureInstanceList: Picture.list(params), pictureInstanceTotal: Picture.count()]
 	}
 
 
@@ -72,22 +73,68 @@ class PictureController {
 	}
 
 	def delete = {
-	    def pictureInstance = Picture.get(params.id)
-	    if (pictureInstance) {
-	        try {
-	            pictureInstance.delete(flush: true)
-	            flash.message = "Picture (${params.id}) deleted"
-	            redirect(action: "list")
-	        }
-	        catch (org.springframework.dao.DataIntegrityViolationException e) {
-		        flash.message = "Picture (${params.id}) not deleted"
-	            redirect(action: "show", id: params.id)
-	        }
-	    }
-	    else {
-	        flash.message = "Picture (${params.id}) not found"
-	        redirect(action: "list")
-	    }
+		def pictureInstance = Picture.get(params.id)
+		if (pictureInstance) {
+			try {
+				pictureInstance.delete(flush: true)
+				flash.message = "Picture (${params.id}) deleted"
+				redirect(action: "list")
+			}
+			catch (org.springframework.dao.DataIntegrityViolationException e) {
+				flash.message = "Picture (${params.id}) not deleted"
+				redirect(action: "show", id: params.id)
+			}
+		}
+		else {
+			flash.message = "Picture (${params.id}) not found"
+			redirect(action: "list")
+		}
+	}
+
+	def show = {
+		getPictureInstance(params)
+	}
+
+	private def getPictureInstance(GrailsParameterMap params) {
+		def pictureInstance = Picture.get(params.id)
+		if (!pictureInstance) {
+			flash.message = "Picture ${params.id} not found"
+			redirect(action: "list")
+		}
+		else {
+			[pictureInstance: pictureInstance]
+		}
+	}
+
+	def edit = {
+		getPictureInstance(params)
+	}
+
+	def update = {
+		def pictureInstance = Picture.get(params.id)
+		if (pictureInstance) {
+			if (params.version) {
+				def version = params.version.toLong()
+				if (pictureInstance.version > version) {
+
+					pictureInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'tag.label', default: 'Picture')] as Object[], "Another user has updated this Picture while you were editing")
+					render(view: "edit", model: [pictureInstance: pictureInstance])
+					return
+				}
+			}
+			pictureInstance.properties = params
+			if (!pictureInstance.hasErrors() && pictureInstance.save(flush: true)) {
+				flash.message = "${message(code: 'default.updated.message', args: [message(code: 'tag.label', default: 'Picture'), pictureInstance.id])}"
+				redirect(action: "show", id: pictureInstance.id)
+			}
+			else {
+				render(view: "edit", model: [pictureInstance: pictureInstance])
+			}
+		}
+		else {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'tag.label', default: 'Picture'), params.id])}"
+			redirect(action: "list")
+		}
 	}
 
 }
