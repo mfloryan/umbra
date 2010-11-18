@@ -1,13 +1,13 @@
 dataSource {
 	pooled = true
-	driverClassName = "org.hsqldb.jdbcDriver"
+//	driverClassName = "org.hsqldb.jdbcDriver"
 	username = "sa"
 	password = ""
 }
 hibernate {
-	cache.use_second_level_cache = true
-	cache.use_query_cache = true
-	cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
+	cache.use_second_level_cache = false
+	cache.use_query_cache = false
+//	cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
 }
 /*
  * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
@@ -57,7 +57,7 @@ environments {
 			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
 			url = "jdbc:postgresql://localhost:5432/umbra"
 			username = "umbra"
-			password = System.properties("umbra.database.password")
+			password = System.getProperty("umbra.database.password")
 		}
 	}
 }

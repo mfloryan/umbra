@@ -72,7 +72,7 @@ environments {
     production {
         grails.serverURL = "http://3.floryan.pl/"
 		grails.serverRelative = "/"
-	    umbra.image.base.dir = new File(System.properties("umbra.image.base.dir"))
+	    umbra.image.base.dir = new File(System.getProperty("umbra.image.base.dir")?:"/tmp/")
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
