@@ -38,7 +38,9 @@ grails.project.dependency.resolution = {
 		//mavenRepo "http://repository.codehaus.org"
 		//mavenRepo "http://download.java.net/maven/2/"
 		//mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://mvnrepository.com/artifact/"
 		mavenRepo "http://m2repo.spockframework.org/ext/"
+//		mavenReop "http://maven.cedarsoft.com/content/repositories/thirdparty/"
 	}
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
@@ -50,6 +52,9 @@ grails.project.dependency.resolution = {
 			excludes "junit", "groovy-all"
 		}
 
+		compile 'im4java:im4java:1.1.0'
+//		compile 'metadata-extractor:2.3.1'
+		runtime 'postgresql:postgresql:9.0-801.jdbc4'
 		// runtime 'mysql:mysql-connector-java:5.1.5'
 		plugins {
 			test ":spock:0.5-groovy-1.7-SNAPSHOT"
