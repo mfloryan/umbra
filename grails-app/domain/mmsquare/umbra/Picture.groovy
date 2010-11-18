@@ -44,6 +44,10 @@ class Picture {
 		camera(nullable:true)
 	}
 
+	static mappings = {
+		formats cascade:'all,delete-orphan'
+	}
+
 	String toString() {
 		"Picture:$id ($originalFilename)"
 	}
