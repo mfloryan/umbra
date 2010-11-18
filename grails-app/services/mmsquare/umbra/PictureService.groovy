@@ -37,13 +37,14 @@ class PictureService {
 		}
 		if (imageInfo.cameraMake || imageInfo.cameraModel) p.camera = "${imageInfo.cameraMake} - ${imageInfo.cameraModel}"
 
-		Format originalFormat = new Format(width: imageInfo.width, height:imageInfo.height, fileSize: imageInfo.size)
+		Format originalFormat = new Format(width: imageInfo.width, height: imageInfo.height)
 		p.addToFormats(originalFormat)
 		originalFormat.generatePath()
 		picture.transferTo(originalFormat.file)
+		originalFormat.fileSize = originalFormat.file.size()
 
 		FormatType.getAllForWidth(imageInfo.width).each { FormatType type ->
-			def f = new Format(type:type)
+			def f = new Format(type: type)
 			p.addToFormats(f)
 			f.generatePath()
 			ImageUtil.resizeImage originalFormat.file.toString(), f.file.toString(), type
@@ -53,6 +54,6 @@ class PictureService {
 			f.fileSize = f.file.size()
 		}
 
-		p.save(flush: true, failOnErrors:true)
+		p.save(flush: true, failOnErrors: true)
 	}
 }
