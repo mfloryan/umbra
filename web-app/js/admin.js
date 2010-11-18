@@ -16,8 +16,14 @@
 
 $(document).ready(function() {
    $('a.button').button();
+   $('a.button-edit').button({icons: {primary: "ui-icon-pencil"}});
+   $('a.button-delete').button({icons: {primary: "ui-icon-trash"}}).bind('click',handleDeleteClick);
 
    $('a.preview').fancybox({
     type:'image'
    });
 });
+
+function handleDeleteClick() {
+    return confirm("Are you sure?");
+}

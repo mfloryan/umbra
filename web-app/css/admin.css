@@ -363,3 +363,10 @@ fieldset.form input {
 a img {
 	border: 1px solid #826644;
 }
+
+div.list img.thumbnail {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    vertical-align: middle;
+}

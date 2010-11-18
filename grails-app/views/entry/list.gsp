@@ -19,6 +19,8 @@
                         <g:sortableColumn property="publishDate" title="Publish Date"/>
                         <g:sortableColumn property="permalink" title="Permalink"/>
                         <g:sortableColumn property="title" title="Title"/>
+                        <th>Pictures</th>
+                        <th>Tags</th>
                         <g:sortableColumn property="dateCreated" title="Date Created"/>
                     </tr>
                 </thead>
@@ -29,6 +31,14 @@
                             <td><g:fieldValue bean="${entryInstance}" field="publishDate"/></td>
                             <td>${fieldValue(bean: entryInstance, field: "permalink")}</td>
                             <td>${fieldValue(bean: entryInstance, field: "title")}</td>
+                            <td>
+                                <g:each in="${entryInstance.pictures}" var="picture">
+                                    <g:link controller="picture" action="show" id="${picture.id}">
+                                        <img src="<umbra:imageLink picture="${picture}" format="thumbnail"/>" alt="${picture.originalFilename}" class="picture thumbnail">
+                                    </g:link>
+                                </g:each>
+                            </td>
+                            <td>${entryInstance.tags.name.join(' ')}</td>
                             <td>${fieldValue(bean: entryInstance, field: "dateCreated")}</td>
                         </tr>
                     </g:each>
