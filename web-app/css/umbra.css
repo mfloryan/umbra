@@ -143,6 +143,7 @@ ul.pictures, ul.entries {
 
 #sidebar ul.people {
     list-style: none;
+    font-style:italic;
 }
 
 #sidebar ul.people li {
@@ -161,19 +162,19 @@ div.pagination {
 }
 
 div.pagination a {
-	-moz-border-radius: 4px 4px 4px 4px;
-	-webkit-border-radius: 4px 4px 4px 4px;
-	border-radius: 4px 4px 4px 4px;
+
 	text-align: center;
 	display: block;
 	padding: 6px;
 	margin: auto;
 	width: 200px;
 	color: #8A3324;
-	border: solid 1px #ddd;
 }
 
 div.pagination a:hover {
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
 	background-color: #8A3324;
 	color: white;
 	border-color: White;
