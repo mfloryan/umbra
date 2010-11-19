@@ -22,6 +22,8 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
+grails.config.locations = [ "classpath:${appName}-config.properties" ]
+
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
@@ -72,7 +74,6 @@ environments {
     production {
         grails.serverURL = "http://3.floryan.pl/"
 		grails.serverRelative = "/"
-	    umbra.image.base.dir = new File(System.getProperty("umbra.image.base.dir")?:"/tmp/")
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -92,28 +93,7 @@ environments {
 }
 
 // log4j configuration
-log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-           'org.codehaus.groovy.grails.web.pages', //  GSP
-           'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping', // URL mapping
-           'org.codehaus.groovy.grails.commons', // core / classloading
-           'org.codehaus.groovy.grails.plugins', // plugins
-           'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
-
-    warn   'org.mortbay.log'
-}
+log4j.config.file = 'classpath:umbra.log4j.properties'
 
 // Added by the Joda-Time plugin:
 grails.gorm.default.mapping = {
@@ -128,7 +108,9 @@ grails.gorm.default.mapping = {
 }
 
 umbra.title = "3F"
-umbra.description = "photographic journey through lives of Zosia, Matylda and Franek"
-umbra.image.base.dir = new File(System.properties."java.io.tmpdir", "grails-${System.properties.'user.name'}/umbra")
-umbra.facebook.userId = "551198988"
 umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
+umbra.description = "photographic journey through lives of Zosia, Matylda and Franek"
+umbra.facebook.userId = "551198988"
+
+umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
+umbra.image.base.dir = new File(umbra.image.base.location)

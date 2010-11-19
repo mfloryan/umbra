@@ -55,9 +55,11 @@ environments {
 			dbCreate = "validate"
 			driverClassName = "org.postgresql.Driver"
 			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
-			url = "jdbc:postgresql://localhost:5432/umbra"
+			host = "localhost"
+			database = "umbra"
+			url = "jdbc:postgresql://${host}:5432/${database}"
 			username = "umbra"
-			password = System.getProperty("umbra.database.password")
+			password = "umbra"
 		}
 	}
 }
