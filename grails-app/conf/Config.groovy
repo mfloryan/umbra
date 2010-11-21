@@ -22,7 +22,7 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-grails.config.locations = [ "classpath:${appName}-config.properties" ]
+grails.config.locations = [ "classpath:${appName}.config.properties" ]
 
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -69,31 +69,29 @@ grails.logging.jul.usebridge = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 
+// log4j configuration
+log4j.config.file = "classpath:${appName}.log4j.properties"
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
         grails.serverURL = "http://3.floryan.pl/"
-		grails.serverRelative = "/"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
-		grails.serverRelative = "/${appName}"
         fixtures.enabled = true
+	    umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
+		log4j.config.file = "classpath:${appName}.log4j-local.properties"
     }
     developmentPg {
         grails.serverURL = "http://localhost:8080/${appName}"
-		grails.serverRelative = "/${appName}"
         fixtures.enabled = true
     }
     test {
         grails.serverURL = "http://localhost:8080/${appName}"
-		grails.serverRelative = "/${appName}"
         fixtures.enabled = true
     }
 }
-
-// log4j configuration
-log4j.config.file = 'classpath:umbra.log4j.properties'
 
 // Added by the Joda-Time plugin:
 grails.gorm.default.mapping = {
@@ -111,6 +109,3 @@ umbra.title = "3F"
 umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
 umbra.description = "photographic journey through lives of Zosia, Matylda and Franek"
 umbra.facebook.userId = "551198988"
-
-umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
-umbra.image.base.dir = new File(umbra.image.base.location)

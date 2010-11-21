@@ -28,7 +28,7 @@ class BootStrap {
 
 	def init = { servletContext ->
 
-		File dir = ConfigurationHolder.config.umbra.image.base.dir
+		File dir = new File(ConfigurationHolder.config.umbra.image.base.location)
 		if (!dir.isDirectory()) {
 			dir.mkdirs()
 		}

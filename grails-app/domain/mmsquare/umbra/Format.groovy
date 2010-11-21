@@ -81,7 +81,7 @@ class Format {
 	}
 
 	private static File getImagesBaseDir() {
-		config.umbra.image.base.dir
+		new File(config.umbra.image.base.location)
 	}
 
 	private static String getImagesBaseUrl() {
@@ -90,6 +90,10 @@ class Format {
 
 	private static ConfigObject getConfig() {
 		ConfigurationHolder.config
+	}
+
+	def afterDelete() {
+		file.delete();
 	}
 }
 
