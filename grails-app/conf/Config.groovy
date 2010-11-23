@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-// locations to search for config files that get merged into the main config
-// config files can either be Java properties files or ConfigSlurper scripts
-
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
-
 grails.config.locations = ["classpath:${appName}.config.properties"]
 
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
-
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = "mmsquare.umbra" // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [html: ['text/html', 'application/xhtml+xml'],
@@ -72,11 +60,12 @@ grails.spring.bean.packages = []
 // log4j configuration
 log4j.config.file = "classpath:${appName}.log4j.properties"
 
+grails.app.context = "/"
+
 // set per-environment serverURL stem for creating absolute links
 environments {
 	production {
 		grails.serverURL = "http://3.floryan.pl/"
-		grails.app.context = "/"
 	}
 	development {
 		grails.serverURL = "http://localhost:8080/${appName}"
