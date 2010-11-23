@@ -22,7 +22,7 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-grails.config.locations = [ "classpath:${appName}.config.properties" ]
+grails.config.locations = ["classpath:${appName}.config.properties"]
 
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -31,19 +31,19 @@ grails.config.locations = [ "classpath:${appName}.config.properties" ]
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
-grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
-                      xml: ['text/xml', 'application/xml'],
-                      text: 'text/plain',
-                      js: 'text/javascript',
-                      rss: 'application/rss+xml',
-                      atom: 'application/atom+xml',
-                      css: 'text/css',
-                      csv: 'text/csv',
-                      all: '*/*',
-                      json: ['application/json','text/json'],
-                      form: 'application/x-www-form-urlencoded',
-                      multipartForm: 'multipart/form-data'
-                    ]
+grails.mime.types = [html: ['text/html', 'application/xhtml+xml'],
+		xml: ['text/xml', 'application/xml'],
+		text: 'text/plain',
+		js: 'text/javascript',
+		rss: 'application/rss+xml',
+		atom: 'application/atom+xml',
+		css: 'text/css',
+		csv: 'text/csv',
+		all: '*/*',
+		json: ['application/json', 'text/json'],
+		form: 'application/x-www-form-urlencoded',
+		multipartForm: 'multipart/form-data'
+]
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
@@ -55,7 +55,7 @@ grails.converters.encoding = "UTF-8"
 // enable Sitemesh preprocessing of GSP pages
 grails.views.gsp.sitemesh.preprocess = true
 
-grails.views.javascript.library="jquery"
+grails.views.javascript.library = "jquery"
 
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -74,23 +74,24 @@ log4j.config.file = "classpath:${appName}.log4j.properties"
 
 // set per-environment serverURL stem for creating absolute links
 environments {
-    production {
-        grails.serverURL = "http://3.floryan.pl/"
-    }
-    development {
-        grails.serverURL = "http://localhost:8080/${appName}"
-        fixtures.enabled = true
-	    umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
+	production {
+		grails.serverURL = "http://3.floryan.pl/"
+		grails.app.context = "/"
+	}
+	development {
+		grails.serverURL = "http://localhost:8080/${appName}"
+		fixtures.enabled = true
+		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
-    }
-    developmentPg {
-        grails.serverURL = "http://localhost:8080/${appName}"
-        fixtures.enabled = true
-    }
-    test {
-        grails.serverURL = "http://localhost:8080/${appName}"
-        fixtures.enabled = true
-    }
+	}
+	developmentPg {
+		grails.serverURL = "http://localhost:8080/${appName}"
+		fixtures.enabled = true
+	}
+	test {
+		grails.serverURL = "http://localhost:8080/${appName}"
+		fixtures.enabled = true
+	}
 }
 
 // Added by the Joda-Time plugin:
