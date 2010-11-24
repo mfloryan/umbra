@@ -18,6 +18,7 @@ package mmsquare.umbra
 
 import grails.orm.PagedResultList
 import org.joda.time.DateTime
+import org.hibernate.Criteria
 
 class EntryService {
 
@@ -32,6 +33,7 @@ class EntryService {
 						ilike("shortName", filterCommand.person)
 					}
 				}
+				resultTransformer Criteria.DISTINCT_ROOT_ENTITY
 			}
 			order("publishDate", "desc")
 		}
