@@ -45,7 +45,8 @@ class UmbraTagLibSpec extends TagLibSpec {
 	@Unroll("Picture tags shows #image and links to #link for #availableFormats")
 	def "picture tag outputs correct picture"() {
 		given: "a picture"
-		def picture = [dateTaken: new DateTime(), title: title, formats: []]
+		def originalFileName = "IMAGE_1234.jpg"
+		def picture = [dateTaken: new DateTime(), title: title, originalFilename: originalFileName, formats: []]
 
 		and: "defined formats"
 		availableFormats.each {
@@ -65,7 +66,7 @@ class UmbraTagLibSpec extends TagLibSpec {
 		if (title) {
 			assert html.img.@alt == title
 		} else {
-			assert html.img.@alt == image
+			assert html.img.@alt.toString() == originalFileName
 		}
 
 		where:

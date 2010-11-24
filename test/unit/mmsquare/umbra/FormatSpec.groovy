@@ -108,7 +108,7 @@ class FormatSpec extends UnitSpec {
 	def "Creates correct path for a new image"() {
 		given:
 
-		mockConfig("""umbra.image.base.dir = new File("/tmp/umbra")
+		mockConfig("""umbra.image.base.location = "/tmp/umbra"
 					  umbra.image.base.url = "http://static.floryan.pl/images"
 					  """)
 
