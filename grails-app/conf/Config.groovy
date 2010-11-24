@@ -81,16 +81,21 @@ environments {
 	development {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
-		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
+		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	developmentPg {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
+		grails.config.locations = ["classpath:${appName}.config-local.properties"]
 	}
 	test {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
+		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		log4j.config.file = "classpath:${appName}.log4j-local.properties"
+		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"		
 	}
 }
 
@@ -105,8 +110,3 @@ grails.gorm.default.mapping = {
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentLocalDateTime, class: org.joda.time.LocalDateTime
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentPeriod, class: org.joda.time.Period
 }
-
-umbra.title = "3F"
-umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
-umbra.description = "photographic journey through lives of Zosia, Matylda and Franek"
-umbra.facebook.userId = "551198988"
