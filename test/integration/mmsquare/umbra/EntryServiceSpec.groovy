@@ -66,6 +66,10 @@ class EntryServiceSpec extends IntegrationSpec {
 				shortName = "Franek"
 				fullName = "Franciszek"
 			}
+			matylda(Person) {
+				shortName = "Matylda"
+				fullName = "Matylda"
+			}
 			build {
 				p1(Picture) {
 					title = "Zosia"
@@ -101,6 +105,16 @@ class EntryServiceSpec extends IntegrationSpec {
 					people = [zosia]
 					dateTaken = new DateTime().minusDays(4)
 				}
+				p8(Picture) {
+					title = "Matylda 1"
+					people = [matylda]
+					dateTaken = new DateTime().minusDays(5)
+				}
+				p9(Picture) {
+					title = "Matylda 2"
+					people = [matylda]
+					dateTaken = new DateTime().minusDays(5)
+				}
 			}
 			entry1(Entry) {
 				title = "Entry 1"
@@ -126,6 +140,12 @@ class EntryServiceSpec extends IntegrationSpec {
 				permalink = "/2010/10/entry-4"
 				pictures = [p4, p5, p7]
 			}
+			entry5(Entry) {
+				title = "Entry 5"
+				publishDate = new DateTime().minusDays(5)
+				permalink = "/2010/10/entry-5"
+				pictures = [p8, p9]
+			}
 		}
 
 		when:
@@ -136,9 +156,10 @@ class EntryServiceSpec extends IntegrationSpec {
 		results.pictures*.size() == photosCount
 
 		where:
-		person   | titles                            | photosCount
-		"zosia"  | ["Entry 1", "Entry 3", "Entry 4"] | [1, 1, 2]
-		"franek" | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
+		person    | titles                            | photosCount
+		"zosia"   | ["Entry 1", "Entry 3", "Entry 4"] | [1, 1, 2]
+		"franek"  | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
+		"matylda" | ["Entry 5"]                       | [2]
 
 	}
 
