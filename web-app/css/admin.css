@@ -19,6 +19,7 @@ body {
 
 #umbraLogo {
 	border-bottom: 1px solid #635147;
+    padding: 20px;
 }
 
 #umbraLogo a img {
@@ -133,7 +134,10 @@ td.errors textarea {
 
 table {
 	border: 1px solid #ccc;
-	width: 100%
+}
+
+.list table {
+    width: 100%
 }
 
 tr {
