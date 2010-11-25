@@ -19,7 +19,8 @@
             <img src="${resource(dir: 'images', file: 'spinner.gif')}" alt="${message(code: 'spinner.alt', default: 'Loading...')}"/>
         </div>
         <header>
-            <div id="umbraLogo"><a href="${createLink(uri: '/admin/')}"><img src="${resource(dir: 'images', file: 'umbra-logo.png')}" alt="Umbra" border="0"/></a></div>
+            <div id="umbraLogo"><a href="${createLink(uri: '/admin/')}"><img src="${resource(dir: 'images', file: 'umbra-logo.png')}" alt="Umbra" border="0"/></a><br />
+            <h3>Family Photo Blog</h3></div>
             <nav>
                 <div class="nav">
                     <span class="menuButton"><a class="home" href="${createLink(uri: '/admin/')}">Home</a></span>

@@ -1,24 +1,24 @@
 html * {
-	margin: 0; /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
-	text-rendering: optimizeLegibility;
+    margin: 0; /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+    text-rendering: optimizeLegibility;
 }
 
 /* GENERAL */
 
 .spinner {
-	padding: 5px;
-	position: absolute;
-	right: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
 }
 
 body {
-	background: #fff;
-	color: #333;
-	font: 11px verdana, arial, helvetica, sans-serif;
+    background: #fff;
+    color: #333;
+    font: 11px verdana, arial, helvetica, sans-serif;
 }
 
 #umbraLogo {
-	border-bottom: 1px solid #635147;
+    border-bottom: 1px solid #635147;
     padding: 20px;
 }
 
@@ -26,114 +26,120 @@ body {
     border: none;
 }
 
+#umbraLogo h3 {
+    color: #826644;
+    letter-spacing: +2px;
+    padding-left: 65px;
+}
+
 a:link, a:visited, a:hover {
-	color: #826644;
-	font-weight: bold;
-	text-decoration: none;
+    color: #826644;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 h1 {
-	color: #8A3324;
-	font-weight: normal;
-	font-size: 16px;
-	margin: .8em 0 .3em 0;
+    color: #8A3324;
+    font-weight: normal;
+    font-size: 16px;
+    margin: .8em 0 .3em 0;
 }
 
 ul {
-	padding-left: 15px;
+    padding-left: 15px;
 }
 
 select {
-	padding: 2px 2px 2px 0;
+    padding: 2px 2px 2px 0;
 }
 
 .body {
-	margin: 20px;
+    margin: 20px;
 }
 
 /* NAVIGATION MENU */
 
 .nav {
-	background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-	border: 1px solid #ccc;
-	border-style: solid none solid none;
-	margin-top: 5px;
-	padding: 7px 12px;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-style: solid none solid none;
+    margin-top: 5px;
+    padding: 7px 12px;
 }
 
 .menuButton {
-	font-size: 10px;
-	padding: 0 5px;
+    font-size: 10px;
+    padding: 0 5px;
 }
 
 .menuButton a {
-	color: #333;
-	padding: 4px 6px;
+    color: #333;
+    padding: 4px 6px;
 }
 
 .menuButton a.home {
-	background: url(../images/skin/house.png) center left no-repeat;
-	color: #333;
-	padding-left: 25px;
+    background: url(../images/skin/house.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
 }
 
 .menuButton a.list {
-	background: url(../images/skin/database_table.png) center left no-repeat;
-	color: #333;
-	padding-left: 25px;
+    background: url(../images/skin/database_table.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
 }
 
 .menuButton a.create {
-	background: url(../images/skin/database_add.png) center left no-repeat;
-	color: #333;
-	padding-left: 25px;
+    background: url(../images/skin/database_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
 }
 
 /* MESSAGES AND ERRORS */
 
 .message {
-	background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
-	border: 1px solid #b2d1ff;
-	color: #006dba;
-	margin: 10px 0 5px 0;
-	padding: 5px 5px 5px 30px
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
 }
 
 div.errors {
-	background: #fff3f3;
-	border: 1px solid red;
-	color: #cc0000;
-	margin: 10px 0 5px 0;
-	padding: 5px 0 5px 0;
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
 }
 
 div.errors ul {
-	list-style: none;
-	padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 div.errors li {
-	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
-	line-height: 16px;
-	padding-left: 30px;
+    background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+    line-height: 16px;
+    padding-left: 30px;
 }
 
 td.errors select {
-	border: 1px solid #8A3324;
+    border: 1px solid #8A3324;
 }
 
 td.errors input {
-	border: 1px solid #8A3324;
+    border: 1px solid #8A3324;
 }
 
 td.errors textarea {
-	border: 1px solid #8A3324;
+    border: 1px solid #8A3324;
 }
 
 /* TABLES */
 
 table {
-	border: 1px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .list table {
@@ -141,166 +147,166 @@ table {
 }
 
 tr {
-	border: 0;
+    border: 0;
 }
 
 td, th {
-	font: 11px verdana, arial, helvetica, sans-serif;
-	line-height: 12px;
-	padding: 5px 6px;
-	text-align: left;
-	vertical-align: top;
+    font: 11px verdana, arial, helvetica, sans-serif;
+    line-height: 12px;
+    padding: 5px 6px;
+    text-align: left;
+    vertical-align: top;
 }
 
 th {
-	background: #fff url(../images/skin/shadow.jpg);
-	color: #666;
-	font-size: 11px;
-	font-weight: bold;
-	line-height: 17px;
-	padding: 2px 6px;
+    background: #fff url(../images/skin/shadow.jpg);
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 2px 6px;
 }
 
 th a:link, th a:visited, th a:hover {
-	color: #333;
-	display: block;
-	font-size: 10px;
-	text-decoration: none;
-	width: 100%;
+    color: #333;
+    display: block;
+    font-size: 10px;
+    text-decoration: none;
+    width: 100%;
 }
 
 th.asc a, th.desc a {
-	background-position: right;
-	background-repeat: no-repeat;
+    background-position: right;
+    background-repeat: no-repeat;
 }
 
 th.asc a {
-	background-image: url(../images/skin/sorted_asc.gif);
+    background-image: url(../images/skin/sorted_asc.gif);
 }
 
 th.desc a {
-	background-image: url(../images/skin/sorted_desc.gif);
+    background-image: url(../images/skin/sorted_desc.gif);
 }
 
 .odd {
-	background: #f7f7f7;
+    background: #f7f7f7;
 }
 
 .even {
-	background: #fff;
+    background: #fff;
 }
 
 /* LIST */
 
 .list table {
-	border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 .list th, .list td {
-	border-left: 1px solid #ddd;
+    border-left: 1px solid #ddd;
 }
 
 .list th:hover, .list tr:hover {
-	background: #b2d1ff;
+    background: #b2d1ff;
 }
 
 /* PAGINATION */
 
 .paginateButtons {
-	background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-	border: 1px solid #ccc;
-	border-top: 0;
-	color: #666;
-	font-size: 10px;
-	overflow: hidden;
-	padding: 10px 3px;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-top: 0;
+    color: #666;
+    font-size: 10px;
+    overflow: hidden;
+    padding: 10px 3px;
 }
 
 .paginateButtons a {
-	background: #fff;
-	border: 1px solid #ccc;
-	border-color: #ccc #aaa #aaa #ccc;
-	color: #666;
-	margin: 0 3px;
-	padding: 2px 6px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-color: #ccc #aaa #aaa #ccc;
+    color: #666;
+    margin: 0 3px;
+    padding: 2px 6px;
 }
 
 .paginateButtons span {
-	padding: 2px 3px;
+    padding: 2px 3px;
 }
 
 /* DIALOG */
 
 .dialog {
-	width: 800px;
-	margin: auto;
+    width: 800px;
+    margin: auto;
 }
 
 .dialog table {
-	padding: 5px 0;
+    padding: 5px 0;
 }
 
 .prop {
-	padding: 5px;
+    padding: 5px;
 }
 
 .prop .name {
-	text-align: left;
-	width: 15%;
-	white-space: nowrap;
+    text-align: left;
+    width: 15%;
+    white-space: nowrap;
 }
 
 .prop .value {
-	text-align: left;
-	width: 85%;
+    text-align: left;
+    width: 85%;
 }
 
 /* ACTION BUTTONS */
 
 .buttons {
-	background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-	border: 1px solid #ccc;
-	color: #666;
-	font-size: 10px;
-	margin-top: 5px;
-	overflow: hidden;
-	padding: 0;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    color: #666;
+    font-size: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 0;
 }
 
 .buttons input {
-	background: #fff;
-	border: 0;
-	color: #333;
-	cursor: pointer;
-	font-size: 10px;
-	font-weight: bold;
-	margin-left: 3px;
-	overflow: visible;
-	padding: 2px 6px;
+    background: #fff;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 3px;
+    overflow: visible;
+    padding: 2px 6px;
 }
 
 .buttons input.delete {
-	background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
-	padding-left: 28px;
+    background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }
 
 .buttons input.edit {
-	background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
-	padding-left: 28px;
+    background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }
 
 .buttons input.save {
-	background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
-	padding-left: 28px;
+    background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }
 
 ul.menu {
-    list-style:none;
+    list-style: none;
     padding-left: 0px;
 }
 
 ul.menu li {
-	padding: 2px;
+    padding: 2px;
 }
 
 ul.menu .button {
@@ -308,64 +314,63 @@ ul.menu .button {
 }
 
 fieldset {
-	-moz-border-radius: 4px 4px 4px 4px;
-	border: 1px solid #ccc;
-	margin-top: 5px;
-	padding: 5px 2px;
-	text-align: left;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    padding: 5px 2px;
+    text-align: left;
 }
 
 fieldset legend {
-	color: #635147;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 4px;
+    color: #635147;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 4px;
 }
 
 fieldset ul {
-	list-style: none;
+    list-style: none;
 }
 
 fieldset ul li label.required {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 fieldset.form ul li label {
-	display: inline-block;
-	padding: 0 10px 0 0;
-	text-align: right;
-	white-space: nowrap;
-	width: 80px;
+    display: inline-block;
+    padding: 0 10px 0 0;
+    text-align: right;
+    white-space: nowrap;
+    width: 80px;
 }
 
 input, select, textarea {
-	background-color: #fcfcfc;
-	font: 11px verdana, arial, helvetica, sans-serif;
-	margin: 2px 0;
-	padding: 2px 4px;
-	outline: none;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border: 1px solid #ccc;
-	vertical-align: middle;
+    background-color: #fcfcfc;
+    font: 11px verdana, arial, helvetica, sans-serif;
+    margin: 2px 0;
+    padding: 2px 4px;
+    outline: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
 }
 
 input:focus, select:focus, textarea:focus {
-	box-shadow: 0 0 5px rgba(127, 196, 255, 1);
-	-webkit-box-shadow: 0 0 5px rgba(127, 196, 255, 1);
-	-moz-box-shadow: 0 0 5px rgba(127, 196, 255, 1);
-	border: 1px solid rgba(127, 196, 255, 0.8);
-	outline: none;
+    box-shadow: 0 0 5px rgba(127, 196, 255, 1);
+    -webkit-box-shadow: 0 0 5px rgba(127, 196, 255, 1);
+    -moz-box-shadow: 0 0 5px rgba(127, 196, 255, 1);
+    border: 1px solid rgba(127, 196, 255, 0.8);
+    outline: none;
 }
 
-
 fieldset.form input {
-	width: 280px;
+    width: 280px;
 }
 
 a img {
-	border: 1px solid #826644;
+    border: 1px solid #826644;
 }
 
 div.list img.thumbnail {
