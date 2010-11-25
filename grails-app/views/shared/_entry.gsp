@@ -13,6 +13,7 @@
 			<div class="entry-content">${entry.content}</div>
 		</g:if>
 		<g:if test="${!listMode}">
+            <umbra:tags tags="${entry.tags}" />
 			<g:if test="${entry.pictures}">
 				Download original pictures
 				<ul class="downloads">
@@ -22,6 +23,7 @@
 				</ul>
 			</g:if>
 		</g:if>
+        <br />
 		<fb:like layout="button_count" href="${createLink(uri: entry.permalink, absolute: true)}"></fb:like>
 	</div>
 </div>

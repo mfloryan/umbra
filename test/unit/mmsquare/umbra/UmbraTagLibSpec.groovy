@@ -141,4 +141,19 @@ class UmbraTagLibSpec extends TagLibSpec {
 		'zosia'  | ['person zosia selected','person franek']
 		'franek' | ['person zosia','person franek selected']
 	}
+
+	def "tags are listed correctly if exist"() {
+		when:
+		String out = tagLib.tags([tags: tags.collect {new Tag(name:it)} ])
+
+		then:
+		out == expectedListOfTags
+
+		where:
+		tags                     | expectedListOfTags
+		[]                       | null
+		["home"]		         | '<div class="tags">home</div>'
+		["home", "Newark"]       | '<div class="tags">home &ndash; Newark</div>'
+		["test", "Bath", "at"]   | '<div class="tags">at &ndash; Bath &ndash; test</div>'
+	}
 }
