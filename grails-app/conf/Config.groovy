@@ -73,24 +73,26 @@ environments {
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
 		grails.config.locations = ["classpath:${appName}.config-local.properties"]
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
-		log4j.config.file = "classpath:${appName}.log4j-local.properties"
 	}
 	developmentPg {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
+		log4j.config.file = "classpath:${appName}.log4j-local.properties"
 		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	test {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
-		grails.config.locations = ["classpath:${appName}.config-local.properties"]
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
+		grails.config.locations = ["classpath:${appName}.config-local.properties"]
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 }
 
 // Added by the Joda-Time plugin:
 grails.gorm.default.mapping = {
+    id generator:'identity'
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentDateTime, class: org.joda.time.DateTime
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentDuration, class: org.joda.time.Duration
 	"user-type" type: org.joda.time.contrib.hibernate.PersistentInstant, class: org.joda.time.Instant

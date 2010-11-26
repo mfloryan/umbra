@@ -37,7 +37,7 @@ environments {
 		dataSource {
 			dbCreate = "update" // one of 'create', 'create-drop','update'
 			driverClassName = "org.postgresql.Driver"
-			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
+			dialect = "mmsquare.hibernate.dialect.PostgreSQL82Dialect"
 			url = "jdbc:postgresql://localhost:5432/umbra"
 			username = "umbra"
 			password = "umbra"
@@ -54,7 +54,7 @@ environments {
 		dataSource {
 			dbCreate = "validate"
 			driverClassName = "org.postgresql.Driver"
-			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
+			dialect = "mmsquare.hibernate.dialect.PostgreSQL82Dialect"
 			host = "localhost"
 			database = "umbra"
 			url = "jdbc:postgresql://${host}:5432/${database}"
