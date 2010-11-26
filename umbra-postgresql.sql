@@ -52,6 +52,27 @@ CREATE TABLE entry (
 ALTER TABLE public.entry OWNER TO umbra;
 
 --
+-- Name: entry_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE entry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.entry_id_seq OWNER TO umbra;
+
+--
+-- Name: entry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE entry_id_seq OWNED BY entry.id;
+
+
+--
 -- Name: entry_picture; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
 --
 
@@ -96,10 +117,10 @@ CREATE TABLE format (
 ALTER TABLE public.format OWNER TO umbra;
 
 --
--- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: umbra
+-- Name: format_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
 --
 
-CREATE SEQUENCE hibernate_sequence
+CREATE SEQUENCE format_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
@@ -107,7 +128,14 @@ CREATE SEQUENCE hibernate_sequence
     CACHE 1;
 
 
-ALTER TABLE public.hibernate_sequence OWNER TO umbra;
+ALTER TABLE public.format_id_seq OWNER TO umbra;
+
+--
+-- Name: format_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE format_id_seq OWNED BY format.id;
+
 
 --
 -- Name: person; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
@@ -123,6 +151,27 @@ CREATE TABLE person (
 
 
 ALTER TABLE public.person OWNER TO umbra;
+
+--
+-- Name: person_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE person_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.person_id_seq OWNER TO umbra;
+
+--
+-- Name: person_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE person_id_seq OWNED BY person.id;
+
 
 --
 -- Name: picture; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
@@ -144,6 +193,27 @@ CREATE TABLE picture (
 
 
 ALTER TABLE public.picture OWNER TO umbra;
+
+--
+-- Name: picture_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE picture_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.picture_id_seq OWNER TO umbra;
+
+--
+-- Name: picture_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE picture_id_seq OWNED BY picture.id;
+
 
 --
 -- Name: picture_person; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
@@ -171,6 +241,27 @@ CREATE TABLE tag (
 ALTER TABLE public.tag OWNER TO umbra;
 
 --
+-- Name: tag_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE tag_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tag_id_seq OWNER TO umbra;
+
+--
+-- Name: tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE tag_id_seq OWNED BY tag.id;
+
+
+--
 -- Name: umbra_role; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
 --
 
@@ -182,6 +273,27 @@ CREATE TABLE umbra_role (
 
 
 ALTER TABLE public.umbra_role OWNER TO umbra;
+
+--
+-- Name: umbra_role_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE umbra_role_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.umbra_role_id_seq OWNER TO umbra;
+
+--
+-- Name: umbra_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE umbra_role_id_seq OWNED BY umbra_role.id;
+
 
 --
 -- Name: umbra_role_permissions; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
@@ -210,6 +322,27 @@ CREATE TABLE umbra_user (
 ALTER TABLE public.umbra_user OWNER TO umbra;
 
 --
+-- Name: umbra_user_id_seq; Type: SEQUENCE; Schema: public; Owner: umbra
+--
+
+CREATE SEQUENCE umbra_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.umbra_user_id_seq OWNER TO umbra;
+
+--
+-- Name: umbra_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: umbra
+--
+
+ALTER SEQUENCE umbra_user_id_seq OWNED BY umbra_user.id;
+
+
+--
 -- Name: umbra_user_permissions; Type: TABLE; Schema: public; Owner: umbra; Tablespace: 
 --
 
@@ -232,6 +365,55 @@ CREATE TABLE umbra_user_roles (
 
 
 ALTER TABLE public.umbra_user_roles OWNER TO umbra;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE entry ALTER COLUMN id SET DEFAULT nextval('entry_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE format ALTER COLUMN id SET DEFAULT nextval('format_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE person ALTER COLUMN id SET DEFAULT nextval('person_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE picture ALTER COLUMN id SET DEFAULT nextval('picture_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE tag ALTER COLUMN id SET DEFAULT nextval('tag_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE umbra_role ALTER COLUMN id SET DEFAULT nextval('umbra_role_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: umbra
+--
+
+ALTER TABLE umbra_user ALTER COLUMN id SET DEFAULT nextval('umbra_user_id_seq'::regclass);
+
 
 --
 -- Name: entry_permalink_key; Type: CONSTRAINT; Schema: public; Owner: umbra; Tablespace: 
@@ -430,3 +612,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
