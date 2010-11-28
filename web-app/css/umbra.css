@@ -112,14 +112,13 @@ ul.pictures .picture {
 }
 
 .picture-box .download a {
-    color: #826644;    
+    color: #826644;
 }
 
 .picture-box .download a:hover {
     color: #8A3324;
     text-decoration: underline;
 }
-
 
 .picture-box {
     float: left;
@@ -147,14 +146,18 @@ ul.pictures .picture {
     margin-bottom: 2px;
 }
 
-#main div.date b {
+#main div.date span.day {
+    font-weight: bold;
     color: #8A3324;
     font-size: 30px;
     line-height: 0.8em;
+    display: block;
+    height: 20px;
 }
 
-#main div.date small {
+#main div.date span.month {
     font-size: 11px;
+    letter-spacing: 1px;
 }
 
 #main h2 {
@@ -227,9 +230,18 @@ div.pagination a:hover {
 }
 
 div.tags {
-    padding-right: 20px;
-    text-align: left;
-    font-size: 12px;
     color: #635147;
+    font-size: 12px;
     font-style: italic;
+    padding-bottom: 10px;
+}
+
+div.tags em {
+    font-family: Helvetica, Arial, sans-serif;
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #444;
+    padding-right: 5px;
+    letter-spacing: -1px;
 }

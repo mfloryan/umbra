@@ -1,8 +1,8 @@
 <%@ page import="mmsquare.umbra.FormatType" %>
 <div class="entry">
     <div class="date">
-        <b>${entry.publishDate.dayOfMonth}</b><br/>
-        <small>${entry.publishDate.monthOfYear().getAsShortText(Locale.ENGLISH).toUpperCase()}</small>
+        <span class="day">${entry.publishDate.dayOfMonth}</span>
+        <span class="month">${entry.publishDate.monthOfYear().getAsShortText(Locale.ENGLISH).toUpperCase()}</span>
     </div>
     <h2><a href="${createLink(uri: entry.permalink)}">${entry.title}</a></h2>
     <div class="entry-content">

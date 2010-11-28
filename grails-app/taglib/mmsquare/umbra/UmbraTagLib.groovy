@@ -129,7 +129,7 @@ class UmbraTagLib {
 	def tags = { attrs ->
 		def tags = attrs.remove("tags")
 		if (tags) {
-			out << '<div class="tags">'
+			out << '<div class="tags"><em>Tags:</em> '
 			out << tags.sort {it.name.toLowerCase()}.join(" &ndash; ")
 			out << '</div>'
 		}
