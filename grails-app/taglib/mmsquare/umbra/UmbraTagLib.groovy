@@ -24,15 +24,15 @@ class UmbraTagLib {
 	def showPicture = { attrs ->
 		def picture = attrs.remove("picture")
 		if (picture && picture.formats) {
-			def linkUrl = createLink(uri:pictureFormatForLink(picture).url)
+			def linkUrl = createLink(uri: pictureFormatForLink(picture).url)
 			def imageFormat = pictureFormatForImage(picture)
 			def altText = picture.title ?: picture.originalFilename
 			if (attrs["class"]) attrs["class"] += " fancyboxImage"
 			else attrs["class"] = "fancyboxImage"
 
 			def html = new MarkupBuilder(out)
-			html.a(href: linkUrl, class: attrs["class"], title: picture.title?:"" ) {
-				img src: createLink(uri:imageFormat?.url), width: imageFormat.width, height: imageFormat.height, alt: altText
+			html.a(href: linkUrl, class: attrs["class"], title: picture.title ?: "") {
+				img src: createLink(uri: imageFormat?.url), width: imageFormat.width, height: imageFormat.height, alt: altText
 			}
 			out
 		}
@@ -53,7 +53,7 @@ class UmbraTagLib {
 	}
 
 	def people = { attrs ->
-		def list = Person.findAllByDisplayOrderIsNotNull(sort:'displayOrder');
+		def list = Person.findAllByDisplayOrderIsNotNull(sort: 'displayOrder');
 		def person = attrs.remove("person")
 		if (list) {
 			out << '<ul class="people">'
@@ -82,7 +82,7 @@ class UmbraTagLib {
 		def person = attrs.remove("person")
 		if (totalPages && totalPages > 1) {
 			if ((direction == 'prev' && page > 1) ||
-				(direction == 'next' && page < totalPages)) {
+					(direction == 'next' && page < totalPages)) {
 
 				int newPage
 				if (direction == 'next') newPage = page + 1
@@ -111,27 +111,45 @@ class UmbraTagLib {
 		} else {
 			if (!url) url = '/'
 		}
-		createLink(uri:url)
+		createLink(uri: url)
 	}
 
 	def imageLink = { attrs ->
 		def picture = attrs.remove("picture")
-		def format = attrs.remove("format")?:"original"
+		def format = attrs.remove("format") ?: "original"
 		def isDownload = attrs.remove("isDownload")
 
 		def formatInstance = picture.getFormatBy(FormatType.valueOf(format.toUpperCase()))
 		if (formatInstance) {
-			out << createLink(uri:formatInstance.url)
+			out << createLink(uri: formatInstance.url)
 			if (isDownload) out << "?download=true"
 		}
 	}
 
-	def tags  = { attrs ->
+	def tags = { attrs ->
 		def tags = attrs.remove("tags")
 		if (tags) {
 			out << '<div class="tags">'
 			out << tags.sort {it.name.toLowerCase()}.join(" &ndash; ")
 			out << '</div>'
+		}
+	}
+
+	private static labels = ['B', 'kB', 'MB', 'GB', 'TB']
+
+	def formattedFileSize = { attrs ->
+		def size = attrs.remove("size")
+		if (size) {
+			def label = labels.find {
+				if (size < 1024) {
+					true
+				}
+				else {
+					size /= 1024
+					false
+				}
+			}
+			out << "${new java.text.DecimalFormat(attrs.format ?: '0.##').format(size)} $label"
 		}
 	}
 }

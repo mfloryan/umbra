@@ -156,4 +156,20 @@ class UmbraTagLibSpec extends TagLibSpec {
 		["home", "Newark"]       | '<div class="tags">home &ndash; Newark</div>'
 		["test", "Bath", "at"]   | '<div class="tags">at &ndash; Bath &ndash; test</div>'
 	}
+
+	def "size is fortmatted correctly"() {
+		when:
+		String out = tagLib.formattedFileSize([size: size])
+
+		then:
+		out == formattedSize
+
+		where:
+		size         | formattedSize
+		0            | null
+		100          | "100 B"
+		1024         | "1 kB"
+		1048576      | "1 MB"
+		2556543      | "2.44 MB"
+	}
 }
