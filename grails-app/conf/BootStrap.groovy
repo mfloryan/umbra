@@ -38,7 +38,6 @@ class BootStrap {
 
 		if (GrailsUtil.environment == "development") {
 			createUser('admin', new Sha256Hash('admin').toHex())
-			if (!Entry.count()) fixtureLoader.load("bootstrap")
 			if (!Person.count()) fixtureLoader.load("furniture/people")
 			if (!Tag.count()) fixtureLoader.load("furniture/tags")
 		}
