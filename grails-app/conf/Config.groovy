@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-grails.config.locations = ["classpath:${appName}.config.properties"]
-
 grails.project.groupId = "mmsquare.umbra" // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
@@ -66,26 +64,30 @@ grails.app.context = "/"
 environments {
 	production {
 		grails.serverURL = "http://3.floryan.pl/"
+		grails.config.locations = ["classpath:umbra.config.properties"]
 	}
 	development {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
-		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		umbra.title = "3F"
+		umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
+		umbra.description = "Photographic journey through lives of Zosia, Matylda and Franek"
+		umbra.facebook.userId = "551198988"		
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	developmentPg {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
-		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		grails.config.locations = ["classpath:umbra.config-local.properties"]
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	test {
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
-		grails.config.locations = ["classpath:${appName}.config-local.properties"]
+		grails.config.locations = ["classpath:umbra.config-local.properties"]
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 }
