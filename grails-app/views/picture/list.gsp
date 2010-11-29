@@ -15,10 +15,10 @@
                 <thead>
                     <tr>
                         <g:sortableColumn property="id" title="Id"/>
+                        <g:sortableColumn property="originalFilename" title="Original filename"/>
                         <g:sortableColumn property="title" title="Title"/>
                         <th>People</th>
                         <th>Formats</th>
-                        <g:sortableColumn property="originalFilename" title="Original filename"/>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +28,7 @@
                                 ${fieldValue(bean: pictureInstance, field: "id")}
                                 <img src="${umbra.imageLink(picture:pictureInstance, format:'thumbnail')}" class="picture thumbnail" />
                             </g:link></td>
+                            <td>${fieldValue(bean: pictureInstance, field: "originalFilename")}</td>
                             <td>${fieldValue(bean: pictureInstance, field: "title")}</td>
                             <td>${pictureInstance.people.shortName.join(', ')}</td>
                             <td>
@@ -36,7 +37,6 @@
                                     <span style="width: 80px; text-align: right; display: inline-block;">${format.fileSize} B</span><br/>
                                 </g:each>
                             </td>
-                            <td>${fieldValue(bean: pictureInstance, field: "originalFilename")}</td>
                         </tr>
                     </g:each>
                 </tbody>
