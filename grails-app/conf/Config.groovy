@@ -77,6 +77,7 @@ environments {
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	developmentPg {
+		grails.gsp.enable.reload = true
 		grails.serverURL = "http://localhost:8080/${appName}"
 		fixtures.enabled = true
 		log4j.config.file = "classpath:${appName}.log4j-local.properties"
