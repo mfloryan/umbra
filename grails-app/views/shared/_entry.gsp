@@ -9,6 +9,8 @@
         <g:if test="${entry.pictures}">
             <ul class="pictures">
                 <g:each in="${entry.pictures}" var="picture">
+                    %{-- The if is required as the filter results can return null pictures though DB query does not --}%
+                    <g:if test="${picture}">
                     <li>
                         <div class="picture-box">
                             <div class="picture">
@@ -25,6 +27,7 @@
                             </g:if>
                         </div>
                     </li>
+                    </g:if>
                 </g:each>
             </ul>
             <br clear="both"/>

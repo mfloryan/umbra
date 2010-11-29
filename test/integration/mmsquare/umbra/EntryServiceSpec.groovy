@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package mmsquare.umbra
 
 import grails.plugin.spock.IntegrationSpec
@@ -161,6 +177,54 @@ class EntryServiceSpec extends IntegrationSpec {
 		"franek"  | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
 		"matylda" | ["Entry 5"]                       | [2]
 
+	}
+
+	def "verify if a bogus picture is returned from filtered result set"() {
+		given: "some entries exist with pictures of people"
+		def fixture = fixtureLoader.load {
+			zosia(Person) {
+				shortName = "Zosia"
+				fullName = "Zofia Teodora"
+			}
+			franek(Person) {
+				shortName = "Franek"
+				fullName = "Franciszek"
+			}
+			build {
+				p1(Picture) {
+					title = "Zosia"
+					people = [zosia]
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p2(Picture) {
+					title = "Franek"
+					people = [franek]
+					dateTaken = new DateTime().minusDays(2)
+				}
+				p3(Picture) {
+					title = "Franek i Zosia"
+					people = [zosia, franek]
+					dateTaken = new DateTime().minusDays(2)
+				}
+			}
+			entry1(Entry) {
+				title = "Entry 1"
+				publishDate = new DateTime().minusDays(1)
+				permalink = "/2010/10/entry-1"
+				pictures = [p1, p2, p3]
+			}
+		}
+
+		when:
+		def results = entryService.getEntries(new EntryListCommand(person: person)).list
+
+		then:
+		results.title == ["Entry 1"]
+		results[0].pictures.size() == 2
+		results.pictures.title == [["Franek", "Franek i Zosia"]]
+
+		where:
+		person = "franek"
 	}
 
 	private void buildSomeEntries(offset) {
