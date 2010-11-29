@@ -35,8 +35,6 @@ class Picture {
 
 	static embedded = ['location']
 
-//	static fetchMode = [formats:"eager", people:"eager"]
-
 	static constraints = {
 		title(nullable: true, maxSize: 400)
 		originalFilename(blank: false, maxSize: 400)
@@ -45,7 +43,7 @@ class Picture {
 	}
 
 	static mappings = {
-		formats cascade:'all,delete-orphan'
+		formats cascade:'all,delete-orphan', lazy: false
 	}
 
 	String toString() {
