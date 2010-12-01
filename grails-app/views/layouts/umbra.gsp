@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:og="http://opengraphprotocol.org/schema/"
-      xmlns:fb="http://www.facebook.com/2008/fbml">
+        xmlns:og="http://opengraphprotocol.org/schema/"
+        xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'umbra.css')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css/fancybox', file: 'jquery.fancybox-1.3.3.css')}"/>
@@ -14,6 +14,22 @@
     <meta property="og:image" content="${resource(dir: 'images', file: 'logo-opengraph.png', absolute: true)}"/>
     <meta property="fb:admins" content="${grailsApplication.config.umbra.facebook.userId}"/>
     <g:layoutHead/>
+    <g:if env="production">
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '${grailsApplication.config.umbra.google.analytics.account}']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    </g:if>
     <title><g:layoutTitle default="${grailsApplication.config.umbra.title}"/></title>
 </head>
 <body>

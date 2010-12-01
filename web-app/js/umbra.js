@@ -16,6 +16,18 @@
 
 $(document).ready(function() {
     $('a.fancyboxImage').fancybox({
-        type:'image'
+        'type':'image',
+        'onStart': function() {
+            if (_gaq) {
+                gaq.push(['_trackEvent', 'Pictures', 'Fancybox']);
+            }
+        }
+    });
+
+    $('.download a').click( function() {
+        if (_gaq) {
+            gaq.push(['_trackEvent', 'Pictures', 'Download']);
+        }
+       return true;
     });
 });
