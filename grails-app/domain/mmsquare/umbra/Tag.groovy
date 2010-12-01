@@ -21,7 +21,7 @@ class Tag {
 	String name
 
 	static constraints = {
-		name(empty: false, maxSize: 80)
+		name(empty: false, maxSize: 80, unique: true)
 	}
 
 	static transients = ["lowerName"]
