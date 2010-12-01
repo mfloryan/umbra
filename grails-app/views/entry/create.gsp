@@ -15,7 +15,6 @@
             </div>
         </g:hasErrors>
         <g:form action="save">
-            <pre>${session.dump()}</pre>
             <div class="dialog">
                 <fieldset class="form">
                     <legend>New Entry</legend>
@@ -77,7 +76,9 @@
                             </li>
                         </g:each>
                     </ul>
-                    <input type="text" name="name" id="name" maxlength="80"> <input id="add-tag" type="button" class="add-button" value="add"></li>
+                    <div style="text-align: right;">
+                        <label for="name">New tag:</label> <input type="text" name="name" id="name" maxlength="80"> <button type="button" id="add-tag" class="button-add">add</button>
+                    </div>
                 </fieldset>
                 <div class="buttons">
                     <button type="submit" class="button-create">Create</button>
@@ -104,7 +105,7 @@
                         url: "<g:createLink action="ajaxCreate" controller="tag"/>",
                         data: $('#name').serialize(),
                         success: function(data) {
-                            $('ul.tags').append('<li><input type="checkbox" name="tags" value="'+data.id+'" id="tag-'+ data.id +'"> <label for="tag-'+data.id+'">'+data.name+'</label></li>');
+                            $('ul.tags').append('<li><input type="checkbox" name="tags" value="' + data.id + '" id="tag-' + data.id + '"> <label for="tag-' + data.id + '">' + data.name + '</label></li>');
                             $('#name').val('');
                         }
                     });

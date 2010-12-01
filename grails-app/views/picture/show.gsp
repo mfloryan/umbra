@@ -19,47 +19,34 @@
                 <tr class="prop">
                     <td valign="top" class="name">Id</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "id")}</td>
-
                 </tr>
-
                 <tr class="prop">
                     <td valign="top" class="name">Title</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "title")}</td>
-
                 </tr>
-
                 <tr class="prop">
                     <td valign="top" class="name">Original Filename</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "originalFilename")}</td>
                 </tr>
-
                 <tr class="prop">
                     <td valign="top" class="name">Date Taken</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "dateTaken")}</td>
                 </tr>
-
                 <tr class="prop">
                     <td valign="top" class="name">Camera</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "camera")}</td>
-
                 </tr>
-
-
                 <tr class="prop">
                     <td valign="top" class="name">Location</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "location")}</td>
-
                 </tr>
-
-
-
 
                 <tr class="prop">
                     <td valign="top" class="name">Formats</td>
                     <td valign="top" style="text-align: left;" class="value">
                         <ul>
                             <g:each in="${pictureInstance.formats.sort { it.width }}" var="f">
-                                <li>${f.type} : ${f.width} x ${f.height}, ${f.fileSize} B</li>
+                                <li>${f.type} : ${f.width} x ${f.height}, <umbra:formattedFileSize size="${f.fileSize}"/></li>
                             </g:each>
                         </ul>
                     </td>

@@ -19,10 +19,13 @@ $(document).ready(function() {
     $('a.button-edit').button({icons: {primary: "ui-icon-pencil"}});
     $('a.button-delete').button({icons: {primary: "ui-icon-trash"}}).bind('click', handleDeleteClick);
     $('.button-create').button({icons: {primary: "ui-icon-circle-plus"}});
+    $('.button-add').button({icons: {primary: "ui-icon-plus"}});
 
     $('a.preview').fancybox({
         type:'image'
     });
+
+    
 });
 
 function handleDeleteClick() {
