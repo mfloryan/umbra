@@ -472,6 +472,14 @@ ALTER TABLE ONLY picture
 
 
 --
+-- Name: tag_name_key; Type: CONSTRAINT; Schema: public; Owner: umbra; Tablespace: 
+--
+
+ALTER TABLE ONLY tag
+    ADD CONSTRAINT tag_name_key UNIQUE (name);
+
+
+--
 -- Name: tag_pkey; Type: CONSTRAINT; Schema: public; Owner: umbra; Tablespace: 
 --
 
