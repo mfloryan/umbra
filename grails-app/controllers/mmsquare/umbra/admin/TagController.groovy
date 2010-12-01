@@ -16,6 +16,7 @@
 
 package mmsquare.umbra.admin
 
+import grails.converters.JSON
 import mmsquare.umbra.Tag
 
 class TagController {
@@ -45,6 +46,15 @@ class TagController {
 		}
 		else {
 			render(view: "create", model: [tagInstance: tagInstance])
+		}
+	}
+
+	def ajaxCreate = {
+		def tag = new Tag(params)
+		if (tag.save(flush:true)) {
+			render tag as JSON
+		}   else {
+			response.sendError javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST, "Creating a new tag failed"
 		}
 	}
 

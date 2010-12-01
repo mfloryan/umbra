@@ -15,6 +15,7 @@
             </div>
         </g:hasErrors>
         <g:form action="save">
+            <pre>${session.dump()}</pre>
             <div class="dialog">
                 <fieldset class="form">
                     <legend>New Entry</legend>
@@ -71,12 +72,12 @@
                     <ul class="tags">
                         <g:each in="${Tag.listOrderByName()}" var="tag">
                             <li>
-                                <input type="checkbox" name="tags" value="${tag.id}" id="${tag.name}">
-                                <label for="${tag.name}">${tag.name}</label>
+                                <input type="checkbox" name="tags" value="${tag.id}" id="tag-${tag.id}">
+                                <label for="tag-${tag.id}">${tag.name}</label>
                             </li>
                         </g:each>
-                        <li><input type="text" name="newTag"> <input type="button" class="add-button new-tag-button" value="add"></li>
                     </ul>
+                    <input type="text" name="name" id="name" maxlength="80"> <input id="add-tag" type="button" class="add-button" value="add"></li>
                 </fieldset>
                 <div class="buttons">
                     <button type="submit" class="button-create">Create</button>
@@ -96,9 +97,20 @@
                     }
                 });
             });
+
+            $("#add-tag").click(function() {
+                if ($('#name').val()) {
+                    $.ajax({
+                        url: "<g:createLink action="ajaxCreate" controller="tag"/>",
+                        data: $('#name').serialize(),
+                        success: function(data) {
+                            $('ul.tags').append('<li><input type="checkbox" name="tags" value="'+data.id+'" id="tag-'+ data.id +'"> <label for="tag-'+data.id+'">'+data.name+'</label></li>');
+                            $('#name').val('');
+                        }
+                    });
+                }
+            });
         });
-
-
     </script>
 </body>
 </html>
