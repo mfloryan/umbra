@@ -34,7 +34,7 @@
                             <td>
                                 <g:each in="${pictureInstance.formats.sort() {it.width}}" var="format">
                                     <span style="width: 100px; text-align: left; display: inline-block;">${format.type}</span>
-                                    <span style="width: 80px; text-align: right; display: inline-block;">${format.fileSize} B</span><br/>
+                                    <span style="width: 80px; text-align: right; display: inline-block;"><umbra:formattedFileSize size="${format.fileSize}"/></span><br/>
                                 </g:each>
                             </td>
                         </tr>
@@ -45,6 +45,8 @@
         <div class="paginateButtons">
             <g:paginate total="${pictureInstanceTotal}"/>
         </div>
+        <br />
+        <g:link action="upload" class="button">upload pictures</g:link>
     </div>
 </body>
 </html>

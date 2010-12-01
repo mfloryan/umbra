@@ -28,7 +28,7 @@ body {
 
 #umbraLogo h3 {
     color: #826644;
-    letter-spacing: +2px;
+    letter-spacing: +6px;
     padding-left: 65px;
 }
 
@@ -264,13 +264,15 @@ th.desc a {
 /* ACTION BUTTONS */
 
 .buttons {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-    border: 1px solid #ccc;
-    color: #666;
-    font-size: 10px;
-    margin-top: 5px;
-    overflow: hidden;
-    padding: 0;
+    /*background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;*/
+    /*border: 1px solid #ccc;*/
+    /*color: #666;*/
+    /*font-size: 10px;*/
+    /*margin-top: 5px;*/
+    /*overflow: hidden;*/
+    /*padding: 0;*/
+    text-align: right;
+    padding: 5px;
 }
 
 .buttons input {
@@ -379,3 +381,26 @@ div.list img.thumbnail {
     display: inline-block;
     vertical-align: middle;
 }
+
+/* FIELD SPECIFIC */
+
+input#title {
+    width: 600px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input#permalink {
+    width: 600px;
+}
+
+textarea#content {
+    width: 600px;
+}
+
+fieldset ul.tags li {
+    display: inline-block;
+    padding: 5px;
+    
+}
+

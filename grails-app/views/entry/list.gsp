@@ -38,7 +38,7 @@
                                     </g:link>
                                 </g:each>
                             </td>
-                            <td>${entryInstance.tags.name.join(' ')}</td>
+                            <td>${entryInstance.tags.name.join(', ')}</td>
                             <td>${fieldValue(bean: entryInstance, field: "dateCreated")}</td>
                         </tr>
                     </g:each>

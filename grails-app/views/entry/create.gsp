@@ -6,7 +6,6 @@
 </head>
 <body>
     <div class="body">
-        <h1>New Entry</h1>
         <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
         </g:if>
@@ -18,23 +17,23 @@
         <g:form action="save">
             <div class="dialog">
                 <fieldset class="form">
-                    <legend>Entry</legend>
+                    <legend>New Entry</legend>
                     <ul>
                         <li>
                             <label for="title">Title</label>
                             <g:textField name="title" value="${entryInstance?.title}"/>
                         </li>
                         <li>
+                            <label for="content">Content</label>
+                            <g:textArea name="content" value="${entryInstance?.content}"/>
+                        </li>
+                        <li>
                             <label for="permalink">Permalink</label>
                             <g:textField name="permalink" value="${entryInstance?.permalink}"/>
                         </li>
                         <li>
-                            <label for="publishDate">publishDate</label>
+                            <label for="publishDate">Publish Date</label>
                             <joda:dateTimePicker name="publishDate" value="${entryInstance?.publishDate}"/>
-                        </li>
-                        <li>
-                            <label for="content">content</label>
-                            <g:textArea name="content" cols="60" rows="3" value="${entryInstance?.content}"/>
                         </li>
                     </ul>
                 </fieldset>
@@ -61,7 +60,11 @@
                                 </li>
                             </g:each>
                         </ul>
-                    </g:if>
+                    </g:if><g:else>
+                    <div style="padding: 10px;">
+                        There are currently no unused pictures. You can <g:link controller="picture" action="upload">upload</g:link> some first.
+                    </div>
+                </g:else>
                 </fieldset>
                 <fieldset>
                     <legend>Tags</legend>
@@ -75,9 +78,9 @@
                         <li><input type="text" name="newTag"> <input type="button" class="add-button new-tag-button" value="add"></li>
                     </ul>
                 </fieldset>
-            </div>
-            <div class="buttons">
-                <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
+                <div class="buttons">
+                    <button type="submit" class="button-create">Create</button>
+                </div>
             </div>
         </g:form>
     </div>

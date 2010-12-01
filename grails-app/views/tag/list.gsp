@@ -31,6 +31,8 @@
         <div class="paginateButtons">
             <g:paginate total="${tagInstanceTotal}"/>
         </div>
+        <br />
+        <g:link action="create" class="button">add tag</g:link>
     </div>
 </body>
 </html>
