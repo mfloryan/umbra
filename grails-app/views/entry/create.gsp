@@ -21,7 +21,7 @@
                     <ul>
                         <li>
                             <label for="title">Title</label>
-                            <g:textField name="title" value="${entryInstance?.title}"/>
+                            <span class="permalink-data"><g:textField name="title" value="${entryInstance?.title}"/></span>
                         </li>
                         <li>
                             <label for="content">Content</label>
@@ -33,7 +33,7 @@
                         </li>
                         <li>
                             <label for="publishDate">Publish Date</label>
-                            <joda:dateTimePicker name="publishDate" value="${entryInstance?.publishDate}"/>
+                            <span class="permalink-data"><joda:dateTimePicker name="publishDate" value="${entryInstance?.publishDate}"/></span>
                         </li>
                     </ul>
                 </fieldset>
@@ -84,5 +84,21 @@
             </div>
         </g:form>
     </div>
+    <script type="text/javascript">
+        $(function() {
+            $("#title, #publishDate_month, #publishDate_year").change(function() {
+                //alert("New value");
+                $.ajax({
+                    url: "<g:createLink action="permalink" />",
+                    data: $('.permalink-data input, select').serialize(),
+                    success: function(data) {
+                        $("#permalink").val(data);
+                    }
+                });
+            });
+        });
+
+
+    </script>
 </body>
 </html>

@@ -134,4 +134,15 @@ class EntryController {
             redirect(action: "list")
         }
     }
+
+
+	def permalink = {
+		def entry = new Entry(params)
+		if (entry.title) {
+			entry.createPermalink()
+			render entry.permalink
+		} else {
+			response.sendError javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST, "Missing title"
+		}
+	}
 }

@@ -46,7 +46,11 @@ class Entry {
 
 	public createPermalink() {
 		if (!permalink && title && publishDate) {
-			permalink = "/${publishDate.year.toString().padLeft(4,'0')}/${publishDate.monthOfYear.toString().padLeft(2,'0')}/${StringUtil.clean(title)}"			
+			permalink = permalink(title, publishDate)
 		}
+	}
+
+	private static permalink(String title, DateTime publishDate) {
+		"/${publishDate.year.toString().padLeft(4,'0')}/${publishDate.monthOfYear.toString().padLeft(2,'0')}/${StringUtil.clean(title)}"
 	}
 }
