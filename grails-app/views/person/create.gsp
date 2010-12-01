@@ -22,7 +22,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="shortName"><g:message code="person.shortName.label" default="Short Name"/></label>
+                                <label for="shortName">Short Name</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'shortName', 'errors')}">
                                 <g:textField name="shortName" value="${personInstance?.shortName}"/>
@@ -30,7 +30,7 @@
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="fullName"><g:message code="person.fullName.label" default="Full Name"/></label>
+                                <label for="fullName">Full Name</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'fullName', 'errors')}">
                                 <g:textField name="fullName" value="${personInstance?.fullName}"/>
@@ -40,7 +40,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="displayOrder"><g:message code="person.displayOrder.label" default="Display Order"/></label>
+                                <label for="displayOrder">Display Order</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'displayOrder', 'errors')}">
                                 <g:textField name="displayOrder" value="${fieldValue(bean: personInstance, field: 'displayOrder')}"/>

@@ -3,17 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="admin" />
-        <g:set var="entityName" value="${message(code: 'tag.label', default: 'Tag')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <title>Tag</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
         <div class="body">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+            <h1>Tag</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -22,14 +16,14 @@
                     <tbody>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="tag.id.label" default="Id" /></td>
+                            <td valign="top" class="name">Id</td>
                             
                             <td valign="top" class="value">${fieldValue(bean: tagInstance, field: "id")}</td>
                             
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="tag.name.label" default="Name" /></td>
+                            <td valign="top" class="name">Name</td>
                             
                             <td valign="top" class="value">${fieldValue(bean: tagInstance, field: "name")}</td>
                             

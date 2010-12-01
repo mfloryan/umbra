@@ -23,7 +23,7 @@
                     <tbody>
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="permalink"><g:message code="entry.permalink.label" default="Permalink"/></label>
+                                <label for="permalink">Permalink</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'permalink', 'errors')}">
                                 <g:textArea name="permalink" cols="40" rows="5" value="${entryInstance?.permalink}"/>
@@ -32,7 +32,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="title"><g:message code="entry.title.label" default="Title"/></label>
+                                <label for="title">Title</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'title', 'errors')}">
                                 <g:textField name="title" value="${entryInstance?.title}"/>
@@ -41,7 +41,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="content"><g:message code="entry.content.label" default="Content"/></label>
+                                <label for="content">Content</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'content', 'errors')}">
                                 <g:textArea name="content" cols="40" rows="5" value="${entryInstance?.content}"/>
@@ -50,7 +50,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="pictures"><g:message code="entry.pictures.label" default="Pictures"/></label>
+                                <label for="pictures">Pictures</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'pictures', 'errors')}">
 
@@ -66,7 +66,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="publishDate"><g:message code="entry.publishDate.label" default="Publish Date"/></label>
+                                <label for="publishDate">Publish Date</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'publishDate', 'errors')}">
 
@@ -75,7 +75,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="tags"><g:message code="entry.tags.label" default="Tags"/></label>
+                                <label for="tags">1</label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: entryInstance, field: 'tags', 'errors')}">
                                 <g:select name="tags" from="${mmsquare.umbra.Tag.list()}" multiple="yes" optionKey="id" size="5" value="${entryInstance?.tags*.id}"/>

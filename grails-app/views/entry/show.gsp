@@ -15,32 +15,32 @@
                 <tbody>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.id.label" default="Id"/></td>
+                        <td valign="top" class="name">Title</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "id")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.title.label" default="Title"/></td>
+                        <td valign="top" class="name">Title</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "title")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.publishDate.label" default="Publish Date"/></td>
+                        <td valign="top" class="name">Publish Date</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "publishDate")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.permalink.label" default="Permalink"/></td>
+                        <td valign="top" class="name">Permalink</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "permalink")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.content.label" default="Content"/></td>
+                        <td valign="top" class="name">Content</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "content")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.pictures.label" default="Pictures"/></td>
+                        <td valign="top" class="name">Pictures</td>
                         <td valign="top" style="text-align: left;" class="value">
                             <g:each in="${entryInstance.pictures}" var="picture">
                                 <g:link controller="picture" action="show" id="${picture.id}">
@@ -51,7 +51,7 @@
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.tags.label" default="Tags"/></td>
+                        <td valign="top" class="name">Tags</td>
 
                         <td valign="top" style="text-align: left;" class="value">
                             <ul>
@@ -63,12 +63,12 @@
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.dateCreated.label" default="Date Created"/></td>
+                        <td valign="top" class="name">Date Created</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "dateCreated")}</td>
                     </tr>
 
                     <tr class="prop">
-                        <td valign="top" class="name"><g:message code="entry.lastUpdated.label" default="Last Updated"/></td>
+                        <td valign="top" class="name">Last Updated</td>
                         <td valign="top" class="value">${fieldValue(bean: entryInstance, field: "lastUpdated")}</td>
                     </tr>
 

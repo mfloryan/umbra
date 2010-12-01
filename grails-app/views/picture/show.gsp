@@ -17,36 +17,36 @@
         <table style="display: inline-block;">
             <tbody>
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.id.label" default="Id"/></td>
+                    <td valign="top" class="name">Id</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "id")}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.title.label" default="Title"/></td>
+                    <td valign="top" class="name">Title</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "title")}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.originalFilename.label" default="Original Filename"/></td>
+                    <td valign="top" class="name">Original Filename</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "originalFilename")}</td>
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.dateTaken.label" default="Date Taken"/></td>
+                    <td valign="top" class="name">Date Taken</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "dateTaken")}</td>
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.camera.label" default="Camera"/></td>
+                    <td valign="top" class="name">Camera</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "camera")}</td>
 
                 </tr>
 
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.location.label" default="Location"/></td>
+                    <td valign="top" class="name">Location</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "location")}</td>
 
                 </tr>
@@ -55,7 +55,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.formats.label" default="Formats"/></td>
+                    <td valign="top" class="name">Formats</td>
                     <td valign="top" style="text-align: left;" class="value">
                         <ul>
                             <g:each in="${pictureInstance.formats.sort { it.width }}" var="f">
@@ -66,7 +66,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.people.label" default="People"/></td>
+                    <td valign="top" class="name">People</td>
                     <td valign="top" style="text-align: left;" class="value">
                         <ul>
                             <g:each in="${pictureInstance.people}" var="p">
@@ -77,14 +77,14 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.dateCreated.label" default="Date Created"/></td>
+                    <td valign="top" class="name">Date Created</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "dateCreated")}</td>
 
                 </tr>
 
 
                 <tr class="prop">
-                    <td valign="top" class="name"><g:message code="picture.lastUpdated.label" default="Last Updated"/></td>
+                    <td valign="top" class="name">Last Updated</td>
                     <td valign="top" class="value">${fieldValue(bean: pictureInstance, field: "lastUpdated")}</td>
                 </tr>
 

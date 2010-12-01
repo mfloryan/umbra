@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div class="body">
-		<h1><g:message code="default.show.label" args="[entityName]"/></h1>
+		<h1>People</h1>
 		<g:if test="${flash.message}">
 			<div class="message">${flash.message}</div>
 		</g:if>
@@ -14,22 +14,22 @@
 				<tbody>
 
 					<tr class="prop">
-						<td valign="top" class="name"><g:message code="person.id.label" default="Id"/></td>
+						<td valign="top" class="name">Id</td>
 						<td valign="top" class="value">${fieldValue(bean: personInstance, field: "id")}</td>
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><g:message code="person.shortName.label" default="Short Name"/></td>
+						<td valign="top" class="name">Short Name</td>
 						<td valign="top" class="value">${fieldValue(bean: personInstance, field: "shortName")}</td>
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><g:message code="person.displayOrder.label" default="Display Order"/></td>
+						<td valign="top" class="name">Display Order</td>
 						<td valign="top" class="value">${fieldValue(bean: personInstance, field: "displayOrder")}</td>
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><g:message code="person.fullName.label" default="Full Name"/></td>
+						<td valign="top" class="name">Full Name</td>
 						<td valign="top" class="value">${fieldValue(bean: personInstance, field: "fullName")}</td>
 					</tr>
 
