@@ -17,17 +17,20 @@
 $(document).ready(function() {
     $('a.fancyboxImage').fancybox({
         'type':'image',
-        'onStart': function() {
-            if (_gaq) {
-                gaq.push(['_trackEvent', 'Pictures', 'Fancybox']);
+        'onComplete': function() {
+            if (typeof _gaq != 'undefined') {
+                var src = $('#fancybox-content img').attr('src');
+                src = src.substring(src.indexOf('picture'), src.lastIndexOf('/'));
+                _gaq.push(['_trackEvent', 'Pictures', 'Fancybox', src]);
             }
         }
     });
 
-    $('.download a').click( function() {
-        if (_gaq) {
-            gaq.push(['_trackEvent', 'Pictures', 'Download']);
+    $('.download a').click(function() {
+        if (typeof _gaq != 'undefined') {
+            var href = $(this).attr('href');
+            _gaq.push(['_trackEvent', 'Pictures', 'Download',href.substring(1,href.indexOf('original')-1)]);
         }
-       return true;
+        return true;
     });
 });
