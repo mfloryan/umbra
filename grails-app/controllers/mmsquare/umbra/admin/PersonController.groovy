@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package mmsquare.umbra
+package mmsquare.umbra.admin
+
+import mmsquare.umbra.Person
 
 class PersonController {
 
