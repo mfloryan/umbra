@@ -63,7 +63,7 @@ grails.app.context = "/"
 // set per-environment serverURL stem for creating absolute links
 environments {
 	production {
-		grails.serverURL = "http://3.floryan.pl/"
+		grails.serverURL = "http://3.floryan.pl"
 		grails.config.locations = ["classpath:umbra.config.properties"]
 	}
 	development {
