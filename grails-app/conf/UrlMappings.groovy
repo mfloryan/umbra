@@ -37,13 +37,16 @@ class UrlMappings {
 
 		"/picture/$id/${format}.jpg" (controller:"umbraPicture", action: "show")
 
+		"/page/$page"(controller: "umbra", action: 'list')
+
+		"/person/$person/page?/$page?"(controller: "umbra", action: 'list')
+
+		"/feed"(controller: "umbra", action: 'rssFeed')
+
 		"/"(controller: "umbra", action: 'list') {
 			page = 1
 		}
 
-		"/page/$page"(controller: "umbra", action: 'list')
-
-		"/person/$person/page?/$page?"(controller: "umbra", action: 'list')
 
 		"404"(controller: 'umbra', action: 'list')
 		"500"(view: 'error')

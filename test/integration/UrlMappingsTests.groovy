@@ -38,6 +38,9 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 			person = "Zosia"
 			page = 3
 		}
+
+		assertForwardUrlMapping("/feed", controller: "umbra", action: "rssFeed")
+
 	}
 
 	@Test
