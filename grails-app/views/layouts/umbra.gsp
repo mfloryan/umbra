@@ -9,9 +9,9 @@
     <g:javascript library="jquery" plugin="jquery"/>
     <g:javascript library="fancybox/jquery.fancybox-1.3.3.pack"/>
     <g:javascript library="umbra"/>
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1" type="text/javascript"></script>
+    <g:if env="production"><script src="http://connect.facebook.net/en_US/all.js#xfbml=1" type="text/javascript"></script></g:if>
     <meta property="og:site_name" content="${grailsApplication.config.umbra.og.site_name}"/>
-    <meta property="og:image" content="${resource(dir: 'images', file: 'logo-opengraph.png', absolute: true)}"/>
+    <meta property="og:image" content="${resource(dir: 'images', file: '3f-logo.png', absolute: true)}"/>
     <meta property="fb:admins" content="${grailsApplication.config.umbra.facebook.userId}"/>
     <g:layoutHead/>
     <g:if env="production">
