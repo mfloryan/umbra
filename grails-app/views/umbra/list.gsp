@@ -2,7 +2,7 @@
 <head>
 	<meta name="layout" content="umbra"/>
 	<meta property="og:type" content="blog"/>
-	<meta property="og:url" content="${createLink(uri: "/", absolute: true)}"/>
+	<meta property="og:url" content="${grailsApplication.config.grails.serverURL}"/>
 	<meta property="og:description" content="${grailsApplication.config.umbra.description}"/>
 </head>
 <body>
