@@ -70,13 +70,13 @@
                     <legend>Tags</legend>
                     <ul class="tags">
                         <g:each in="${Tag.listOrderByName()}" var="tag">
-                            <li>
-                                <input type="checkbox" name="tags" value="${tag.id}" id="tag-${tag.id}">
-                                <label for="tag-${tag.id}">${tag.name}</label>
-                            </li>
+                            <li><label>
+                                <input type="checkbox" name="tags" value="${tag.id}">
+                                ${tag.name}
+                            </label></li>
                         </g:each>
                     </ul>
-                    <div style="text-align: right;">
+                    <div style="text-align: right; padding: 4px;">
                         <label for="name">New tag:</label> <input type="text" name="name" id="name" maxlength="80"> <button type="button" id="add-tag" class="button-add">add</button>
                     </div>
                 </fieldset>
