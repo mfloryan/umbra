@@ -16,8 +16,8 @@
 
 package mmsquare.umbra
 
-import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
 import org.joda.time.Duration
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
 
 class UmbraPictureController {
 
@@ -34,18 +34,22 @@ class UmbraPictureController {
 			return
 		}
 
-		withCacheHeaders {
-			lastModified {
-				image.dateCreated.toDate()
-			}
-			generate {
-				cache shared:true, validFor: Duration.standardDays(100).standardSeconds
-				if (params.download) {
-					response.addHeader "Content-disposition", "attachment; filename=${picture.originalFilename}"
+		if (params.download) {
+			response.contentType = "image/jpeg"
+			response.contentLength = image.file.length()
+			response.addHeader "Content-disposition", "attachment; filename=${picture.originalFilename}"
+			response.outputStream << image.file.newInputStream()
+		} else {
+			withCacheHeaders {
+				lastModified {
+					image.dateCreated.toDate()
 				}
-				response.contentType = "image/jpeg"
-				response.contentLength = image.file.length()
-				response.outputStream << image.file.newInputStream()
+				generate {
+					cache shared: true, validFor: Duration.standardDays(100).standardSeconds
+					response.contentType = "image/jpeg"
+					response.contentLength = image.file.length()
+					response.outputStream << image.file.newInputStream()
+				}
 			}
 		}
 	}
