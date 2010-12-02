@@ -16,6 +16,9 @@
 
 package mmsquare.umbra
 
+import groovy.xml.MarkupBuilder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
+
 class UmbraController {
 
 	def entryService
@@ -45,4 +48,26 @@ class UmbraController {
 			[entry: entry]
 		}
 	}
+
+	def rssFeed = {
+		response.contentType = "application/atom+xml"
+
+		// TODO: Add <?xml version="1.0" encoding="utf-8"?>
+		def xml = new MarkupBuilder(response.getWriter());
+		xml.feed(xmlns:'http://www.w3.org/2005/Atom') {
+			title(config.umbra.title)
+			subtitle(config.umbra.description)
+			link(href:config.grails.serverUrl + "/feed", rel:"self")
+			link(href:config.grails.serverUrl)
+			entry {
+
+			}
+		}
+	}
+
+
+	private static ConfigObject getConfig() {
+		ConfigurationHolder.config
+	}
+
 }
