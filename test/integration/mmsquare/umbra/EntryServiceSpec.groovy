@@ -172,10 +172,10 @@ class EntryServiceSpec extends IntegrationSpec {
 		results.pictures*.size() == photosCount
 
 		where:
-		person    | titles                            | photosCount
-		"zosia"   | ["Entry 1", "Entry 3", "Entry 4"] | [1, 1, 2]
-		"franek"  | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
-		"matylda" | ["Entry 5"]                       | [2]
+		person | titles | photosCount
+		"zosia" | ["Entry 1", "Entry 3", "Entry 4"] | [1, 1, 2]
+		"franek" | ["Entry 2", "Entry 3", "Entry 4"] | [1, 1, 1]
+		"matylda" | ["Entry 5"] | [2]
 
 	}
 
@@ -225,6 +225,40 @@ class EntryServiceSpec extends IntegrationSpec {
 
 		where:
 		person = "franek"
+	}
+
+	def "should return recent entries for rss feed"() {
+		given: "some entries of different publish dates"
+		def fixture = fixtureLoader.load {
+			entry1(Entry) {
+				title = "Entry in the future"
+				publishDate = new DateTime().plusDays(2)
+				permalink = "/2010/10/entry-future"
+			}
+			entry1(Entry) {
+				title = "Test Entry B"
+				publishDate = new DateTime().minusDays(10)
+				permalink = "/2010/10/entry-now-1"
+			}
+			entry2(Entry) {
+				title = "Test Entry A"
+				publishDate = new DateTime().minusDays(1)
+				permalink = "/2010/10/entry-now-2"
+			}
+			entry3(Entry) {
+				title = "Entry in the past"
+				publishDate = new DateTime().minusDays(40)
+				permalink = "/2010/10/entry-past-1"
+			}
+		}
+
+		when:
+		def entries = entryService.getRecent()
+
+		then:
+		entries.size() == 2
+		entries.title == ["Test Entry A", "Test Entry B"]
+
 	}
 
 	private void buildSomeEntries(offset) {

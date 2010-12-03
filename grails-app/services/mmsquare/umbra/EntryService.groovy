@@ -19,6 +19,7 @@ package mmsquare.umbra
 import grails.orm.PagedResultList
 import org.joda.time.DateTime
 import org.hibernate.Criteria
+import org.hibernate.FetchMode
 
 class EntryService {
 
@@ -35,6 +36,13 @@ class EntryService {
 				}
 				resultTransformer Criteria.DISTINCT_ROOT_ENTITY
 			}
+			order("publishDate", "desc")
+		}
+	}
+
+	List<Entry> getRecent() {
+		Entry.createCriteria().list() {
+			between("publishDate", new DateTime().minusDays(30), new DateTime())			
 			order("publishDate", "desc")
 		}
 	}
