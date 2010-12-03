@@ -350,7 +350,6 @@ fieldset ul li label.required {
 
 fieldset.form ul li label {
     display: inline-block;
-    padding: 0 10px 0 0;
     text-align: right;
     white-space: nowrap;
     width: 80px;
@@ -411,6 +410,6 @@ textarea#content {
 fieldset ul.tags li {
     display: inline-block;
     padding: 5px;
-    
+    width: 160px;
 }
 

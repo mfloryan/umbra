@@ -15,7 +15,7 @@
             </div>
         </g:hasErrors>
         <g:form action="save">
-            <div class="dialog">
+            <div class="dialog"  style="width: 720px; margin: auto;">
                 <fieldset class="form">
                     <legend>New Entry</legend>
                     <ul>
@@ -71,8 +71,7 @@
                     <ul class="tags">
                         <g:each in="${Tag.listOrderByName()}" var="tag">
                             <li><label>
-                                <input type="checkbox" name="tags" value="${tag.id}">
-                                ${tag.name}
+                                <input type="checkbox" name="tags" value="${tag.id}"> ${tag.name}
                             </label></li>
                         </g:each>
                     </ul>
