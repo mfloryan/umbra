@@ -73,7 +73,6 @@ environments {
 		umbra.title = "3F"
 		umbra.og.site_name = "3F - Zosia, Matylda & Franek Floryan"
 		umbra.description = "Photographic journey through lives of Zosia, Matylda and Franek"
-		umbra.facebook.userId = "551198988"		
 		umbra.image.base.location = System.properties."java.io.tmpdir" + "/grails-${System.properties.'user.name'}/umbra"
 	}
 	developmentPg {
