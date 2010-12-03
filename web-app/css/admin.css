@@ -238,8 +238,7 @@ th.desc a {
 /* DIALOG */
 
 .dialog {
-    width: 800px;
-    margin: auto;
+    text-align: center;
 }
 
 .dialog table {
@@ -323,6 +322,16 @@ fieldset {
     text-align: left;
 }
 
+fieldset#login {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+fieldset#login label {
+    display: block;
+    text-align: left;
+}
+
 fieldset legend {
     color: #635147;
     font-size: 14px;
@@ -332,6 +341,7 @@ fieldset legend {
 
 fieldset ul {
     list-style: none;
+    padding: 0px 5px 2px 5px;
 }
 
 fieldset ul li label.required {

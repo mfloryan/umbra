@@ -48,6 +48,9 @@
         <div class="paginateButtons">
             <g:paginate total="${entryInstanceTotal}"/>
         </div>
+        <div class="buttons">
+            <g:link action="signOut" controller="auth" class="button-auth">Sign out</g:link>
+        </div>
     </div>
 </body>
 </html>

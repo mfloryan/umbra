@@ -20,6 +20,7 @@ $(document).ready(function() {
     $('a.button-delete').button({icons: {primary: "ui-icon-trash"}}).bind('click', handleDeleteClick);
     $('.button-create').button({icons: {primary: "ui-icon-circle-plus"}});
     $('.button-add').button({icons: {primary: "ui-icon-plus"}});
+    $('.button-auth').button({icons: {primary: "ui-icon-locked"}});
 
     $('a.preview').fancybox({
         type:'image'
