@@ -60,7 +60,7 @@ class EntryController {
 		if (!entryInstance.permalink) entryInstance.createPermalink()
         if (entryInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'entry.label', default: 'Entry'), entryInstance.id])}"
-            redirect(action: "show", id: entryInstance.id)
+            redirect(action: "list", id: entryInstance.id)
         }
         else {
             render(view: "create", model: [entryInstance: entryInstance])
