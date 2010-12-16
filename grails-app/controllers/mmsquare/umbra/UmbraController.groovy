@@ -52,15 +52,23 @@ class UmbraController {
 	def rssFeed = {
 		response.contentType = "application/atom+xml"
 
-		// TODO: Add <?xml version="1.0" encoding="utf-8"?>
-		def xml = new MarkupBuilder(response.getWriter());
-		xml.feed(xmlns:'http://www.w3.org/2005/Atom') {
+		def newEntries = entryService.getRecent()
+		def xml = new MarkupBuilder(response.getWriter())
+		xml.mkp.xmlDeclaration(version: '1.0', encoding:'utf-8')
+		xml.feed(xmlns: 'http://www.w3.org/2005/Atom') {
+			id("umbra-"+ (config.grails.serverUrl - "http://"))
 			title(config.umbra.title)
 			subtitle(config.umbra.description)
-			link(href:config.grails.serverUrl + "/feed", rel:"self")
-			link(href:config.grails.serverUrl)
-			entry {
-
+			link(href: config.grails.serverUrl + "/feed", rel: "self")
+			link(href: config.grails.serverUrl)
+			updated(newEntries.first().publishDate.toString())
+			generator(version: config.app.version,config.app.name)
+			newEntries.each { Entry e ->
+				entry {
+					title(type:'text', e.title)
+					published(e.publishDate.toString())
+					updated(e.publishDate.toString())
+				}
 			}
 		}
 	}

@@ -13,6 +13,7 @@
     <meta property="og:site_name" content="${grailsApplication.config.umbra.og.site_name}"/>
     <meta property="og:image" content="${resource(dir: 'images', file: '3f-logo.png', absolute: true)}"/>
     <meta property="fb:admins" content="${grailsApplication.config.umbra.facebook.userId}"/>
+    <link href="/feed" type="application/atom+xml" rel="alternate" title="3F ATOM RSS feed" />
     <g:layoutHead/>
     <g:if env="production">
         <script type="text/javascript">

@@ -1,23 +1,8 @@
-/*
- * Copyright (c) 2010 Marcin Floryan. http://www.mmsquare.com/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package mmsquare.umbra
 
 import grails.plugin.spock.ControllerSpec
 import org.joda.time.DateTime
+import groovy.mock.interceptor.MockFor
 
 class UmbraControllerSpec extends ControllerSpec {
 
@@ -56,36 +41,58 @@ class UmbraControllerSpec extends ControllerSpec {
 
 	def "Should return rss feed with most recent items"() {
 		given:
-		mockDomain Entry, []
+		def entry1 = new Entry(publishDate: new DateTime(), title: "Test entry", permalink: "/2010/12/test-entry", content: "jiffy")
+		def entry2 = new Entry(publishDate: new DateTime().minusDays(2), title: "Test entry 2", permalink: "/2010/12/test-entry-2", content: "Some <b>html</b> content")
+		def entries = [entry1, entry2]
+
+		mockDomain Entry, entries
 		mockConfig """
 			umbra.title = "$title"
 			umbra.description = "$subtitle"
 			grails.serverUrl = "$server"
+			app.version= "1.2"
+			app.name= "Umbra"
 		"""
+
+		def mock = new MockFor(EntryService)
+		mock.demand.getRecent {
+			entries
+		}
+
+		controller.entryService = mock.proxyInstance()
 
 		when:
 		controller.rssFeed()
 		def responseString = controller.response.getContentAsString()
-		def feed = new XmlSlurper().parseText(responseString)
 
 		println responseString
+		def feed = new XmlSlurper().parseText(responseString)
+
 		then:
 		controller.response.contentType == "application/atom+xml"
 		feed
 		feed.title == title
-//		feed.@xmlns == "http://www.w3.org/2005/Atom"
 		feed.subtitle == subtitle
 		feed.link[0].@href == "$server/feed"
 		feed.link[1].@href == "$server"
-//		feed.id == "id"
-//		feed.updated == ""
+		feed.id == "umbra-test.server.com"
+		feed.updated == entry1.publishDate.toString()
 //		feed.author.name == "Marcin Floryan"
 //		feed.author.email == "marcin-3f-feed@szara.waw.pl"
 //		feed.rights == "(c) Małgorzata Floryan & Marcin Floryan"
-//
-//		feed.entry.size() == 2
-//		
-		
+
+		feed.generator == "Umbra"
+		feed.generator.@version == "1.2"
+
+		feed.entry.size() == 2
+
+		feed.entry.eachWithIndex { e, i ->
+			assert e.title == entries[i].title
+			assert e.title.@type == "text"
+			assert e.published == entries[i].publishDate.toString()
+			assert e.updated == entries[i].publishDate.toString()
+		}
+
 		where:
 		title = "Some title"
 		subtitle = "Feed subtitle"
