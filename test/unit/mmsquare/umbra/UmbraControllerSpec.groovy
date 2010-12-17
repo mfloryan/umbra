@@ -71,15 +71,16 @@ class UmbraControllerSpec extends ControllerSpec {
 		then:
 		controller.response.contentType == "application/atom+xml"
 		feed
+		feed.id == "umbra-test.server.com"
 		feed.title == title
 		feed.subtitle == subtitle
+		feed.updated == entry1.publishDate.toString()
+		feed.link[0].@rel == "self"
 		feed.link[0].@href == "$server/feed"
 		feed.link[1].@href == "$server"
-		feed.id == "umbra-test.server.com"
-		feed.updated == entry1.publishDate.toString()
-//		feed.author.name == "Marcin Floryan"
+		feed.author.name == "Marcin Floryan"
 //		feed.author.email == "marcin-3f-feed@szara.waw.pl"
-//		feed.rights == "(c) Małgorzata Floryan & Marcin Floryan"
+		feed.rights == "(c) Małgorzata Floryan & Marcin Floryan cc-by-nc-sa"
 
 		feed.generator == "Umbra"
 		feed.generator.@version == "1.2"
@@ -91,6 +92,7 @@ class UmbraControllerSpec extends ControllerSpec {
 			assert e.title.@type == "text"
 			assert e.published == entries[i].publishDate.toString()
 			assert e.updated == entries[i].publishDate.toString()
+			assert e.link.@href == "http://test.server.com"+entries[i].permalink
 		}
 
 		where:

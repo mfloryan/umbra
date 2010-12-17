@@ -54,20 +54,34 @@ class UmbraController {
 
 		def newEntries = entryService.getRecent()
 		def xml = new MarkupBuilder(response.getWriter())
-		xml.mkp.xmlDeclaration(version: '1.0', encoding:'utf-8')
+		xml.mkp.xmlDeclaration(version: '1.0', encoding: 'utf-8')
 		xml.feed(xmlns: 'http://www.w3.org/2005/Atom') {
-			id("umbra-"+ (config.grails.serverUrl - "http://"))
+			id("umbra-" + (config.grails.serverUrl - "http://"))
 			title(config.umbra.title)
 			subtitle(config.umbra.description)
 			link(href: config.grails.serverUrl + "/feed", rel: "self")
 			link(href: config.grails.serverUrl)
 			updated(newEntries.first().publishDate.toString())
-			generator(version: config.app.version,config.app.name)
+			author {
+				name("Marcin Floryan")
+				uri("http://marcin.floryan.pl")
+			}
+			rights('(c) Małgorzata Floryan & Marcin Floryan cc-by-nc-sa')
+			icon(config.grails.serverUrl + "/images/3f-logo.png")
+			generator(version: config.app.version, config.app.name)
 			newEntries.each { Entry e ->
 				entry {
-					title(type:'text', e.title)
+					title(type: 'text', e.title)
+					link(href: config.grails.serverUrl + e.permalink)
 					published(e.publishDate.toString())
 					updated(e.publishDate.toString())
+//					if (e.pictures) {
+//						content(type:"xhtml") {
+//							e.pictures.each { Picture p ->
+//								p.getFormatBy(FormatType.THUMBNAIL).url
+//							}
+//						}
+//					}
 				}
 			}
 		}
